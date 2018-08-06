@@ -5,12 +5,12 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    name = model.CharField(max_length=100)
-    rating = model.IntegerField(default=None)
-    location = model.CharField(max_length=100)
-    picture = model.ImageField()
-    bio = model.CharField()
-    charity = model.CharField()
+    name = models .CharField(max_length=100)
+    rating = models.IntegerField(default=None)
+    location = models.CharField(max_length=100)
+    picture = models.CharField(max_length=100)
+    bio = models.CharField(max_length=2000)
+    charity = models.CharField(max_length=100)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -23,16 +23,16 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class Item(models.Model):
-    name = model.CharField(max_length=100)
-    picture = model.ImageField()
-    description = model.CharField(max_length=100)
-    percentCharity = model.FloatField(max_length=100)
-    price = model.IntegerField(default=0)
-    userId = model.IntegerField()
+    name = models.CharField(max_length=100)
+    picture = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+    percentCharity = models.FloatField(max_length=100)
+    price = models.IntegerField(default=0)
+    userId = models.IntegerField()
 
-class Charities(models.Model):
-    name = model.CharField(max_length=100)
-    userId = model.IntegerField()
+class Charity(models.Model):
+    name = models.CharField(max_length=100)
+    userId = models.IntegerField()
 
 class Cart(models.Model):
-    userId = model.IntegerField()
+    userId = models.IntegerField()
