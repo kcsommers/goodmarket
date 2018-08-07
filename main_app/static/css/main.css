@@ -114,6 +114,7 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: right;
 }
 
 .filter-form input[type=text] {
@@ -122,10 +123,12 @@ a {
 	font-size: 1.1em;
 	padding: 0.5em;
 	min-width: 300px;
+	display: block;
+	margin-bottom: 1em;
 }
 
 .filter-form input[type=submit] {
-	border: none;
+	border: 1px solid #333;
 	outline: none;
 	font-size: 1.1em;
 	padding: 0.5em;
@@ -137,7 +140,7 @@ a {
 }
 
 .market-item {
-	flex: 1 1 15%;
+	flex: 1 1 25%;
 	display: flex;
 	flex-direction: column;
 	margin: 1em;
@@ -163,6 +166,10 @@ a {
 
 .market-item-info p {
 	line-height: 1.8em;
+}
+
+.filter {
+	display: none;
 }
 
 /*****************************************************/
