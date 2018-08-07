@@ -9,6 +9,6 @@ urlpatterns = [
 	path('logout/', views.logout_view, name="logout"),
 	path('checkout/', views.checkout, name="checkout"),
 	path('signup/', views.signup_view, name="signup"),
-	path('show/', views.show, name="show"),
-	path('charity/', views.charity, name="charity")
+	path('item/<int:item_id>', views.show_item, name="show"),
+	path('charities/', views.charity, name="charity")
 ]
