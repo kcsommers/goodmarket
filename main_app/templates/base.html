@@ -6,13 +6,14 @@
 	<meta charset="UTF-8">
 	<title>Project 4</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Cabin|Roboto+Condensed" rel="stylesheet">
 </head>
 <body>
 	<nav class="main-nav">
 		<div class="nav-wrapper">
 			 <div class="nav-left">
 			 	<div class="logo">
-			 		<img src="http://www.standrewlufkin.org/uploads/6/7/5/9/6759570/4369515_orig.jpg" alt="logo">
+			 		<a href="/"><img src="{% static 'images/logo.png' %}" alt="logo" /></a>
 			 	</div>
 			 </div>
 			 <div class="nav-right">
@@ -38,7 +39,7 @@
 			
 		</div>
 	</footer>
-<script src="{% static 'main.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
