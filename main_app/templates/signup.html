@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Signup</h1>
-<form action="/signup/" method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button class="btn" type="submit">Submit</button>
-</form>
+<div class="auth-wrapper">
+	<h1>Sign Up</h1>
+	<form action="/signup/" method="POST">
+		{% csrf_token %}
+		<ul>
+			<li>{{ form.username }}</li>
+			<li>{{ form.first_name }}</li>
+			<li>{{ form.last_name }}</li>
+			<li>{{ form.email }}</li>
+			<li>{{ form.password1}}</li>
+			<li>{{ form.password2 }}</li>
+		</ul>
+		<button class="btn auth-btn" type="submit">Sign Up</button>
+	</form>
+</div>
 
 {% endblock %}
