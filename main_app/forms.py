@@ -13,4 +13,16 @@ class SignupForm(UserCreationForm):
 
 	class Meta:
 			model = User
-			fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+			fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+	
+	def __init__(self):
+		super(UserCreationForm, self).__init__()
+		self.fields['username'].widget.attrs['placeholder'] = 'Username'
+		self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
+		self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
+		self.fields['email'].widget.attrs['placeholder'] = 'Email'
+		self.fields['password1'].widget.attrs['placeholder'] = 'Test'
+		self.fields['password2'].widget.attrs['placeholder'] = 'Test2'
+		for fieldname in ['username', 'password1', 'password2']:
+			self.fields[fieldname].help_text = None
+			# self.fields[fieldname].label = None
