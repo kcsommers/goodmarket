@@ -5,10 +5,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Project 4</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-	<link rel="stylesheet" href="custom.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
+	<nav class="main-nav">
+		<div class="nav-wrapper">
+			 <div class="nav-left">
+			 	<div class="logo">
+			 		<img src="http://www.standrewlufkin.org/uploads/6/7/5/9/6759570/4369515_orig.jpg" alt="logo">
+			 	</div>
+			 </div>
+			 <div class="nav-right">
+			 	<div class="nav-menu">
+			 		<a href="/login/">Login</a>
+			 		<a href="/signup/">Signup</a>
+			 		<a href="/profile/">Charities</a>
+			 		<a href="/market/">Market</a>
+			 	</div>
+			 </div>
+		</div>
+	</nav>
 
 	<main>
 		<div class="container">
@@ -16,7 +32,13 @@
 			{% endblock %}
 		</div>
 	</main>
-	
-<script src="{% static 'app.js' %}"></script>
+
+	<footer class="footer">
+		<div class="footer-wrapper">
+			
+		</div>
+	</footer>
+<script src="{% static 'static/main.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

@@ -16,6 +16,9 @@ public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
 def index(request):
 	return render(request, 'index.html', {'key': public_key})
 
+def market(request):
+	return render(request, 'market.html')
+
 
 def checkout(request):
 	print('CHECKOUT', request);
