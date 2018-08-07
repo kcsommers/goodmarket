@@ -96,6 +96,8 @@ a {
 
 /***************** JACOB CSS *************************/
 
+/* Show Page */
+
 .container {
 	width: 90%;
 	margin: 0 auto;
@@ -107,7 +109,7 @@ a {
 
 .content {
 	display: grid;
-	grid-template-columns: 1fr 12em 8em;
+	grid-template-columns: 1fr 12em 12em;
 	grid-template-areas: 'col1 col2 col3';
 	grid-gap: 1em;
 	margin-bottom: 5em;
@@ -159,6 +161,24 @@ a {
 	text-align: center;
 }
 
+.button {
+	padding: .7em;
+	border-radius: 2em;
+	cursor: pointer;
+}
+
+.checkout-box-info {
+	margin-bottom: 1em;
+}
+
+.condition, .price {
+	display: inline-block;
+}
+
+.price-input {
+	width: 80%;
+}
+
 @media only screen and (max-width:540px) {
 	.content {
 		grid-template-columns: 1fr;
@@ -168,6 +188,31 @@ a {
 							 'col3';
 	}
 }
+
+/* Charity Page */
+
+.charities-title {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.charity {
+	text-align: center;
+	width: 10em;
+	height: 7em;
+	background-color: red;
+	display: block;
+	margin: 0 auto;
+}
+
+.charity-name {
+	margin-top: 1em;
+}
+
+.donate-button {
+	margin-top: 3em;
+}
+
 /******************* WILL CSS ***********************/
 
 
