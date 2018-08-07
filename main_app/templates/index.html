@@ -3,4 +3,18 @@
 
 <h1>HI</h1>
 
+<form action="/checkout/" method="POST">
+	{% csrf_token %}
+	<script
+	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	    data-key="{{key}}"
+	    data-amount="999"
+	    data-name="Demo Site"
+	    data-description="Example charge"
+	    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+	    data-zip-code="true"
+	    data-locale="auto">
+	</script>
+</form>
+
 {% endblock %}

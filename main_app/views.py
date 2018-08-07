@@ -1,15 +1,38 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 import requests
+import stripe
+stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
+# stripe.api_key = "sk_test_nZ8qHYKUMpN53f0JNPYtvw7B"
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html')
+	return render(request, 'index.html', {'key': public_key})
+
+
+def checkout(request):
+	print('CHECKOUT', request);
+
+
+
+	if(request.method == "POST"):
+		charge = stripe.Charge.create(
+			amount=100,
+			currency="usd",
+			source=request.POST['stripeToken']
+		)
+		print('#####################################', charge)
+		return HttpResponseRedirect('/')
+
+
+
 
 def login_view(request):
 	if(request.method == 'POST'):
