@@ -74,6 +74,23 @@ a {
 					MARKET PAGE
 ****************************************************************************/
 
+.market-main .page-title {
+	padding: 2em 0;
+}
+
+.filters {
+	display: flex;
+	padding: 1em 0;
+}
+
+.category-filters {
+	flex: 1;
+}
+
+.category-filters p{
+	padding-bottom: 0.5em;
+}
+
 .category-filters button {
 	font-size: 1.2em;
 	padding: 0.3em 1em;
@@ -83,6 +100,7 @@ a {
 	border: 1px solid #158f97;
 	color: #158f97;
 	border-radius: 10px;
+	margin: 0.1em;
 }
 
 .category-filters button.filter-active{
@@ -91,73 +109,234 @@ a {
 	border-color: #fff;
 }
 
+.filter-form {
+	flex: 0.7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: right;
+}
+
+.filter-form input[type=text] {
+	border: 1px solid #333;
+	outline: none;
+	font-size: 1.1em;
+	padding: 0.5em;
+	min-width: 300px;
+	display: block;
+	margin-bottom: 1em;
+}
+
+.filter-form input[type=submit] {
+	border: 1px solid #333;
+	outline: none;
+	font-size: 1.1em;
+	padding: 0.5em;
+}
+
+.market-items-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.market-item {
+	flex: 1 1 25%;
+	display: flex;
+	flex-direction: column;
+	margin: 1em;
+	min-width: 200px;
+	background-color: #fff;
+	box-shadow: 3px 3px 10px #888;
+	border-radius: 5px;
+}
+
+.market-item-image img{
+	width: 100%;
+}
+
+.market-item-info {
+	padding: 1em;
+}
+
+.market-item-info h5 {
+	font-size: 1.1em;
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.market-item-info p {
+	line-height: 1.8em;
+}
+
+.filter {
+	display: none;
+}
+
 /*****************************************************/
 
 
 /***************** JACOB CSS *************************/
 
+/* Show Page */
+
 .container {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	display: grid;
-	grid-gap: 50px;
+	grid-gap: 1em;
+	grid-template-areas: 'item-name'
+						 'content'
+}
+
+.content {
+	display: grid;
+	grid-template-columns: 1fr 12em 12em;
+	grid-template-areas: 'col1 col2 col3';
+	grid-gap: 1em;
+	margin-bottom: 5em;
 }
 
 .checkout-box {
 	background-color: red;
 	margin-bottom: 5em;
-	width: 20%;
 	text-align: center;
-	float: right;
 	padding-top: 5em;
 	padding-bottom: 5em;
-	margin-top: 2em;
 }
 
 .item-name {
 	text-align: center;
-	margin-top: 2em;
+	display: block;
+	grid-area: 'item-name';
+	margin-top: 1em;
+	margin-bottom: .5em;
 }
 
 .item {
 	background-color: blue;
-	margin-bottom: 5em;
-	width: 40%;
+	margin-bottom: 1em;
 	text-align: center;
 	padding-top: 5em;
 	padding-bottom: 5em;
-	margin-right: 2em;
-	margin-top: 2em;
+	height: 15em;
 }
 
-.col1 {
-	float: left;
-}
-
-.description {
-	margin-top: 2em;
-	width: 30%;
-}
 
 .col {
-	display: inline-block;
 	vertical-align: top;
-	margin-bottom: 5em;
 }
 
 .col1 {
-	grid-column: 1;
+	grid-area: "col1";
 }
 
 .col2 {
-	grid-column: 2;
+	grid-area: "col2";
 }
 
 .col3 {
-	grid-column: 3;
+	grid-area: "col3";
+}
+
+.message {
+	text-align: center;
+}
+
+.button {
+	padding: .7em;
+	border-radius: 2em;
+	cursor: pointer;
+}
+
+.checkout-box-info {
+	margin-bottom: 1em;
+}
+
+.condition, .price {
+	display: inline-block;
+}
+
+.price-input {
+	width: 80%;
+}
+
+@media only screen and (max-width:540px) {
+	.content {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas: 'col1'
+							 'col2'
+							 'col3';
+	}
+}
+
+/* Charity Page */
+
+.charities-title {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.charity {
+	text-align: center;
+	width: 10em;
+	height: 7em;
+	background-color: red;
+	display: block;
+	margin: 0 auto;
+}
+
+.charity-name {
+	margin-top: 1em;
+}
+
+.donate-button {
+	margin-top: 3em;
 }
 
 /******************* WILL CSS ***********************/
+
+.auth-wrapper {
+	text-align: center;
+}
+
+.auth-wrapper ul {
+	list-style-type: none;
+}
+
+.auth-wrapper input {
+	margin-top: 2em;
+	height: 4em;
+	width: 28em;
+	border-radius: 2px;
+	border: none;
+	background-color: #444;
+	opacity: 0.6;
+	outline: none;
+	color: #fff;
+	padding-left: 1em;
+}
+
+.auth-wrapper input::placeholder {
+  color: white;
+}
+
+.auth-wrapper .auth-btn {
+	margin-top: 2em;
+	height: 4em;
+	width: 13em;
+	outline: none;
+	background: transparent;
+	border: 2px solid #444;;
+	border-radius: 2px;
+	color: #444;
+	transition: all 0.3s ease; 
+}
+
+.auth-btn:hover {
+	background-color: #158f97;
+	color: white;
+}
 
 
 

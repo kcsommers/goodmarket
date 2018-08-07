@@ -80,8 +80,9 @@ def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
 
-def show(request):
-	return render(request, 'show.html')
+def show_item(request, item_id):
+	item = Item.objects.get(id=item_id)
+	return render(request, 'show.html', {'item': item})
 
 def charity(request):
 	return render(request, 'charity.html')
