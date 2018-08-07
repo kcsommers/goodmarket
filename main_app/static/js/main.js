@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	console.log('DOC REACY');
+	console.log('DOC READY');
 
 	$('.category-filters button').click(function() {
 		if($(this).is('.filter-active')) {

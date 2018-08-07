@@ -18,10 +18,15 @@
 			 </div>
 			 <div class="nav-right">
 			 	<div class="nav-menu">
-			 		<a href="/login/">Login</a>
-			 		<a href="/signup/">Signup</a>
 			 		<a href="/profile/">Charities</a>
 			 		<a href="/market/">Market</a>
+			 		{% if user.is_authenticated %}
+					<a href="/profile/">Profile</a>
+					<a href="/logout/">Logout</a>
+					{% else %}
+					<a href="/login/">Login</a>
+					<a href="/signup/">Signup</a>
+			 		{% endif %}
 			 	</div>
 			 </div>
 		</div>
