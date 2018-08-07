@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Item, Profile
 from .forms import LoginForm, SignupForm
 import requests
 import stripe
@@ -17,7 +18,8 @@ def index(request):
 	return render(request, 'index.html', {'key': public_key})
 
 def market(request):
-	return render(request, 'market.html')
+	items = Item.objects.all()
+	return render(request, 'market.html', {"items": items})
 
 def checkout(request):
 	print('CHECKOUT', request)
