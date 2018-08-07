@@ -5,7 +5,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm
+from .models import Item, Profile
+from .forms import LoginForm, SignupForm
 import requests
 import stripe
 stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
@@ -17,13 +18,11 @@ def index(request):
 	return render(request, 'index.html', {'key': public_key})
 
 def market(request):
-	return render(request, 'market.html')
-
+	items = Item.objects.all()
+	return render(request, 'market.html', {"items": items})
 
 def checkout(request):
-	print('CHECKOUT', request);
-
-
+	print('CHECKOUT', request)
 
 	if(request.method == "POST"):
 		charge = stripe.Charge.create(
@@ -33,9 +32,6 @@ def checkout(request):
 		)
 		print('#####################################', charge)
 		return HttpResponseRedirect('/')
-
-
-
 
 def login_view(request):
 	if(request.method == 'POST'):
@@ -59,6 +55,33 @@ def login_view(request):
 		form = LoginForm()
 		return render(request, 'login.html', {'form': form})
 
+def signup_view(request):
+	print("HIT SIGNUP ROUTE")
+	if(request.method == 'POST'):
+		print("REQUEST WAS POST")
+		form = SignupForm(request.POST)
+		if form.is_valid():
+			print("FORM WAS VALID")
+			form.save()
+			u = form.cleaned_data.get('username')
+			p = form.cleaned_data.get('password1')
+			user = authenticate(username=u, password=p)
+			login(request, user)
+			print("SIGNED UP")
+			return HttpResponseRedirect('/')
+		else: 
+			return HttpResponseRedirect("/")
+			print("Invalid Information")
+	else:
+		form = SignupForm()
+		return render(request, "signup.html", {"form": form})
+
 def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+def show(request):
+	return render(request, 'show.html')
+
+def charity(request):
+	return render(request, 'charity.html')

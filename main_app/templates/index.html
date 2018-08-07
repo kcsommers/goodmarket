@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>HI</h1>
+<section class="landing-page">
+	<div class="intro-container">
+		<h1>Give some. Earn Some.</h1>
+		<h4>A percentage of every sale goes to a charity of your choosing. You decide your cut.</h4>
+		<a href="/market/">Go to Market</a>
+	</div>
+</section>
+
 
 <form action="/checkout/" method="POST">
 	{% csrf_token %}

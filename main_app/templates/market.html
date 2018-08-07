@@ -1,6 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<section class="market-page">
+	<h3>Market</h3>
+	<div class="filters">
+		<form>
+			<input type="text" placeholder="Search by name..." name="search" />
+			<input type="submit" value="Search" />
+		</form>
+		<div class="category-filters">
+			<p>Filter by Category</p>
+			<button class="filter-active" data-id="furniture">Furniture</button>
+			<button data-id="clothing">Clothing</button>
+			<button data-id="appliances">Appliances</button>
+			<button data-id="hardware">Hardware</button>
+			<button data-id="tech">Tech</button>
+			<button data-id="athletics">Athletics</button>
+			<button data-id="arts">Arts</button>
+			<button data-id="bikes">Bikes</button>
+			<button data-id="auto">Auto</button>
+		</div>
+	</div>
+	<section class="items-container">
+		{% for item in items %}
+			<div class="item">
+				<div class="item-image">
+					<img src="{{item.picture}}" alt="item">
+				</div>
+				<div class="item-info">
+					<h5>Bicycle</h5>
+					<p>$50.00</p>
+					<p>Charity: ACLU</p>
+				</div>
+			</div>
+		{% endfor %}
+	</section>
+</section>
 
 {% endblock %}
