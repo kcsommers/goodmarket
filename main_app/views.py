@@ -51,8 +51,19 @@ def login_view(request):
 		return render(request, 'login.html', {'form': form})
 
 def signup_view(request):
+	print("HIT SIGNUP ROUTE")
 	if(request.method == 'POST'):
-		return HttpResponse("This will POST to SIGNUP")
+		print("REQUEST WAS POST")
+		form = SignupForm(request.POST)
+		if form.is_valid():
+			print("FORM WAS VALID")
+			form.save()
+			u = form.cleaned_data.get('username')
+			p = form.cleaned_data.get('password1')
+			user = authenticate(username=u, password=p)
+			login(request, user)
+			print("SIGNED UP")
+			return HttpResponseRedirect('/')
 	else:
 		form = SignupForm()
 		return render(request, "signup.html", {"form": form})
