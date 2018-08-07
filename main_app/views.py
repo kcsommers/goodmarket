@@ -67,6 +67,9 @@ def signup_view(request):
 			login(request, user)
 			print("SIGNED UP")
 			return HttpResponseRedirect('/')
+		else: 
+			return HttpResponseRedirect("/")
+			print("Invalid Information")
 	else:
 		form = SignupForm()
 		return render(request, "signup.html", {"form": form})
