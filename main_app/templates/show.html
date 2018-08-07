@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <h1 class="item-name">Item Name</h1>
-        <div>
-            <p class="item col col1">Item</p>
-            <button class="message col1">Direct Message</button>
-        </div>
-        <p class="description col col2">Description:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleifend, ligula sit amet aliquet elementum, ipsum sapien viverra mi, a ultrices mauris leo ut nisl. Nulla facilisi. Morbi convallis, dolor ut varius aliquam, enim nisi finibus nulla, id placerat lorem est quis neque. Sed cursus nibh in tellus maximus pretium. Duis ullamcorper ultricies turpis ac tempus. Aenean mauris ipsum, accumsan ac fringilla a, fringilla vitae</p>
-        <div class="checkout-box col col3">
-            <p>Location:</p>
-            <p>Condition:</p>
-            <p>Price</p>
-            <button>Add to Cart</button>
+<h1 class="item-name">Item Name</h1>
+
+<div class="container">
+        <div class="content">
+            <div class="col col1">
+                <p class="item">Item</p>
+                <div class="message col1"><button>Direct Message</button></div>
+            </div>
+            <div class="col col2">
+                <p class="description">Description:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleifend, ligula sit amet aliquet elementum, ipsum sapien viverra mi, a ultrices mauris leo ut nisl. Nulla facilisi. Morbi convallis, dolor ut varius aliquam, enim nisi finibus nulla, id placerat lorem est quis neque. Sed cursus nibh in tellus maximus pretium. Duis ullamcorper ultricies turpis ac tempus. Aenean mauris ipsum, accumsan ac fringilla a, fringilla vitae</p>
+            </div>
+            <div class="checkout-box col col3">
+                <p>Location:</p>
+                <p>Condition:</p>
+                <p>Price</p>
+                <button>Add to Cart</button>
+            </div>
         </div>
     </div>
 {% endblock %}
