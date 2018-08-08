@@ -1,8 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>
-  <h1>Test</h1>
+<div class="cart-wrapper">
+  <div class="cart-heading group">
+    <h1>My Cart</h1>
+    <a href="/market">Back to Market</a>
+  </div>
+  <div class="cart-container">
+    <ul>
+      <li>
+        <div class="item-container">
+          <div class="item-table">
+            <div class="item-cell">
+              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
+              <h3>Item Name</h3>
+              <p>Charity %</p>
+            </div>
+            <div class="value-cell">
+              <p>$10.00</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        List Item 2
+      </li>
+      <li>
+        List Item 3
+      </li>
+    </ul>
+  </div>
 </div>
    
 {% endblock %}
