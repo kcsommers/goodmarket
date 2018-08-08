@@ -17,10 +17,11 @@ class Profile(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    picture = models.CharField(max_length=100)
+    image = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    percentCharity = models.FloatField(max_length=100)
+    charity_percent = models.FloatField(max_length=100)
+    charity = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
     sold = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
