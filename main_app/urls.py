@@ -12,5 +12,6 @@ urlpatterns = [
 	path('item/<int:item_id>', views.show_item, name="show"),
 	path('charities/', views.charity, name="charity"),
 	path('sell/', views.sell, name="sell"),
-	path('cart/', views.cart, name="cart")
+	path('cart/', views.cart, name="cart"),
+	path('thecart/', views.thecart, name="thecart")
 ]

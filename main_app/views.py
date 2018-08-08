@@ -82,8 +82,8 @@ def logout_view(request):
 	return HttpResponseRedirect('/')
 
 def show_item(request, item_id):
-	item = Item.objects.get(id=item_id)
-	return render(request, 'show.html', {'item': item})
+		item = Item.objects.get(id=item_id)
+		return render(request, 'show.html', {'item': item})
 
 def charity(request):
 	return render(request, 'charity.html')
@@ -93,3 +93,12 @@ def sell(request):
 
 def cart(request):
 	return render(request, "cart.html")
+
+def thecart(request):
+	if (request.method=="POST"):
+		user_id = None
+		if request.user.is_authenticated():
+			user_id = request.user.user_id
+		return HttpResponseRedirect('/cart/')
+	else:
+		thecart = Thecart.objects.get(id=thecart_id)
