@@ -330,7 +330,7 @@ a {
 	border: 2px solid #444;;
 	border-radius: 2px;
 	color: #444;
-	transition: all 0.3s ease; 
+	transition: all 0.3s linear; 
 }
 
 .auth-btn:hover {
@@ -354,16 +354,16 @@ a {
 
 .cart-heading a {
 	float: right;
-	background-color: #158f97;
+	background-color: #82ca9c;
 	border-radius: 1em;
 	padding: 1em;
 	color: white;
-	transition: all 0.3s ease;
+	transition: all 0.3s linear;
 	margin-top: 0.5em;
 }
 
 .cart-heading a:hover {
-	background-color: #20bdc8
+	background-color: #439e64;
 }
 
 .group:after {
@@ -409,17 +409,91 @@ a {
 }
 
 .cart-container .item-cell p {
-	/* width: 2em;
-	text-align: center;
 	font-size: 1em;
-	padding: .25em;
-	margin: 1em .5em 0 0; */
+	margin: 1em .5em 0 0;
 }
 
 .cart-container .value-cell {
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.cart-container .removal-cell {
+	text-align: center;;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.cart-container .removal-cell a {
+	padding: 1em;
+	border-radius: 0.5em;
+	background-color: #e0e0e0;
+	transition: all 0.3s linear;
+}
+
+.cart-container .removal-cell a:hover {
+	background-color: #f30;
+	color: white;
+}
+
+.cart-container .subtotal-wrapper {
+	width: 86%;
+}
+
+.cart-container .subtotal {
+	float: right;
+	width: 35%;
+	margin-bottom: 5em;
+}
+
+.cart-container .subtotal span {
+	padding: 0 0 0 1em;
+	text-align: right;
+}
+
+.cart-container .subtotal li {
+	padding: .5em;
+	text-align: right;
+}
+
+.cart-container .label {
+	font-family: "Montserrat", sans-serif;
+	font-size: .85em;
+	text-transform: uppercase;
+	color: #777;
+}
+
+.cart-container .label-value {
+	width: 35%;
+}
+
+.cart-container .total {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
+.cart-container .checkout-button {
+	text-decoration: none;
+	font-family: "Montserrat", sans-serif;
+	letter-spacing: -.015em;
+	font-size: 1em;
+	padding: 1em 3em;
+	color: #fff;
+	background: #82ca9c;
+	font-weight: bold;
+	border-radius: 50px;
+	float: right;
+	text-align: right;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.cart-container .checkout-button:hover {
+	background-color: #439e64;
 }
 
 /*****************************************************/
