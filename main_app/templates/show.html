@@ -2,6 +2,7 @@
 {% block content %}
 <h1 class="item-name">{{item.name}}</h1>
 <h2 class="item-category">category: {{item.category}}</h2>
+<hr class="horizontal-rule">
 <div class="container">
         <div class="content">
             <div class="col col1">
@@ -12,17 +13,14 @@
                 <p class="description">Description: {{item.description}}</p>
             </div>
             <div class="checkout-box col col3">
-                <p class="checkout-box-info">Location:</p>
-                <p class="checkout-box-info condition">Condition:</p>
-                <select name="" id="" class="condition">
-                    <option value="">New</option>
-                    <option value="">Good</option>
-                    <option value="">OK</option>
-                    <option value="">Poor</option>
-                </select><br>
+                <p class="checkout-box-info">Seller: {{item.user}}</p>
+                <p class="checkout-box-info">Charity: {{item.charity}}</p>
+                <p class="checkout-box-info">Amount to Charity: {{item.charity_percent}}%</p>
                 <p class="checkout-box-info price">Price: ${{item.price}}.99</p>
-                <div>
-                    <button class="button checkout-box-info">Add to Cart</button>
+                <div class="add-to-cart-button">
+                    <form method="POST" type="submit">
+                        <button class="button checkout-box-info">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
