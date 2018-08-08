@@ -13,5 +13,5 @@ urlpatterns = [
 	path('charities/', views.charity, name="charity"),
 	path('sell/', views.sell, name="sell"),
 	path('cart/', views.cart, name="cart"),
-	path('thecart/', views.thecart, name="thecart")
+	path('thecart/<int:item_id>/', views.thecart, name="thecart")
 ]

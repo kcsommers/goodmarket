@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Item, Profile
+from .models import Item, Profile, Cart
 from .forms import LoginForm, SignupForm, SellForm
 import cloudinary.uploader
 import cloudinary.api
@@ -94,11 +94,10 @@ def sell(request):
 def cart(request):
 	return render(request, "cart.html")
 
-def thecart(request):
-	if (request.method=="POST"):
-		user_id = None
-		if request.user.is_authenticated():
-			user_id = request.user.user_id
-		return HttpResponseRedirect('/cart/')
-	else:
-		thecart = Thecart.objects.get(id=thecart_id)
+def thecart(request, item_id):
+	item = Item.objects.get(id=item_id)
+	cart, created = Cart.objects.get_or_create(user=request.user, defaults={
+		"user": request.user
+	})
+	cart.items.add(item)
+	return HttpResponseRedirect("/cart/")

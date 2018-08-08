@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Item
+from .models import Item, Cart
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -28,7 +28,7 @@ class SignupForm(UserCreationForm):
 			self.fields[fieldname].help_text = None
 
 class SellForm(forms.ModelForm):
-	image = forms.ImageField();
+	image = forms.ImageField()
 	class Meta:
 		model = Item
 		fields = ['category', 'name', 'description', 'image', 'charity_percent', 'charity']
@@ -39,4 +39,3 @@ class SellForm(forms.ModelForm):
 			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
 			'charity': forms.TextInput(attrs={'class': 'charity-hidden'})
 		}
-
