@@ -86,3 +86,6 @@ def show_item(request, item_id):
 
 def charity(request):
 	return render(request, 'charity.html')
+
+def cart(request):
+	return render(request, "cart.html")

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="cart-wrapper">
+  <div class="cart-heading group">
+    <h1>My Cart</h1>
+    <a href="/market">Back to Market</a>
+  </div>
+  <div class="cart-container">
+    <!-- TODO: Color-shift on Odd/Even? -->
+    <ul>
+      <!-- Iterable Layout -->
+      <li>
+        <div class="item-container">
+          <div class="item-table">
+            <div class="item-cell">
+              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
+              <h3>Item Name</h3>
+              <p>Charity %</p>
+            </div>
+            <div class="value-cell">
+              <p>$10.00</p>
+            </div>
+            <div class="removal-cell">
+              <a href="#">Remove</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <!-- End of Iterable Layout -->
+      <li>
+        <div class="item-container">
+          <div class="item-table">
+            <div class="item-cell">
+              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
+              <h3>Item Name</h3>
+              <p>Charity %</p>
+            </div>
+            <div class="value-cell">
+              <p>$15.00</p>
+            </div>
+            <div class="removal-cell">
+              <a href="#">Remove</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="item-container">
+          <div class="item-table">
+            <div class="item-cell">
+              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
+              <h3>Item Name</h3>
+              <p>Charity %</p>
+            </div>
+            <div class="value-cell">
+              <p>$20.00</p>
+            </div>
+            <div class="removal-cell">
+              <a href="#">Remove</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="subtotal-wrapper">
+      <div class="subtotal">
+        <ul>
+          <li>
+            <span class="label">Subtotal</span>
+            <span class="label-value">$45.00</span>
+          </li>
+          <li>
+            <span class="label">Charity %</span>
+            <span class="label-value">0%</span>
+          </li>
+          <li>
+            <span class="label total">TOTAL</span>
+            <span class="labelvalue">$45.00</span>
+          </li>
+          <li>
+            <a class="checkout-button" href="#">Checkout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+   
+{% endblock %}
