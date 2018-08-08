@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile
+from django.contrib import messages 
 from .forms import LoginForm, SignupForm, SellForm
 import cloudinary.uploader
 import cloudinary.api
@@ -31,7 +32,6 @@ def checkout(request):
 			currency="usd",
 			source=request.POST['stripeToken']
 		)
-		print('#####################################', charge)
 		return HttpResponseRedirect('/')
 
 def login_view(request):
@@ -85,11 +85,34 @@ def show_item(request, item_id):
 	item = Item.objects.get(id=item_id)
 	return render(request, 'show.html', {'item': item})
 
+@login_required
+def post_item(request):
+	form = SellForm(request.POST, request.FILES)
+	if(form.is_valid()):
+		print('#####################IT"S VALID')
+		item = form.save(commit=False)
+		item.user = request.user
+		item.save()
+		return HttpResponseRedirect('/')
+	else:
+		return HttpResponseRedirect('/sell/')
+
+@login_required
+def profile(request):
+	try:
+		profile = Profile.objects.get(user=request.user)
+		return render(request, 'profile.html', {'user': request.user, 'profile': profile})
+	except:
+		print('NO PROFILE')
+		return render(request, 'profile_update.html', {'user': request.user})
+
 def charity(request):
 	return render(request, 'charity.html')
 
+@login_required
 def sell(request):
 	return render(request, 'sell.html', {'form': SellForm})
 
+@login_required
 def cart(request):
 	return render(request, "cart.html")
