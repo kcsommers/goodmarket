@@ -9,15 +9,13 @@
   <div class="cart-container">
     <!-- TODO: Color-shift on Odd/Even? -->
     <ul>
-      <!-- Iterable Layout -->
       {% for item in items %}
         <li>
           <div class="item-container">
             <div class="item-table">
               <div class="item-cell">
-                <img src="{{ item.image }}" alt="" class="itemImg">
+                <a href="/item/{{ item.id }}"><img src="{{ item.image }}" alt="" class="itemImg"></a>
                 <h3>{{ item.name }}</h3>
-                <a href="/item"></a>
                 <p>Charity {{ item.charity_percent }}%</p>
               </div>
               <div class="value-cell">
@@ -30,22 +28,21 @@
           </div>
         </li>
       {% endfor %}
-      <!-- End of Iterable Layout -->
     </ul>
     <div class="subtotal-wrapper">
       <div class="subtotal">
         <ul>
           <li>
-            <span class="label">Subtotal</span>
-            <span class="label-value">$45.00</span>
+            <span class="label">Charity</span>
+            <span class="label-value">{{ percentage_to_charity }}%</span>
           </li>
           <li>
-            <span class="label">Charity %</span>
-            <span class="label-value">0%</span>
+            <span class="label">Charity $</span>
+            <span class="label-value">$ {{ total_to_charity }}</span>
           </li>
           <li>
             <span class="label total">TOTAL</span>
-            <span class="labelvalue">$45.00</span>
+            <span class="labelvalue">${{ subtotal }}</span>
           </li>
           <li>
             <a class="checkout-button" href="#">Checkout</a>

@@ -491,6 +491,15 @@ a {
 	padding-right: 1em;
 }
 
+.cart-container .item-cell img:hover {
+	/* background-color: black; */
+	opacity: 0.8;
+}
+
+#a:hover ~ #b {
+    background: #ccc
+}
+
 .cart-container .item-cell h3 {
 	font-size: 1em;
 	font-weight: bold;
