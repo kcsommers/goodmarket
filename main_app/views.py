@@ -92,4 +92,5 @@ def sell(request):
 	return render(request, 'sell.html', {'form': SellForm})
 
 def cart(request):
-	return render(request, "cart.html")
+	cart = Item.objects.all()
+	return render(request, "cart.html", {"items": cart})

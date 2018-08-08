@@ -10,58 +10,27 @@
     <!-- TODO: Color-shift on Odd/Even? -->
     <ul>
       <!-- Iterable Layout -->
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$10.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
+      {% for item in items %}
+        <li>
+          <div class="item-container">
+            <div class="item-table">
+              <div class="item-cell">
+                <img src="{{ item.image }}" alt="" class="itemImg">
+                <h3>{{ item.name }}</h3>
+                <a href="/item"></a>
+                <p>Charity {{ item.charity_percent }}%</p>
+              </div>
+              <div class="value-cell">
+                <p>${{ item.price }}.00</p>
+              </div>
+              <div class="removal-cell">
+                <a href="#">Remove</a>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      {% endfor %}
       <!-- End of Iterable Layout -->
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$15.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$20.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
-            </div>
-          </div>
-        </div>
-      </li>
     </ul>
     <div class="subtotal-wrapper">
       <div class="subtotal">

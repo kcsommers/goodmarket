@@ -480,7 +480,8 @@ a {
 
 .cart-container .item-cell {
 	display: table-cell;
-  vertical-align: middle;
+	vertical-align: middle;
+	width: 50%;
 }
 
 .cart-container .item-cell img {
@@ -518,6 +519,10 @@ a {
 	padding: 1em;
 	border-radius: 0.5em;
 	background-color: #e0e0e0;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
 	transition: all 0.3s linear;
 }
 
