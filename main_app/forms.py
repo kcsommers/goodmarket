@@ -25,3 +25,5 @@ class SignupForm(UserCreationForm):
 		self.fields['password2'].widget.attrs['placeholder'] = 'Password Confirmation'
 		for fieldname in ['username', 'password1', 'password2']:
 			self.fields[fieldname].help_text = None
+
+

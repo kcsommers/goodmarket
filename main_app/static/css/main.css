@@ -7,6 +7,10 @@
 	font-family: Cabin, Helvetica, sans-serif;
 }
 
+html {
+
+}
+
 h1 {
 	font-family: Roboto Condensed, Helvetica, sans-serif;
 	font-size: 3.5em;
@@ -170,6 +174,87 @@ a {
 
 .filter {
 	display: none;
+}
+
+/**************************************************************************
+					SELL PAGE
+****************************************************************************/
+
+.sell-main {
+	position: relative;
+}
+
+.sell-page-arrow-left, .sell-page-arrow-right {
+	position: absolute;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	cursor: pointer;
+	width: 150px;
+	z-index: 1000;
+}
+
+.sell-page-arrow-left i, .sell-page-arrow-right i{
+	font-size: 5em;
+}
+
+.sell-page-arrow-left {
+	left: 0;
+}
+
+.sell-page-arrow-right {
+	right: 0;
+}
+
+.sell-form {
+	position: relative;
+	display: flex;
+}
+
+.sell-form h1 {
+	margin-bottom: 0.5em;
+}
+
+.sell-form button {
+	font-size: 1.2em;
+	padding: 0.3em 1em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	border: 1px solid #158f97;
+	color: #158f97;
+	border-radius: 10px;
+	margin: 0.3em;
+}
+
+.sell-form-field {
+	min-height: calc(100vh - 150px);
+	min-width: 100%;
+	display: flex;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+	padding-top: 10em;
+}
+
+.sell-form-field input[type=text], .sell-form-field textarea {
+	border: none;
+	border-left: 3px solid #158f97;
+	outline: none;
+	font-size: 1.5em;
+	padding: 0.5em;
+	width: 100%;
+	resize: none;
+}
+
+.sell-form-field label {
+	max-width: 50%;
+}
+
+.sell-form-field.sell-form-current {
+	opacity: 1;
 }
 
 /*****************************************************/
