@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="market-page">
+<section class="market-page container">
 	<main class="market-main">
 		<div class="page-title">
 			<h3>Market</h3>
@@ -30,9 +30,7 @@
 			{% for item in items %}
 				<div class="market-item {{item.category}}">
 					<a href="/item/{{item.id}}">
-						<div class="market-item-image">
-							<img src="{{item.image}}" alt="item">
-						</div>
+						<div style="background-image: url(/media/{{item.image}})" class="market-item-image"></div>
 						<div class="market-item-info">
 							<h5>{{item.name}}</h5>
 							<p>Seller: <a href="#">{{item.user}}</a></p>

@@ -31,12 +31,12 @@ class SellForm(forms.ModelForm):
 	image = forms.ImageField()
 	class Meta:
 		model = Item
-		fields = ['category', 'name', 'description', 'image', 'charity_percent', 'charity']
+		fields = ['category', 'name', 'description', 'image', 'price', 'charity_percent']
 		widgets = {
 			'category': forms.TextInput(attrs={'class': 'category-hidden'}),
-			'name': forms.TextInput(attrs={'class': 'name-input'}),
-			'description': forms.Textarea(attrs={'class': 'description-textarea', 'rows': 5}),
+			'name': forms.TextInput(attrs={'class': 'sell-name-input'}),
+			'description': forms.Textarea(attrs={'class': 'sell-description-input'}),
+			'price': forms.TextInput(attrs={'class': 'sell-price-input'}),
 			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
-			'charity': forms.TextInput(attrs={'class': 'charity-hidden'})
 		}
 
