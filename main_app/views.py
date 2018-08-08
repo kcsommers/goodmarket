@@ -13,7 +13,6 @@ import requests
 import stripe
 stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
 public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
-# stripe.api_key = "sk_test_nZ8qHYKUMpN53f0JNPYtvw7B"
 
 # Create your views here.
 def index(request):
@@ -91,3 +90,6 @@ def charity(request):
 
 def sell(request):
 	return render(request, 'sell.html', {'form': SellForm})
+
+def cart(request):
+	return render(request, "cart.html")
