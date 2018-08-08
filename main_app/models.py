@@ -17,7 +17,7 @@ class Profile(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    image = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='item_image', blank=True)
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     charity_percent = models.FloatField(max_length=100)
