@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$('.sell-form-categories button').click(function(e) {
 		e.preventDefault();
 		let value = $(this).attr('id');
-		$('#category-hidden').val(value);
-		console.log($('#category-hidden').val())
+		$('.category-hidden').val(value);
+		console.log($('.category-hidden').val())
 	})
 });

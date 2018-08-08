@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <section class="sell-page">
 	<main class="sell-main">
 		<div class="sell-page-arrow-left">
@@ -9,7 +8,8 @@
 		<div class="sell-page-arrow-right">
 			<i class="fa fa-angle-right"></i>
 		</div>
-		<form action="/post_item/" action="POST" class="sell-form">
+		<form action="/post_item/" action="POST" enctype="multipart/form-data" class="sell-form">
+			{% csrf_token %}
 			<div class="sell-form-field sell-form-current" id="sell-form-first">
 				<label for="category-select">
 					<h1>Pick a category</h1>
@@ -24,50 +24,54 @@
 						<button id="hardware">Hardware</button>
 						<button id="tech">Tech</button>
 					</div>
-					<input hidden type="text" id="category-hidden" />
+					{{form.category}}
 				</label>
 			</div>
 			<div class="sell-form-field">
 				<label for="name">
 					<h1>What are you selling?</h1>
-					<input type="text" name="name" />
+					{{ form.name }}
 				</label>
 			</div>
 			<div class="sell-form-field">
 				<label for="description">
 					<h1>Describe your item</h1>
-					<textarea name="description"></textarea>
+					{{form.description}}
 				</label>
 			</div>
 			<div class="sell-form-field">
 				<label for="images">
 					<h1>Upload Images</h1>
+					{{form.image}}
 				</label>
 			</div>
 			<div class="sell-form-field" id="sell-form-last">
-				<div class="donation-percentage">
-						<button id="10">10%</button>
-						<button id="15">15%</button>
-						<button id="20">20%</button>
-						<button id="25">25%</button>
-						<button id="30">30%</button>
-						<button id="35">35%</button>
-						<button id="40">40%</button>
-						<button id="45">45%</button>
-						<button id="50">50%</button>
-						<button id="55">55%</button>
-						<button id="60">60%</button>
-						<button id="65">65%</button>
-						<button id="70">70%</button>
-						<button id="75">75%</button>
-						<button id="80">80%</button>
-						<button id="85">85%</button>
-						<button id="90">90%</button>
-						<button id="95">95%</button>
-						<button id="100">100%</button>
-				</div>
-				<div class="sell-form-charities">
-					
+				<div class="sell-form-charities-info">
+					<div class="charity-percentage">
+							<button id="10">10%</button>
+							<button id="15">15%</button>
+							<button id="20">20%</button>
+							<button id="25">25%</button>
+							<button id="30">30%</button>
+							<button id="35">35%</button>
+							<button id="40">40%</button>
+							<button id="45">45%</button>
+							<button id="50">50%</button>
+							<button id="55">55%</button>
+							<button id="60">60%</button>
+							<button id="65">65%</button>
+							<button id="70">70%</button>
+							<button id="75">75%</button>
+							<button id="80">80%</button>
+							<button id="85">85%</button>
+							<button id="90">90%</button>
+							<button id="95">95%</button>
+							<button id="100">100%</button>
+							{{form.charity_percent}}
+					</div>
+					<div class="sell-form-charities">
+						
+					</div>
 				</div>
 			</div>
 		</form>

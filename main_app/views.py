@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, SellForm
+import cloudinary.uploader
+import cloudinary.api
 import requests
 import stripe
 stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
@@ -88,4 +90,4 @@ def charity(request):
 	return render(request, 'charity.html')
 
 def sell(request):
-	return render(request, 'sell.html')
+	return render(request, 'sell.html', {'form': SellForm})

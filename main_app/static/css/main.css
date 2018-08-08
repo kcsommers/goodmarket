@@ -249,7 +249,11 @@ a {
 	resize: none;
 }
 
-.sell-form-field label {
+.category-hidden, .charity-percent-hidden {
+	visibility: hidden;
+}
+
+.sell-form-field label, .sell-form-charities-info {
 	max-width: 50%;
 }
 

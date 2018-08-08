@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Item
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -26,4 +27,16 @@ class SignupForm(UserCreationForm):
 		for fieldname in ['username', 'password1', 'password2']:
 			self.fields[fieldname].help_text = None
 
+class SellForm(forms.ModelForm):
+	image = forms.FileField();
+	class Meta:
+		model = Item
+		fields = ['category', 'name', 'description', 'image', 'charity_percent', 'charity']
+		widgets = {
+			'category': forms.TextInput(attrs={'class': 'category-hidden'}),
+			'name': forms.TextInput(attrs={'class': 'name-input'}),
+			'description': forms.Textarea(attrs={'class': 'description-textarea', 'rows': 5}),
+			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
+			'charity': forms.TextInput(attrs={'class': 'charity-hidden'})
+		}
 
