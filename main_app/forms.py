@@ -28,7 +28,7 @@ class SignupForm(UserCreationForm):
 			self.fields[fieldname].help_text = None
 
 class SellForm(forms.ModelForm):
-	image = forms.FileField();
+	image = forms.ImageField();
 	class Meta:
 		model = Item
 		fields = ['category', 'name', 'description', 'image', 'charity_percent', 'charity']
