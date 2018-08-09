@@ -1,9 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1 class="charities-title">Charities</h1>
-    <div class="charity">
-        <p class="charity-name">Charity Name</p>
-        <button class="button donate-button">Donate</button>
-    </div>
+
+<div class="charity-wrapper">
+  <div class="charity-heading group">
+    <h1>Charities</h1>
+  </div>
+  <ul>
+    <li>
+      <div class="charity-container">
+        <div class="charity-table">
+          <div class="charity-cell">
+              <img src="https://i.imgur.com/byOKTGC.jpg" alt="charity">
+            <h3>The American Red Cross</h3>
+            <article>
+              <p>
+                The American Red Cross, a humanitarian organization, led by volunteers and guided by its
+                Congressional Charter and the Fundamental Principles of the International Red Cross Movement, 
+                will provide relief to victims of disaster and help people prevent, prepare for, and respond to 
+                emergencies.
+              </p>
+            </article>
+          </div>
+          <div class="charity-cell"></div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="charity-container">
+        <div class="charity-table">
+          <div class="charity-cell">
+              <img src="https://i.imgur.com/E9vVX09.png" alt="charity">
+            <h3>Doctors Without Borders</h3>
+            <article>
+              <p>
+                Doctors Without Borders/Medecins Sans Frontieres (MSF) helps people worldwide where 
+                the need is greatest, delivering emergency medical aid to people affected by conflict, 
+                epidemics, disasters, or exclusion from health care.
+              </p>
+            </article>
+          </div>
+          <div class="charity-cell"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
    
 {% endblock %}
