@@ -9,74 +9,40 @@
   <div class="cart-container">
     <!-- TODO: Color-shift on Odd/Even? -->
     <ul>
-      <!-- Iterable Layout -->
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$10.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <!-- End of Iterable Layout -->
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$15.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
+      {% for item in items %}
+        <li>
+          <div class="item-container">
+            <div class="item-table">
+              <div class="item-cell">
+                <a href="/item/{{ item.id }}"><img src="{{ item.image }}" alt="" class="itemImg"></a>
+                <h3>{{ item.name }}</h3>
+                <p>Charity {{ item.charity_percent }}%</p>
+              </div>
+              <div class="value-cell">
+                <p>${{ item.price }}.00</p>
+              </div>
+              <div class="removal-cell">
+                <a href="#">Remove</a>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
-      <li>
-        <div class="item-container">
-          <div class="item-table">
-            <div class="item-cell">
-              <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg">
-              <h3>Item Name</h3>
-              <p>Charity %</p>
-            </div>
-            <div class="value-cell">
-              <p>$20.00</p>
-            </div>
-            <div class="removal-cell">
-              <a href="#">Remove</a>
-            </div>
-          </div>
-        </div>
-      </li>
+        </li>
+      {% endfor %}
     </ul>
     <div class="subtotal-wrapper">
       <div class="subtotal">
         <ul>
           <li>
-            <span class="label">Subtotal</span>
-            <span class="label-value">$45.00</span>
+            <span class="label">Charity</span>
+            <span class="label-value">{{ percentage_to_charity }}%</span>
           </li>
           <li>
-            <span class="label">Charity %</span>
-            <span class="label-value">0%</span>
+            <span class="label">Charity $</span>
+            <span class="label-value">$ {{ total_to_charity }}</span>
           </li>
           <li>
             <span class="label total">TOTAL</span>
-            <span class="labelvalue">$45.00</span>
+            <span class="labelvalue">${{ subtotal }}</span>
           </li>
           <li>
             <a class="checkout-button" href="#">Checkout</a>

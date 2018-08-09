@@ -23,7 +23,8 @@
 			 		<a href="/charities/">Charities</a>
 			 		<a href="/sell/">Sell</a>
 			 		<a href="/market/">Market</a>
-			 		{% if user.is_authenticated %}
+					 {% if user.is_authenticated %}
+					<a href="/cart/">Cart</a>
 					<a href="/profile/">Profile</a>
 					<a href="/logout/">Logout</a>
 					{% else %}

@@ -6,11 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart
+from django.contrib import messages 
 from .forms import LoginForm, SignupForm, SellForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
 import stripe
+from django.db.models import Sum
+from decimal import Decimal
 stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
 public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
 
@@ -31,7 +34,6 @@ def checkout(request):
 			currency="usd",
 			source=request.POST['stripeToken']
 		)
-		print('#####################################', charge)
 		return HttpResponseRedirect('/')
 
 def login_view(request):
@@ -85,12 +87,35 @@ def show_item(request, item_id):
 		item = Item.objects.get(id=item_id)
 		return render(request, 'show.html', {'item': item})
 
+@login_required
+def post_item(request):
+	form = SellForm(request.POST, request.FILES)
+	if(form.is_valid()):
+		print('#####################IT"S VALID')
+		item = form.save(commit=False)
+		item.user = request.user
+		item.save()
+		return HttpResponseRedirect('/')
+	else:
+		return HttpResponseRedirect('/sell/')
+
+@login_required
+def profile(request):
+	try:
+		profile = Profile.objects.get(user=request.user)
+		return render(request, 'profile.html', {'user': request.user, 'profile': profile})
+	except:
+		print('NO PROFILE')
+		return render(request, 'profile_update.html', {'user': request.user})
+
 def charity(request):
 	return render(request, 'charity.html')
 
+@login_required
 def sell(request):
 	return render(request, 'sell.html', {'form': SellForm})
 
+@login_required
 def cart(request):
 	return render(request, "cart.html")
 
@@ -101,3 +126,21 @@ def thecart(request, item_id):
 	})
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
+
+	# Get all items
+	cart = Item.objects.all()
+	subtotal = Item.objects.aggregate(Sum('price'))
+	charity_sum = 0
+	for item in cart:
+		charity_sum += item.price * item.charity_percent
+	# Total percentage of cart going to charity
+	percentage_to_charity = Decimal(charity_sum / subtotal["price__sum"])
+	percentage_to_charity = round(percentage_to_charity, 2)
+	# Total dollar value of cart going to charity
+	total_to_charity = round(charity_sum / 100, 2)
+	return render(request, "cart.html", {
+		"items": cart, 
+		"subtotal": subtotal["price__sum"],
+		"percentage_to_charity": percentage_to_charity,
+		"total_to_charity": total_to_charity
+	})

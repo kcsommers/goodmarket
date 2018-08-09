@@ -8,7 +8,7 @@
 }
 
 html {
-
+	overflow-x: hidden;
 }
 
 h1 {
@@ -144,7 +144,7 @@ a {
 }
 
 .market-item {
-	flex: 1 1 25%;
+	flex-basis: 25%;
 	display: flex;
 	flex-direction: column;
 	margin: 1em;
@@ -154,8 +154,11 @@ a {
 	border-radius: 5px;
 }
 
-.market-item-image img{
+.market-item-image {
 	width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-position: center center;
 }
 
 .market-item-info {
@@ -175,12 +178,17 @@ a {
 .filter {
 	display: none;
 }
+/*****************************************************
+				SELL PAGE
+*****************************************************/
 
-/**************************************************************************
-					SELL PAGE
-****************************************************************************/
+.sell-page {
+	position: relative;
+}
 
-.sell-main {
+.sell-form-container {
+	min-height: calc(100vh - 150px);
+	display: flex;
 	position: relative;
 }
 
@@ -208,57 +216,41 @@ a {
 	right: 0;
 }
 
-.sell-form {
-	position: relative;
+.sell-form-container form {
 	display: flex;
+	width: 100%;
+	position: relative;
 }
 
-.sell-form h1 {
-	margin-bottom: 0.5em;
-}
-
-.sell-form button {
-	font-size: 1.2em;
-	padding: 0.3em 1em;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	border: 1px solid #158f97;
-	color: #158f97;
-	border-radius: 10px;
-	margin: 0.3em;
-}
-
-.sell-form-field {
-	min-height: calc(100vh - 150px);
+.sell-form-page {
 	min-width: 100%;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	opacity: 0;
 	transition: opacity 0.5s ease;
-	padding-top: 10em;
 }
 
-.sell-form-field input[type=text], .sell-form-field textarea {
-	border: none;
-	border-left: 3px solid #158f97;
-	outline: none;
-	font-size: 1.5em;
-	padding: 0.5em;
-	width: 100%;
-	resize: none;
-}
-
-.category-hidden, .charity-percent-hidden {
-	visibility: hidden;
-}
-
-.sell-form-field label, .sell-form-charities-info {
-	max-width: 50%;
-}
-
-.sell-form-field.sell-form-current {
+.sell-form-current {
 	opacity: 1;
+}
+
+.sell-form-container input[type=text] {
+	width: 100%;
+	font-size: 1.3em;
+	margin-top: 0.5em;
+	padding: 0.5em;
+	outline: none;
+	border: none;
+	border-left: 2px solid green;
+}
+
+.sell-form-container textarea {
+	width: 100%;
+	font-size: 1.3em;
+	margin-top: 0.5em;
+	padding: 0.5em;
+	outline: none;
 }
 
 /*****************************************************/
@@ -491,7 +483,8 @@ a {
 
 .cart-container .item-cell {
 	display: table-cell;
-  vertical-align: middle;
+	vertical-align: middle;
+	width: 50%;
 }
 
 .cart-container .item-cell img {
@@ -499,6 +492,15 @@ a {
 	width: 8em;
 	display: inline;
 	padding-right: 1em;
+}
+
+.cart-container .item-cell img:hover {
+	/* background-color: black; */
+	opacity: 0.8;
+}
+
+#a:hover ~ #b {
+    background: #ccc
 }
 
 .cart-container .item-cell h3 {
@@ -529,6 +531,10 @@ a {
 	padding: 1em;
 	border-radius: 0.5em;
 	background-color: #e0e0e0;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
 	transition: all 0.3s linear;
 }
 
