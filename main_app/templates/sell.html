@@ -12,8 +12,16 @@
 		<form action="/post_item/" method="POST" enctype="multipart/form-data">
 		 	{% csrf_token %}
 		 	<div class="sell-form-page sell-form-current" id="sell-form-first">
-		 		<div class="sell-form-content">
+		 		<div class="sell-form-content sell-form-category">
 		 			<h1>Pick a Category</h1>
+		 			<button id="appliances">Appliances</button>
+		 			<button id="arts">Arts</button>
+		 			<button id="athletics">Athletics</button>
+		 			<button id="auto">Auto</button>
+		 			<button id="bikes">Bikes</button>
+		 			<button id="clothing">Clothing</button>
+		 			<button id="hardware">Hardware</button>
+		 			<button id="tech">Tech</button>
 		 			{{form.category}}
 		 		</div>
 		 	</div>
@@ -39,12 +47,30 @@
 	 	 		<div class="sell-form-content">
 	 	 			<h1>What's your price?</h1>
 	 		 		{{form.price}}
-	 		 		<input type="submit" value="Post Item" />
 	 		 	</div>
 	 	 	</div>
 		 	<div class="sell-form-page" id="sell-form-last">
-		 		<div class="sell-form-content">
+		 		<div class="sell-form-content sell-form-charity-percent">
 		 			<h1>How much are you donating?</h1>
+		 			<button id="10">10%</button>
+		 			<button id="15">15%</button>
+		 			<button id="20">20%</button>
+		 			<button id="25">25%</button>
+		 			<button id="30">30%</button>
+		 			<button id="35">35%</button>
+		 			<button id="40">40%</button>
+		 			<button id="45">45%</button>
+		 			<button id="50">50%</button>
+		 			<button id="55">55%</button>
+		 			<button id="60">60%</button>
+		 			<button id="65">65%</button>
+		 			<button id="70">70%</button>
+		 			<button id="75">75%</button>
+		 			<button id="80">80%</button>
+		 			<button id="85">85%</button>
+		 			<button id="90">90%</button>
+		 			<button id="95">95%</button>
+		 			<button id="100">100%</button>
 			 		{{form.charity_percent}}
 			 		<input type="submit" value="Post Item" />
 			 	</div>

@@ -132,6 +132,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+STRIPE_CLIENT_ID = os.getenv("STRIPE_CLIENT_ID")
 
 # cloudinary
 import cloudinary

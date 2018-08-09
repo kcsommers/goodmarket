@@ -14,12 +14,14 @@ import requests
 import stripe
 from django.db.models import Sum
 from decimal import Decimal
-stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+stripe.api_key = stripe_secret_key
 public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
+stripe_client_id = getattr(settings, "STRIPE_CLIENT_ID", None)
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html', {'key': public_key})
+	return render(request, 'index.html', {'user': request.user, 'key': public_key, 'client_id': stripe_client_id})
 
 def market(request):
 	items = Item.objects.all()
@@ -27,12 +29,16 @@ def market(request):
 
 def checkout(request):
 	print('CHECKOUT', request)
-
+	profile = Profile.objects.get(user=request.user)
+	connected_account = profile.stripe_user_id
 	if(request.method == "POST"):
 		charge = stripe.Charge.create(
 			amount=100,
 			currency="usd",
-			source=request.POST['stripeToken']
+			source=request.POST['stripeToken'],
+			destination={
+				"account": connected_account
+			}
 		)
 		return HttpResponseRedirect('/')
 
@@ -159,6 +165,26 @@ def thecart(request, item_id):
 	})
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
+
+def stripe_redirect(request):
+	auth_code = request.GET.get('code')
+	user_id = request.GET.get('state')
+	user = User.objects.get(id=user_id)
+	profile = Profile.objects.get(user=user)
+	print('USERPROFILE', profile)
+	print('AUTH_CODE', auth_code)
+	url = 'https://connect.stripe.com/oauth/token'
+	payload = {
+		'client_secret': stripe_secret_key,
+		'code': auth_code,
+		'grant_type': 'authorization_code'
+	}
+	stripe_response = requests.post(url, data=payload)
+	stripe_user_id = stripe_response.json()['stripe_user_id']
+	print('STRIPE_USER_ID: ', stripe_user_id)
+	profile.stripe_user_id = stripe_user_id
+	profile.save()
+	return HttpResponseRedirect('/')
 
 def cart_delete(request, item_id):
 	item = Item.objects.get(id=item_id)

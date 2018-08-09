@@ -202,6 +202,23 @@ textarea {
 	position: relative;
 }
 
+.sell-form-content {
+	max-width: 50%;
+}
+
+.sell-form-content button {
+	font-size: 1.2em;
+	padding: 0.3em 1em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	border: 1px solid #158f97;
+	color: #158f97;
+	border-radius: 10px;
+	margin: 0.1em;
+}
+
+
 .sell-page-arrow-left, .sell-page-arrow-right {
 	position: absolute;
 	top: 0;
@@ -260,6 +277,91 @@ textarea {
 /*****************************************************
 				PROFILE PAGE
 *****************************************************/
+
+.profile-section h5{
+	font-size: 1.5em;
+}
+
+.profile-section hr{
+	width: 65%;
+}
+
+.profile-row {
+	padding: 3em 0em 1em 0;
+}
+
+#profile-r1 {
+	position: relative;
+}
+
+.profile-picture {
+	position: absolute;
+	height: 250px;
+	width: 250px;
+	right: 4em;
+	top: 3em;
+	background-size: cover;
+	background-position: center center;
+	border-radius: 10px;
+}
+
+.profile-location h5 {
+	margin: 0.5em 0;
+}
+
+.charity-amount {
+	margin-bottom: 2em;
+}
+
+.profile-bio p {
+	width: 55%;
+}
+
+.profile-charities, .profile-selling, .profile-sold {
+	display: flex;
+}
+
+.profile-charities div, .profile-selling div, .profile-sold div{
+	flex-basis: 25%;
+	height: 200px;
+	background-size: cover;
+	background-position: center center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0.5em;
+	border-radius: 5px;
+}
+
+.profile-charities div p, .profile-selling div p, .profile-sold div p {
+	background-color: rgba(255,255,255,0.9);
+	width: 100%;
+	padding: 0.3em 0;
+	text-align: center;
+}
+
+.profile-update-container {
+	text-align: center;
+	padding-top: 3em;
+}
+
+.profile-update-form {
+	width: 75%;
+	background-color: #efefef;
+	padding: 2em;
+	margin: 3em auto;
+}
+
+.profile-update-form input[type=text] {
+	width: 100%;
+	font-size: 1.3em;
+	padding: 0.3em;
+}
+
+.profile-update-form h5 {
+	font-size: 1.5em;
+	margin: 0.5em 0;
+}
 
 
 /***************** JACOB CSS *************************/
@@ -656,3 +758,4 @@ textarea {
 }
 
 /*****************************************************/
+
