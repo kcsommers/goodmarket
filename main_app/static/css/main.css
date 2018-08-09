@@ -626,12 +626,12 @@ a {
 .charity-wrapper .charity-cell {
 	display: table-cell;
 	vertical-align: middle;
-	width: 50%;
+	width: 60%;
 }
 
 .charity-wrapper .charity-cell img {
 	float: left;
-	width: 8em;
+	width: 12em;
 	padding-right: 1em;
 }
 
@@ -640,10 +640,12 @@ a {
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: .025em;
+	border-bottom: 1px solid black;
+	display: inline-block;
 }
 
 .charity-wrapper .charity-cell p {
-	font-size: 1em;
+	font-size: 1.2em;
 	margin: 1em .5em 0 0;
 }
 
