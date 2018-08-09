@@ -133,7 +133,24 @@ def sell(request):
 
 @login_required
 def cart(request):
-	return render(request, "cart.html")
+	# Get all items
+	cart = Cart.objects.get(user=request.user)
+	items = cart.items.values()
+	# TOTAL VALUE OF THE CART
+	subtotal = 0
+	# TOTAL VALUE TO CHARITY
+	charity_sum = 0
+	for item in items:
+		subtotal += item["price"]
+		# Total percentage of cart going to charity
+		charity_sum += item['price'] * (item['charity_percent'] / 100)
+	percentage_total = round(charity_sum / subtotal, 2)
+	return render(request, "cart.html", {
+		"items": items, 
+		"subtotal": subtotal,
+		"charity_sum": charity_sum,
+		"percentage_total": percentage_total
+	})
 
 def thecart(request, item_id):
 	item = Item.objects.get(id=item_id)
