@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Item
+from .models import Item, Profile
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -38,5 +38,15 @@ class SellForm(forms.ModelForm):
 			'description': forms.Textarea(attrs={'class': 'sell-description-input'}),
 			'price': forms.TextInput(attrs={'class': 'sell-price-input'}),
 			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
+		}
+
+class ProfileUpdateForm(forms.ModelForm):
+	image = forms.ImageField()
+	class Meta:
+		model = Profile
+		fields = ['location', 'bio', 'image']
+		widgets = {
+			'location': forms.TextInput(attrs={'class': 'profile-location-input', 'placeholder': 'ex: Seattle, WA'}),
+			'bio': forms.Textarea(attrs={'class': 'profile-bio-input'})
 		}
 

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile
 from django.contrib import messages 
-from .forms import LoginForm, SignupForm, SellForm
+from .forms import LoginForm, SignupForm, SellForm, ProfileUpdateForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -91,7 +91,6 @@ def show_item(request, item_id):
 def post_item(request):
 	form = SellForm(request.POST, request.FILES)
 	if(form.is_valid()):
-		print('#####################IT"S VALID')
 		item = form.save(commit=False)
 		item.user = request.user
 		item.save()
@@ -100,13 +99,31 @@ def post_item(request):
 		return HttpResponseRedirect('/sell/')
 
 @login_required
+def profile_update(request):
+	return render(request, 'profile_update.html', {'user': request.user, 'form': ProfileUpdateForm})
+
+@login_required
 def profile(request):
 	try:
 		profile = Profile.objects.get(user=request.user)
 		return render(request, 'profile.html', {'user': request.user, 'profile': profile})
 	except:
 		print('NO PROFILE')
-		return render(request, 'profile_update.html', {'user': request.user})
+		return HttpResponseRedirect('/profile/update/')
+
+@login_required
+def post_profile(request):
+	form = ProfileUpdateForm(request.POST, request.FILES)
+	if(form.is_valid()):
+		print("######ITS VALID")
+		profile, created = Profile.objects.update_or_create(user_id=request.user.id, defaults={**form.cleaned_data, 'user': request.user})
+		return HttpResponseRedirect('/profile/')
+	else:
+		print('NOT VALID')
+		return HttpResponseRedirect('/profile/update')
+
+
+
 
 def charity(request):
 	return render(request, 'charity.html')

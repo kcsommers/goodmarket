@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="profile-section">
-	<div class="profile-container">
-		<div class="charity-amount">
-			<h3>Total Donations:</h3>
-		</div>
+<section class="profile-update-section container">
+	<div class="profile-update-container">
+		<h1>Edit Profile</h1>
+		<form action="/post_profile/" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div>
+				<h3>Where are you located?</h3>
+				{{form.location}}
+			</div>
+			<div>
+				<h3>Tell us about yourself?</h3>
+				{{form.bio}}
+			</div>
+			<div>
+				<h3>Upload a photo</h3>
+				{{form.image}}
+			</div>
+			<input type="submit" value="Submit" />
+		</form>
 	</div>
 </section>
 
