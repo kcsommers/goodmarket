@@ -104,12 +104,12 @@ def profile_update(request):
 
 @login_required
 def profile(request):
-	profile = Profile.objects.get(user=request.user)
-	if(profile):
+	try: 
+		profile = Profile.objects.get(user=request.user)
 		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
 		soldItems = Item.objects.all().filter(user=request.user, sold=True)
 		return render(request, 'profile.html', {'user': request.user, 'profile': profile, 'selling_items': sellingItems, 'sold_items': soldItems})
-	else:
+	except:
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
 
