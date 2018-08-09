@@ -110,7 +110,7 @@ def profile_update(request):
 
 @login_required
 def profile(request):
-	try:
+	try: 
 		profile = Profile.objects.get(user=request.user)
 		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
 		soldItems = Item.objects.all().filter(user=request.user, sold=True)
@@ -186,5 +186,8 @@ def stripe_redirect(request):
 	profile.save()
 	return HttpResponseRedirect('/')
 
-
-
+def cart_delete(request, item_id):
+	item = Item.objects.get(id=item_id)
+	cart = Cart.objects.get(user=request.user)
+	cart.items.remove(item)
+	return HttpResponseRedirect("/cart/")

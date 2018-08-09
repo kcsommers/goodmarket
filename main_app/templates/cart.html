@@ -14,7 +14,7 @@
           <div class="item-container">
             <div class="item-table">
               <div class="item-cell">
-                <a href="/item/{{ item.id }}"><img src="{{ item.image }}" alt="" class="itemImg"></a>
+                <a href="/item/{{ item.id }}"><img src="/media/{{ item.image }}" alt="" class="itemImg"></a>
                 <h3>{{ item.name }}</h3>
                 <p>Charity {{ item.charity_percent }}%</p>
               </div>
@@ -22,7 +22,7 @@
                 <p>${{ item.price }}.00</p>
               </div>
               <div class="removal-cell">
-                <a href="#">Remove</a>
+                <a href="/cart/delete/{{ item.id }}/">Remove</a>
               </div>
             </div>
           </div>
