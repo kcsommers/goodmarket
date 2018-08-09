@@ -1,10 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="profile-section">
+<section class="profile-section container">
 	<div class="profile-container">
 		<div class="charity-amount">
-			<h3>Total Donations:</h3>
+			<h5>Total Donations:</h5>
+			<p>{{profile.charity}}</p>
+		</div>
+		<div style="background-image: url(/media/{{profile.image}})" class="profile-picture">
+		</div>
+		<div class="profile-location">
+			<a href="/profile/update">Edit Profile</a>
+			<h3>{{profile.location}}</h3>
+		</div>
+		<div class="profile-charities">
+			<h3>Organizations you've supported</h3>
+			{% for item in sold_items %}	
+				<div>
+					<p>{{item.charity}}</p>
+				</div>
+			{% endfor %}		
+		</div>
+		<div class="profile-bio">
+			<p>{{profile.bio}}</p>
+		</div>
+		<div class="profile-selling">
+			<h3>Items for Sale</h3>
+			{% for item in selling_items %}	
+				<div style="background-image: url(/media/{{item.image}})">
+					<p>{{item.name}}</p>
+				</div>
+			{% endfor %}		
+		</div>
+		<div class="profile-sold">
+			<h3>Items Sold</h3>
+			{% for item in sold_items %}	
+				<div style="background-image: url(/media/{{item.image}})">
+					<p>{{item.name}}</p>
+				</div>
+			{% endfor %}		
 		</div>
 	</div>
 </section>
