@@ -29,12 +29,16 @@ def market(request):
 
 def checkout(request):
 	print('CHECKOUT', request)
-
+	profile = Profile.objects.get(user=request.user)
+	connected_account = profile.stripe_user_id
 	if(request.method == "POST"):
 		charge = stripe.Charge.create(
 			amount=100,
 			currency="usd",
-			source=request.POST['stripeToken']
+			source=request.POST['stripeToken'],
+			destination={
+				"account": connected_account
+			}
 		)
 		return HttpResponseRedirect('/')
 
