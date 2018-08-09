@@ -430,6 +430,8 @@ a {
 	color: white;
 }
 
+/************************************************************/
+
 .cart-wrapper {
 	margin-top: 2em;
 }
@@ -450,6 +452,10 @@ a {
 	border-radius: 1em;
 	padding: 1em;
 	color: white;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
 	transition: all 0.3s linear;
 	margin-top: 0.5em;
 }
@@ -488,19 +494,14 @@ a {
 }
 
 .cart-container .item-cell img {
+	display: inline;
 	float: left;
 	width: 8em;
-	display: inline;
 	padding-right: 1em;
 }
 
 .cart-container .item-cell img:hover {
-	/* background-color: black; */
 	opacity: 0.8;
-}
-
-#a:hover ~ #b {
-    background: #ccc
 }
 
 .cart-container .item-cell h3 {
@@ -600,6 +601,52 @@ a {
 
 .cart-container .checkout-button:hover {
 	background-color: #439e64;
+}
+
+/************************************************************/
+
+.charity-heading {
+	border-bottom: 1px solid #D0D0D0;
+	border-top: 1px solid #D0D0D0;
+	padding: 1em;
+}
+
+.charity-wrapper .charity-container {
+	width: 100%;
+	vertical-align: middle;
+	padding: 1.5em;
+	border-bottom: 1px solid #D0D0D0;
+}
+
+.charity-wrapper.charity-table {
+	display: table;
+	width: 100%;
+}
+
+.charity-wrapper .charity-cell {
+	display: table-cell;
+	vertical-align: middle;
+	width: 60%;
+}
+
+.charity-wrapper .charity-cell img {
+	float: left;
+	width: 12em;
+	padding-right: 1em;
+}
+
+.charity-wrapper .charity-cell h3 {
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: .025em;
+	border-bottom: 1px solid black;
+	display: inline-block;
+}
+
+.charity-wrapper .charity-cell p {
+	font-size: 1.2em;
+	margin: 1em .5em 0 0;
 }
 
 /*****************************************************/
