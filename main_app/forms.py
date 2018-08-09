@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Item, Profile
+from .models import Item, Profile, Cart
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -49,4 +49,3 @@ class ProfileUpdateForm(forms.ModelForm):
 			'location': forms.TextInput(attrs={'class': 'profile-location-input', 'placeholder': 'ex: Seattle, WA'}),
 			'bio': forms.Textarea(attrs={'class': 'profile-bio-input'})
 		}
-

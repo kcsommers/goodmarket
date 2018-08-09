@@ -296,7 +296,7 @@ textarea {
 }
 
 .checkout-box {
-	background-color: red;
+	background-color: lightgrey;
 	margin-bottom: 5em;
 	text-align: center;
 	padding-top: 5em;
@@ -311,13 +311,15 @@ textarea {
 	margin-bottom: .5em;
 }
 
+.item-category {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
 .item {
-	background-color: blue;
 	margin-bottom: 1em;
 	text-align: center;
-	padding-top: 5em;
-	padding-bottom: 5em;
-	height: 15em;
+	width: 100%;
 }
 
 
@@ -357,6 +359,15 @@ textarea {
 
 .price-input {
 	width: 80%;
+}
+
+.add-to-cart-button {
+	display: block;
+	text-align: center;
+}
+
+.horizontal-rule {
+	margin-bottom: 1em;
 }
 
 @media only screen and (max-width:540px) {
