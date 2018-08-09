@@ -34,17 +34,15 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.sell-form-categories button').click(function(e) {
+	$('.sell-form-category button').click(function(e) {
 		e.preventDefault();
 		let value = $(this).attr('id');
 		$('.category-hidden').val(value);
-		console.log($('.category-hidden').val())
 	});
 
-	$('.charity-percentage button').click(function(e) {
+	$('.sell-form-charity-percent button').click(function(e) {
 		e.preventDefault();
 		let value = $(this).attr('id');
 		$('.charity-percent-hidden').val(value);
-		console.log($('.charity-percent-hidden').val())
 	});
 });

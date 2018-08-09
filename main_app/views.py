@@ -14,12 +14,14 @@ import requests
 import stripe
 from django.db.models import Sum
 from decimal import Decimal
-stripe.api_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+stripe.api_key = stripe_secret_key
 public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
+stripe_client_id = getattr(settings, "STRIPE_CLIENT_ID", None)
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html', {'key': public_key})
+	return render(request, 'index.html', {'user': request.user, 'key': public_key, 'client_id': stripe_client_id})
 
 def market(request):
 	items = Item.objects.all()
@@ -27,12 +29,16 @@ def market(request):
 
 def checkout(request):
 	print('CHECKOUT', request)
-
+	profile = Profile.objects.get(user=request.user)
+	connected_account = profile.stripe_user_id
 	if(request.method == "POST"):
 		charge = stripe.Charge.create(
 			amount=100,
 			currency="usd",
-			source=request.POST['stripeToken']
+			source=request.POST['stripeToken'],
+			destination={
+				"account": connected_account
+			}
 		)
 		return HttpResponseRedirect('/')
 
@@ -104,9 +110,11 @@ def profile_update(request):
 
 @login_required
 def profile(request):
-	try:
+	try: 
 		profile = Profile.objects.get(user=request.user)
-		return render(request, 'profile.html', {'user': request.user, 'profile': profile})
+		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
+		soldItems = Item.objects.all().filter(user=request.user, sold=True)
+		return render(request, 'profile.html', {'user': request.user, 'profile': profile, 'selling_items': sellingItems, 'sold_items': soldItems})
 	except:
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
@@ -122,9 +130,6 @@ def post_profile(request):
 		print('NOT VALID')
 		return HttpResponseRedirect('/profile/update')
 
-
-
-
 def charity(request):
 	return render(request, 'charity.html')
 
@@ -134,7 +139,24 @@ def sell(request):
 
 @login_required
 def cart(request):
-	return render(request, "cart.html")
+	# Get all items
+	cart = Cart.objects.get(user=request.user)
+	items = cart.items.values()
+	# TOTAL VALUE OF THE CART
+	subtotal = 0
+	# TOTAL VALUE TO CHARITY
+	charity_sum = 0
+	for item in items:
+		subtotal += item["price"]
+		# Total percentage of cart going to charity
+		charity_sum += item['price'] * (item['charity_percent'] / 100)
+	percentage_total = round(charity_sum / subtotal, 2)
+	return render(request, "cart.html", {
+		"items": items, 
+		"subtotal": subtotal,
+		"charity_sum": charity_sum,
+		"percentage_total": percentage_total
+	})
 
 def thecart(request, item_id):
 	item = Item.objects.get(id=item_id)
@@ -143,20 +165,29 @@ def thecart(request, item_id):
 	})
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
-	# Get all items
-	cart = Item.objects.all()
-	subtotal = Item.objects.aggregate(Sum('price'))
-	charity_sum = 0
-	for item in cart:
-		charity_sum += item.price * item.charity_percent
-	# Total percentage of cart going to charity
-	percentage_to_charity = Decimal(charity_sum / subtotal["price__sum"])
-	percentage_to_charity = round(percentage_to_charity, 2)
-	# Total dollar value of cart going to charity
-	total_to_charity = round(charity_sum / 100, 2)
-	return render(request, "cart.html", {
-		"items": cart, 
-		"subtotal": subtotal["price__sum"],
-		"percentage_to_charity": percentage_to_charity,
-		"total_to_charity": total_to_charity
-	})
+
+def stripe_redirect(request):
+	auth_code = request.GET.get('code')
+	user_id = request.GET.get('state')
+	user = User.objects.get(id=user_id)
+	profile = Profile.objects.get(user=user)
+	print('USERPROFILE', profile)
+	print('AUTH_CODE', auth_code)
+	url = 'https://connect.stripe.com/oauth/token'
+	payload = {
+		'client_secret': stripe_secret_key,
+		'code': auth_code,
+		'grant_type': 'authorization_code'
+	}
+	stripe_response = requests.post(url, data=payload)
+	stripe_user_id = stripe_response.json()['stripe_user_id']
+	print('STRIPE_USER_ID: ', stripe_user_id)
+	profile.stripe_user_id = stripe_user_id
+	profile.save()
+	return HttpResponseRedirect('/')
+
+def cart_delete(request, item_id):
+	item = Item.objects.get(id=item_id)
+	cart = Cart.objects.get(user=request.user)
+	cart.items.remove(item)
+	return HttpResponseRedirect("/cart/")

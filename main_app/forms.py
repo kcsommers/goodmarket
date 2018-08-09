@@ -33,11 +33,11 @@ class SellForm(forms.ModelForm):
 		model = Item
 		fields = ['category', 'name', 'description', 'image', 'price', 'charity_percent']
 		widgets = {
-			'category': forms.TextInput(attrs={'class': 'category-hidden'}),
+			'category': forms.TextInput(attrs={'class': 'category-hidden', 'hidden': True}),
 			'name': forms.TextInput(attrs={'class': 'sell-name-input'}),
 			'description': forms.Textarea(attrs={'class': 'sell-description-input'}),
 			'price': forms.TextInput(attrs={'class': 'sell-price-input'}),
-			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
+			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden', 'hidden': True}),
 		}
 
 class ProfileUpdateForm(forms.ModelForm):

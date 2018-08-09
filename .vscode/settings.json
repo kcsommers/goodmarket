@@ -1,4 +1,3 @@
 {
-    "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/Users/jacobspade/.local/share/virtualenvs/project4-UO-tHxah/bin/python"
+    "python.linting.enabled": false
 }
