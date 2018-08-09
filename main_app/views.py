@@ -144,4 +144,3 @@ def thecart(request, item_id):
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
 
-
