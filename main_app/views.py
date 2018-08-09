@@ -159,3 +159,9 @@ def thecart(request, item_id):
 	})
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
+
+def cart_delete(request, item_id):
+	item = Item.objects.get(id=item_id)
+	cart = Cart.objects.get(user=request.user)
+	cart.items.remove(item)
+	return HttpResponseRedirect("/cart/")
