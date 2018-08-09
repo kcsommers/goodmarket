@@ -18,5 +18,5 @@ urlpatterns = [
 	path('profile/', views.profile, name="profile"),
 	path('profile/update/', views.profile_update, name="profile"),
 	path('post_profile/', views.post_profile, name="post_profile"),
-	path('cart/delete', views.cart_delete, name="cart_delete")
+	path('cart/delete/<int:item_id>/', views.cart_delete, name="cart_delete")
 ]
