@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Item
+from .models import Item, Cart
 
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -39,4 +39,3 @@ class SellForm(forms.ModelForm):
 			'price': forms.TextInput(attrs={'class': 'sell-price-input'}),
 			'charity_percent': forms.TextInput(attrs={'class': 'charity-percent-hidden'}),
 		}
-

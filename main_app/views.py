@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Item, Profile
+from .models import Item, Profile, Cart
 from django.contrib import messages 
 from .forms import LoginForm, SignupForm, SellForm
 import cloudinary.uploader
@@ -84,8 +84,8 @@ def logout_view(request):
 	return HttpResponseRedirect('/')
 
 def show_item(request, item_id):
-	item = Item.objects.get(id=item_id)
-	return render(request, 'show.html', {'item': item})
+		item = Item.objects.get(id=item_id)
+		return render(request, 'show.html', {'item': item})
 
 @login_required
 def post_item(request):
@@ -117,6 +117,15 @@ def sell(request):
 
 @login_required
 def cart(request):
+	return render(request, "cart.html")
+
+def thecart(request, item_id):
+	item = Item.objects.get(id=item_id)
+	cart, created = Cart.objects.get_or_create(user=request.user, defaults={
+		"user": request.user
+	})
+	cart.items.add(item)
+	return HttpResponseRedirect("/cart/")
 	# Get all items
 	cart = Item.objects.all()
 	subtotal = Item.objects.aggregate(Sum('price'))
