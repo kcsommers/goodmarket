@@ -120,6 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/media')
+
 # getting stripe keys from .env
 from os.path import join, dirname
 from dotenv import load_dotenv
