@@ -187,6 +187,7 @@ textarea {
 .filter {
 	display: none;
 }
+
 /*****************************************************
 				SELL PAGE
 *****************************************************/
@@ -255,23 +256,10 @@ textarea {
 }
 
 /*****************************************************/
-.profile-update-container {
-	padding: 5em;
-}
 
-.profile-update-container input[type=text] {
-	width: 100%;
-	font-size: 1.3em;
-	margin-top: 0.5em;
-	padding: 0.5em;
-	outline: none;
-	border: none;
-	border-left: 2px solid green;
-}
-
-.profile-update-container form div {
-	margin: 2em 0;
-}
+/*****************************************************
+				PROFILE PAGE
+*****************************************************/
 
 
 /***************** JACOB CSS *************************/

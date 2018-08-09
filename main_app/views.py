@@ -104,10 +104,12 @@ def profile_update(request):
 
 @login_required
 def profile(request):
-	try:
-		profile = Profile.objects.get(user=request.user)
-		return render(request, 'profile.html', {'user': request.user, 'profile': profile})
-	except:
+	profile = Profile.objects.get(user=request.user)
+	if(profile):
+		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
+		soldItems = Item.objects.all().filter(user=request.user, sold=True)
+		return render(request, 'profile.html', {'user': request.user, 'profile': profile, 'selling_items': sellingItems, 'sold_items': soldItems})
+	else:
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
 
@@ -121,9 +123,6 @@ def post_profile(request):
 	else:
 		print('NOT VALID')
 		return HttpResponseRedirect('/profile/update')
-
-
-
 
 def charity(request):
 	return render(request, 'charity.html')
@@ -143,20 +142,3 @@ def thecart(request, item_id):
 	})
 	cart.items.add(item)
 	return HttpResponseRedirect("/cart/")
-	# Get all items
-	cart = Item.objects.all()
-	subtotal = Item.objects.aggregate(Sum('price'))
-	charity_sum = 0
-	for item in cart:
-		charity_sum += item.price * item.charity_percent
-	# Total percentage of cart going to charity
-	percentage_to_charity = Decimal(charity_sum / subtotal["price__sum"])
-	percentage_to_charity = round(percentage_to_charity, 2)
-	# Total dollar value of cart going to charity
-	total_to_charity = round(charity_sum / 100, 2)
-	return render(request, "cart.html", {
-		"items": cart, 
-		"subtotal": subtotal["price__sum"],
-		"percentage_to_charity": percentage_to_charity,
-		"total_to_charity": total_to_charity
-	})
