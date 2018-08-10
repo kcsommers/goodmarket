@@ -35,4 +35,5 @@ class Cart(models.Model):
 
 class Charity(models.Model):
     total_money_raised = models.IntegerField(default=0)
-    progress_bar = models.IntegerField(default=0)
+    name = models.CharField(max_length=100)
+    mission_statement = models.CharField(max_length=1000)
