@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, SignUpForm, ProfileUpdateForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -64,19 +64,6 @@ def login_view(request):
 		form = LoginForm()
 		return render(request, 'login.html', {'form': form})
 
-def signup_view(request):
-	if(request.method == 'POST'):
-		form = SignUpForm(request.POST);
-		if(form.is_valid()):
-			form.save()
-			return HttpResponseRedirect('/post_profile')
-		else: 
-			return HttpResponseRedirect("/")
-			print("Invalid Information")
-	else:
-		form = SignUpForm
-		return render(request, "signup.html", {"form": form})
-
 def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
@@ -96,7 +83,6 @@ def post_item(request):
 	else:
 		return HttpResponseRedirect('/sell/')
 
-@login_required
 def profile_update(request):
 	return render(request, 'profile_update.html', {'user': request.user, 'form': ProfileUpdateForm})
 
@@ -111,7 +97,6 @@ def profile(request):
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
 
-@login_required
 def post_profile(request):
 	form = ProfileUpdateForm(request.POST, request.FILES)
 	if(form.is_valid()):
