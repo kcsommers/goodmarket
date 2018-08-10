@@ -515,6 +515,7 @@ textarea {
 	outline: none;
 	color: #fff;
 	padding-left: 1em;
+	font-size: 1em;
 }
 
 .auth-wrapper input::placeholder {
@@ -536,6 +537,11 @@ textarea {
 .auth-btn:hover {
 	background-color: #158f97;
 	color: white;
+}
+
+.signup-username, .signup-p1, .signup-p2 {
+	display: block;
+	margin: 0 auto;
 }
 
 /************************************************************/
