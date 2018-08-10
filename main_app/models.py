@@ -32,3 +32,7 @@ class Item(models.Model):
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(Item)
+
+class Charity(models.Model):
+    total_money_raised = models.IntegerField(default=0)
+    progress_bar = models.IntegerField(default=0)
