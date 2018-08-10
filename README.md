@@ -14,7 +14,7 @@ A user can view the main page as well as the market page which shows all the ite
  * HTML
 
  ## Aproach
- We decided as a group to with Django because the set up for back end is pretty straight forward. Django uses an admin pages to add data to the models and already comes with an auth which was ideal for our ecommerce site. To impliment users paying with their credit card we added stripe, A technology designed for payment processes. While setting up our models, we planned as much as possible to understand what kind of data we want to populate to each page. Once wee white
+ We decided as a group to with Django because the set up for back end is pretty straight forward. Django uses an admin pages to add data to the models and already comes with an auth which was ideal for our ecommerce site. To impliment users paying with their credit card we added stripe, A technology designed for payment processes. The type of Stripe method we used was Destination Charges. While setting up our models, we planned as much as possible to understand what kind of data we want to populate to each page. Once wee white
 
 ## Authors
  * Will Connelly
