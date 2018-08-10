@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart
 from django.contrib import messages 
-from .forms import LoginForm, SignupForm, SellForm, ProfileUpdateForm
+from .forms import LoginForm, SellForm, SignUpForm, ProfileUpdateForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -65,24 +65,16 @@ def login_view(request):
 		return render(request, 'login.html', {'form': form})
 
 def signup_view(request):
-	print("HIT SIGNUP ROUTE")
 	if(request.method == 'POST'):
-		print("REQUEST WAS POST")
-		form = SignupForm(request.POST)
-		if form.is_valid():
-			print("FORM WAS VALID")
+		form = SignUpForm(request.POST);
+		if(form.is_valid()):
 			form.save()
-			u = form.cleaned_data.get('username')
-			p = form.cleaned_data.get('password1')
-			user = authenticate(username=u, password=p)
-			login(request, user)
-			print("SIGNED UP")
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('/post_profile')
 		else: 
 			return HttpResponseRedirect("/")
 			print("Invalid Information")
 	else:
-		form = SignupForm()
+		form = SignUpForm
 		return render(request, "signup.html", {"form": form})
 
 def logout_view(request):

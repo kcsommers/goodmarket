@@ -5,14 +5,9 @@
 	<h1>Sign Up</h1>
 	<form action="/signup/" method="POST">
 		{% csrf_token %}
-		<ul>
-			<li>{{ form.username }}</li>
-			<li>{{ form.first_name }}</li>
-			<li>{{ form.last_name }}</li>
-			<li>{{ form.email }}</li>
-			<li>{{ form.password1}}</li>
-			<li>{{ form.password2 }}</li>
-		</ul>
+		{{form.username}}
+		{{form.password1}}
+		{{form.password2}}
 		<button class="btn auth-btn" type="submit">Sign Up</button>
 	</form>
 </div>
