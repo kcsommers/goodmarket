@@ -5,7 +5,6 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    id = models.IntegerField(primary_key=True, default=0)
     rating = models.IntegerField(default=0)
     location = models.CharField(max_length=100)
     image = models.ImageField(upload_to='profile_images', blank=True)
