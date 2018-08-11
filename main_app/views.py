@@ -5,9 +5,9 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Item, Profile, Cart
+from .models import Item, Profile, Cart, Charity
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, SignUpForm, ProfileUpdateForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -28,51 +28,53 @@ def market(request):
 	return render(request, 'market.html', {"items": items})
 
 def checkout(request):
-	print('REQUEST#####', request.POST)
+	seller = None
+	profile = None
+	charity = None
+	token = None
+	amount_to_seller = 0
+	total_amount = 0
+	application_fee = 0
+
 	profile = Profile.objects.get(user=request.user)
+	itemIds = request.POST.getlist("item_id")
 	prices = request.POST.getlist("item_price")
-	charities = request.POST.getlist("charity")
+	charities = request.POST.getlist("charity_id")
 	charity_percentages = request.POST.getlist("charity_percent")
-	sellers = request.POST.getlist("user")
+	sellers = request.POST.getlist("user_id")
+
 	for i in range(len(sellers)):
-		user = User.objects.get(id=sellers[i])
-		profile = Profile.objects.get(user=user)
+		item = Item.objects.get(id=itemIds[i])
+		item.sold = True
+		item.save()
+
+		cart = Cart.objects.get(user=request.user)
+		cart.items.remove(item)
+
+		seller = User.objects.get(id=sellers[i])
+		profile = Profile.objects.get(user=seller)
 		token = profile.stripe_user_id
 		amount_to_seller = float(prices[i]) - float(prices[i]) * (float(charity_percentages[i]) / 100)
 		amount_to_seller = int(amount_to_seller * 100)
 		total_amount = int(float(prices[i]) * 100)
 		application_fee = total_amount - amount_to_seller
-		print("######## AMOUNT TO SELLER:", amount_to_seller)
-		print("######## CHARITY PERCENT:", float(charity_percentages[i]))
-		print("######## ITEM PRICE:", float(prices[i]))
-		charge = stripe.Charge.create(
-			amount= total_amount,
-			application_fee=application_fee,
-			currency="usd",
-			source=request.POST.get("stripeToken"),
-			destination={
-				"account": token
-			}
-		)
-		print(charge)
-	return HttpResponseRedirect("/")
 
-# def checkout(request):
-# 	print('CHECKOUT', request)
-# 	print("PASSED DATA:", request.POST)
-# 	profile = Profile.objects.get(user=request.user)
-# 	connected_account = profile.stripe_user_id
-# 	if(request.method == "POST"):
-# 		to_charity = request.POST.get("charity_sum")
-# 		charge = stripe.Charge.create(
-# 			amount=100,	
-# 			currency="usd",
-# 			source=request.POST['stripeToken'],
-# 			destination={
-# 				"account": connected_account
-# 			}
-# 		)
-# 		return HttpResponseRedirect('/')
+		charity = Charity.objects.get(id=charities[i])
+		charity.total_money_raised += application_fee
+		charity.save()
+
+	charge = stripe.Charge.create(
+		amount= total_amount,
+		application_fee=application_fee,
+		currency="usd",
+		source=request.POST.get("stripeToken"),
+		destination={
+			"account": token
+		}
+	)
+
+	print('babababumbabum: ', charge)
+	return HttpResponseRedirect("/")
 
 def login_view(request):
 	if(request.method == 'POST'):

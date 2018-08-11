@@ -9,20 +9,6 @@
 	</div>
 </section>
 
-
-<!-- <form action="/checkout/" method="POST">
-	{% csrf_token %}
-	<script
-	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-	    data-key="{{key}}"
-	    data-amount="999"
-	    data-name="Demo Site"
-	    data-description="Example charge"
-	    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-	    data-zip-code="true"
-	    data-locale="auto">
-	</script>
-</form> -->
 <a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}"><img src="/static/images/blue-on-light.png" alt="stripe-btn"></a>
 
 {% endblock %}

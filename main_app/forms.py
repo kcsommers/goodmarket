@@ -7,15 +7,6 @@ class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=64, widget=forms.TextInput(attrs={'placeholder':'Username'}))
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Password'}))
 
-# class SignUpForm(UserCreationForm):
-# 	first_name = forms.CharField(max_length=30, required=False)
-# 	last_name = forms.CharField(max_length=30, required=False)
-# 	email = forms.EmailField(max_length=254)
-
-# 	class Meta:
-# 			model = User
-# 			fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
-
 class SignUpForm(forms.ModelForm):
   """
   A form that creates a user, with no privileges, from the given username and

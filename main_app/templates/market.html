@@ -28,6 +28,7 @@
 		</div>
 		<section class="market-items-container">
 			{% for item in items %}
+				{% if item.sold == False %}
 				<div class="market-item {{item.category}}">
 					<a href="/item/{{item.id}}">
 						<div style="background-image: url(/media/{{item.image}})" class="market-item-image"></div>
@@ -39,6 +40,7 @@
 						</div>
 					</a>
 				</div>
+				{% endif %}
 			{% endfor %}
 		</section>
 	</main>

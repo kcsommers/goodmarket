@@ -65,10 +65,11 @@
         data-locale="auto">
     </script>
     {% for item in items %}
+    <input hidden value="{{item.id}}" name="item_id">
     <input hidden value="{{item.price}}" name="item_price"  />
-    <input hidden value="{{item.charity}}" name="charity" />
+    <input hidden value="{{item.charity_id}}" name="charity_id" />
     <input hidden value="{{item.charity_percent}}" name="charity_percent" />
-    <input hidden value="{{item.user_id}}" name="user" />
+    <input hidden value="{{item.user_id}}" name="user_id" />
     {% endfor %}
   </form>
 
