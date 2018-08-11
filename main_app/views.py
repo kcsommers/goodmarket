@@ -73,7 +73,6 @@ def checkout(request):
 		}
 	)
 
-
 	print('babababumbabum: ', charge)
 	return HttpResponseRedirect("/")
 
@@ -104,6 +103,10 @@ def signup_view(request):
 		form = SignUpForm(request.POST)
 		if(form.is_valid()):
 			form.save()
+			u = form.cleaned_data['username']
+			p = form.cleaned_data['password1']
+			user = authenticate(username=u, password=p)
+			login(request, user)
 			return HttpResponseRedirect('/profile/update/')
 		else: 
 			return HttpResponseRedirect("/")
@@ -166,7 +169,35 @@ def sell(request):
 @login_required
 def cart(request):
 	# Find Cart
-	cart = Cart.objects.get(user=request.user)
+	try: 
+		cart = Cart.objects.get(user=request.user)	
+		# Find Items in Cart
+		items = cart.items.values()
+		# Cart Subtotal
+		subtotal = 0
+		# Dollar Amount to Charity
+		charity_sum = 0
+		for item in items:
+			subtotal += item["price"]
+			charity_sum += item["price"] * item["charity_percent"]
+		charity_sum = charity_sum / 100
+		# Percentage of Cart Value Going to Charity
+		percentage_to_charity = charity_sum * 100
+		percentage_to_charity = round(percentage_to_charity / subtotal, 1)
+		has_cart = True
+		return render(request, "cart.html", {
+			"items": items,
+			"subtotal": subtotal,
+			"charity_sum": charity_sum,
+			"percentage_to_charity": percentage_to_charity,
+			"has_cart": has_cart
+		})
+	except:
+		has_cart = False
+		return render(request, "cart.html", {
+			"has_cart": has_cart
+		})
+	# cart = Cart.objects.get(user=request.user)
 	# Find Items in Cart
 	items = cart.items.values()
 	# Cart Subtotal
@@ -181,12 +212,15 @@ def cart(request):
 	# Percentage of Cart Value Going to Charity
 	percentage_to_charity = charity_sum * 100
 	percentage_to_charity = round(percentage_to_charity / subtotal, 1)
+		
 	return render(request, "cart.html", {
 		"items": items,
 		"subtotal": subtotal,
 		"charity_sum": charity_sum,
 		"percentage_to_charity": percentage_to_charity,
+		"has_cart": has_cart,
 		'key': public_key
+
 })
 
 def thecart(request, item_id):
