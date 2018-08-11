@@ -28,19 +28,51 @@ def market(request):
 	return render(request, 'market.html', {"items": items})
 
 def checkout(request):
-	print('CHECKOUT', request)
+	print('REQUEST#####', request.POST)
 	profile = Profile.objects.get(user=request.user)
-	connected_account = profile.stripe_user_id
-	if(request.method == "POST"):
+	prices = request.POST.getlist("item_price")
+	charities = request.POST.getlist("charity")
+	charity_percentages = request.POST.getlist("charity_percent")
+	sellers = request.POST.getlist("user")
+	for i in range(len(sellers)):
+		user = User.objects.get(id=sellers[i])
+		profile = Profile.objects.get(user=user)
+		token = profile.stripe_user_id
+		amount_to_seller = float(prices[i]) - float(prices[i]) * (float(charity_percentages[i]) / 100)
+		amount_to_seller = int(amount_to_seller * 100)
+		total_amount = int(float(prices[i]) * 100)
+		application_fee = total_amount - amount_to_seller
+		print("######## AMOUNT TO SELLER:", amount_to_seller)
+		print("######## CHARITY PERCENT:", float(charity_percentages[i]))
+		print("######## ITEM PRICE:", float(prices[i]))
 		charge = stripe.Charge.create(
-			amount=100,
+			amount= total_amount,
+			application_fee=application_fee,
 			currency="usd",
-			source=request.POST['stripeToken'],
+			source=request.POST.get("stripeToken"),
 			destination={
-				"account": connected_account
+				"account": token
 			}
 		)
-		return HttpResponseRedirect('/')
+		print(charge)
+	return HttpResponseRedirect("/")
+
+# def checkout(request):
+# 	print('CHECKOUT', request)
+# 	print("PASSED DATA:", request.POST)
+# 	profile = Profile.objects.get(user=request.user)
+# 	connected_account = profile.stripe_user_id
+# 	if(request.method == "POST"):
+# 		to_charity = request.POST.get("charity_sum")
+# 		charge = stripe.Charge.create(
+# 			amount=100,
+# 			currency="usd",
+# 			source=request.POST['stripeToken'],
+# 			destination={
+# 				"account": connected_account
+# 			}
+# 		)
+# 		return HttpResponseRedirect('/')
 
 def login_view(request):
 	if(request.method == 'POST'):
@@ -66,10 +98,10 @@ def login_view(request):
 
 def signup_view(request):
 	if(request.method == 'POST'):
-		form = SignUpForm(request.POST);
+		form = SignUpForm(request.POST)
 		if(form.is_valid()):
 			form.save()
-			return HttpResponseRedirect('/post_profile')
+			return HttpResponseRedirect('/profile/update/')
 		else: 
 			return HttpResponseRedirect("/")
 			print("Invalid Information")
@@ -92,11 +124,10 @@ def post_item(request):
 		item = form.save(commit=False)
 		item.user = request.user
 		item.save()
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/market/')
 	else:
 		return HttpResponseRedirect('/sell/')
 
-@login_required
 def profile_update(request):
 	return render(request, 'profile_update.html', {'user': request.user, 'form': ProfileUpdateForm})
 
@@ -111,7 +142,7 @@ def profile(request):
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
 
-@login_required
+# @login_required
 def post_profile(request):
 	form = ProfileUpdateForm(request.POST, request.FILES)
 	if(form.is_valid()):
@@ -167,6 +198,7 @@ def cart(request):
 	subtotal = 0
 	# Dollar Amount to Charity
 	charity_sum = 0
+	print(items)
 	for item in items:
 		subtotal += item["price"]
 		charity_sum += item["price"] * item["charity_percent"]
@@ -180,7 +212,9 @@ def cart(request):
 		"subtotal": subtotal,
 		"charity_sum": charity_sum,
 		"percentage_to_charity": percentage_to_charity,
-		# "has_cart": has_cart
+		"has_cart": has_cart,
+		'key': public_key
+
 })
 
 def thecart(request, item_id):

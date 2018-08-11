@@ -51,6 +51,27 @@
       </div>
     </div>
   </div>
+
+  <form action="/checkout/" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{key}}"
+        data-amount="{{ subtotal }}00"
+        data-name="Demo Site"
+        data-description="Cart Checkout"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-zip-code="true"
+        data-locale="auto">
+    </script>
+    {% for item in items %}
+    <input hidden value="{{item.price}}" name="item_price"  />
+    <input hidden value="{{item.charity}}" name="charity" />
+    <input hidden value="{{item.charity_percent}}" name="charity_percent" />
+    <input hidden value="{{item.user_id}}" name="user" />
+    {% endfor %}
+  </form>
+
 </div>
 {% else %}
 <h1>Your Cart is Empty</h1>
