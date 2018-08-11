@@ -50,26 +50,6 @@
         </ul>
       </div>
     </div>
-
-    <form action="/checkout/" method="POST">
-      {% csrf_token %}
-      <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="{{key}}"
-          data-amount="999"
-          data-name="Demo Site"
-          data-description="Example charge"
-          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-          data-zip-code="true"
-          data-locale="auto">
-      </script>
-      {% for item items %}
-      <input hidden value="{{item.price}}" name="item-price" />
-      <input hidden value="{{item.charity}}" name="charity" />
-      <input hidden value="{{item.charity_percent}}" name="charity_percent-{{forloop.counter}}" />
-      <input hidden value="{{item.user_id}}" name="user" />
-      {% endfor %}
-    </form>
   </div>
 
   <form action="/checkout/" method="POST">
@@ -85,10 +65,11 @@
         data-locale="auto">
     </script>
     {% for item in items %}
+    <input hidden value="{{item.id}}" name="item_id">
     <input hidden value="{{item.price}}" name="item_price"  />
-    <input hidden value="{{item.charity}}" name="charity" />
+    <input hidden value="{{item.charity_id}}" name="charity_id" />
     <input hidden value="{{item.charity_percent}}" name="charity_percent" />
-    <input hidden value="{{item.user_id}}" name="user" />
+    <input hidden value="{{item.user_id}}" name="user_id" />
     {% endfor %}
   </form>
 
