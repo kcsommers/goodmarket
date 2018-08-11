@@ -483,6 +483,16 @@ textarea {
 	background-color: #e96e80;
 }
 
+.Site {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+  }
+  
+  .Site-content {
+	flex: 1;
+  }
+
 @media only screen and (max-width:540px) {
 	.content {
 		grid-template-columns: 1fr;
