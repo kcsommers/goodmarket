@@ -65,7 +65,7 @@ def checkout(request):
 # 	if(request.method == "POST"):
 # 		to_charity = request.POST.get("charity_sum")
 # 		charge = stripe.Charge.create(
-# 			amount=100,
+# 			amount=100,	
 # 			currency="usd",
 # 			source=request.POST['stripeToken'],
 # 			destination={
@@ -101,6 +101,10 @@ def signup_view(request):
 		form = SignUpForm(request.POST)
 		if(form.is_valid()):
 			form.save()
+			u = form.cleaned_data['username']
+			p = form.cleaned_data['password1']
+			user = authenticate(username=u, password=p)
+			login(request, user)
 			return HttpResponseRedirect('/profile/update/')
 		else: 
 			return HttpResponseRedirect("/")
