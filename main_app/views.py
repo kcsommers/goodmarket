@@ -28,7 +28,7 @@ def market(request):
 	return render(request, 'market.html', {"items": items})
 
 def checkout(request):
-	print('CHECKOUT', request)
+	print('CHECKOUT', request.POST['user'])
 	profile = Profile.objects.get(user=request.user)
 	connected_account = profile.stripe_user_id
 	if(request.method == "POST"):
