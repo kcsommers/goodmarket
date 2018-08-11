@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% if has_cart == True%}
 <div class="cart-wrapper">
   <div class="cart-heading group">
     <h1>My Cart</h1>
@@ -52,5 +52,7 @@
     </div>
   </div>
 </div>
-   
+{% else %}
+<h1>Your Cart is Empty</h1>
+{% endif %}
 {% endblock %}
