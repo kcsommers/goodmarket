@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if has_stripe_id == True %}
 <section class="sell-page">
 	<div class="sell-page-arrow-left">
 		<i class="fa fa-angle-left"></i>
@@ -77,7 +78,18 @@
 		 	</div>
 		 </form>
 	</div>
-	
 </section>
+
+{% else %}
+
+<div class="stripe-signup">
+	<div class="stripe-prompt">
+		<p>Before you submit an item for sale,</p>
+		<p>You must first connect your account to Stripe</p>
+	</div>
+	<a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}">Connect with Stripe</a>
+</div>
+
+{% endif %}
 
 {% endblock %}

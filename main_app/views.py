@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart, Charity
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, ProfileUpdateForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -164,10 +164,41 @@ def charity(request):
 
 @login_required
 def sell(request):
-	return render(request, 'sell.html', {'form': SellForm})
+	try:
+		profile = Profile.objects.get(user=request.user)
+		if profile.stripe_user_id == None:
+			has_stripe_id = False
+		else:
+			has_stripe_id = True
+		return render(request, 'sell.html', {
+			'form': SellForm, 
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
+			})
+	except:
+		has_stripe_id = False
+		return render(request, 'sell.html', {
+			'form': SellForm, 
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
+			})
 
 @login_required
 def cart(request):
+	# Check for User's Stripe ID
+	has_stripe_id = False
+	try: 
+		profile = Profile.objects.get(user=request.user)
+		if profile.stripe_user_id == None:
+			has_stripe_id = False
+		else:
+			has_stripe_id = True
+	except: 
+		has_stripe_id = False
 	# Find Cart
 	try: 
 		cart = Cart.objects.get(user=request.user)	
@@ -190,38 +221,21 @@ def cart(request):
 			"subtotal": subtotal,
 			"charity_sum": charity_sum,
 			"percentage_to_charity": percentage_to_charity,
-			"has_cart": has_cart
+			"has_cart": has_cart,
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
 		})
 	except:
 		has_cart = False
 		return render(request, "cart.html", {
-			"has_cart": has_cart
+			"has_cart": has_cart,
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
 		})
-	# cart = Cart.objects.get(user=request.user)
-	# Find Items in Cart
-	items = cart.items.values()
-	# Cart Subtotal
-	subtotal = 0
-	# Dollar Amount to Charity
-	charity_sum = 0
-	print(items)
-	for item in items:
-		subtotal += item["price"]
-		charity_sum += item["price"] * item["charity_percent"]
-	charity_sum = charity_sum / 100
-	# Percentage of Cart Value Going to Charity
-	percentage_to_charity = charity_sum * 100
-	percentage_to_charity = round(percentage_to_charity / subtotal, 1)
-		
-	return render(request, "cart.html", {
-		"items": items,
-		"subtotal": subtotal,
-		"charity_sum": charity_sum,
-		"percentage_to_charity": percentage_to_charity,
-		"has_cart": has_cart,
-		'key': public_key
-
-})
 
 def thecart(request, item_id):
 	item = Item.objects.get(id=item_id)
