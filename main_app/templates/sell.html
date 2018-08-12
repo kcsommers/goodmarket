@@ -82,6 +82,14 @@
 
 {% else %}
 
-<h1>You must make an ID</h1>
+<div class="stripe-signup">
+	<div class="stripe-prompt">
+		<p>Before you submit an item for sale,</p>
+		<p>You must first connect your account to Stripe</p>
+	</div>
+	<a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}">Connect with Stripe</a>
+</div>
+
+{% endif %}
 
 {% endblock %}

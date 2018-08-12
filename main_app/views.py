@@ -167,13 +167,25 @@ def sell(request):
 	try:
 		profile = Profile.objects.get(user=request.user)
 		if profile.stripe_user_id == None:
-			has_stripe_id = True
-		else:
 			has_stripe_id = False
-		return render(request, 'sell.html', {'form': SellForm, 'has_stripe_id': has_stripe_id})
+		else:
+			has_stripe_id = True
+		return render(request, 'sell.html', {
+			'form': SellForm, 
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
+			})
 	except:
 		has_stripe_id = False
-		return render(request, 'sell.html', {'form': SellForm, 'has_stripe_id': has_stripe_id})
+		return render(request, 'sell.html', {
+			'form': SellForm, 
+			'has_stripe_id': has_stripe_id, 
+			'user': request.user,
+			'key': public_key,
+			'client_id': stripe_client_id
+			})
 
 @login_required
 def cart(request):
