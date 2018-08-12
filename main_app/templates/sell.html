@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if has_stripe_id == True %}
 <section class="sell-page">
 	<div class="sell-page-arrow-left">
 		<i class="fa fa-angle-left"></i>
@@ -77,7 +78,10 @@
 		 	</div>
 		 </form>
 	</div>
-	
 </section>
+
+{% else %}
+
+<h1>You must make an ID</h1>
 
 {% endblock %}
