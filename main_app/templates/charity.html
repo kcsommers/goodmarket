@@ -3,7 +3,7 @@
 
 <div class="charity-wrapper">
   <div class="charity-heading group">
-    <h1>Charities</h1>
+    <h3>Here are some of the Charities and Organizations we support</h3>
   </div>
   <ul>
     {% for charity in charities %}
@@ -11,15 +11,15 @@
       <div class="charity-container">
         <div class="charity-table">
           <div class="charity-cell">
-              <img src="https://i.imgur.com/byOKTGC.jpg" alt="The American Red Cross">
+              <img src="{{ charity.image }}}" alt="{{ charity.name }}}">
             <h3>{{ charity.name }}</h3>
             <article>
               <p>{{ charity.mission_statement }}</p>
             </article>
           </div> 
-          <div class="charity-cell">
-            <p>Money Raised by Users: ${{ charity.total_money_raised }}</p>
-            <a href="{{ charity.link }}" target="_blank">Website</a>
+          <div class="info-cell">
+            <p>Money Raised by Users: <span>${{ charity.total_money_raised }}</span></p>
+            <a href="{{ charity.link }}" target="_blank">Link to Website</a>
           </div>
         </div>
       </div>
