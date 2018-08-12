@@ -3,15 +3,26 @@ $(document).ready(function() {
 	
 	$('.category-filters button').click(function() {
 		let category = $(this).attr('data-id');
+		$('.filter-active').removeClass('filter-active');
+
 		if($(this).is('.filter-active')) {
-			$(this).removeClass('filter-active');
-			$(`.${category}`).removeClass('unfiltered');
+			if($(this).is('.show-all')) {
+				$('.market-item').addClass('filtered');
+			}
+			else {
+				$(this).addClass('filtered');
+			}
 		}
 		else {
-			$(this).addClass('filter-active');
-			$(`.${category}`).removeClass('filter').addClass('unfiltered');
-			$(`.market-item:not(.${category}, .unfiltered)`).addClass('filter');
+			if($(this).is('.show-all')) {
+				$('.market-item').removeClass('filtered');
+			}
+			else {
+				$('.market-item').addClass('filtered');
+				$(`.${category}`).removeClass('filtered');
+			}
 		}
+		$(this).addClass('filter-active');
 	});
 
 	$('.sell-page-arrow-right').click(function() {
@@ -34,14 +45,18 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.sell-form-category button').click(function(e) {
+	$('.sell-form-categories button').click(function(e) {
 		e.preventDefault();
+		$('.sell-form-categories button.active').removeClass('active');
+		$(this).addClass('active');
 		let value = $(this).attr('id');
 		$('.category-hidden').val(value);
 	});
 
-	$('.sell-form-charity-percent button').click(function(e) {
+	$('.sell-form-percentage button').click(function(e) {
 		e.preventDefault();
+		$('.sell-form-percentage button.active').removeClass('active');
+		$(this).addClass('active');
 		let value = $(this).attr('id');
 		$('.charity-percent-hidden').val(value);
 	});

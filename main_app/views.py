@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart, Charity
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, ProfileUpdateForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
 import cloudinary.uploader
 import cloudinary.api
 import requests
@@ -164,7 +164,8 @@ def charity(request):
 
 @login_required
 def sell(request):
-	return render(request, 'sell.html', {'form': SellForm})
+	charities = Charity.objects.all()
+	return render(request, 'sell.html', {'form': SellForm, 'charities': charities})
 
 @login_required
 def cart(request):
