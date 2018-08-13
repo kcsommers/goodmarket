@@ -408,7 +408,14 @@ def cart_delete(request, item_id):
 	return HttpResponseRedirect("/cart/")
 
 def review(request):
-	return render(request, "review.html")
-
-def post_review(request):
-	return HttpResponseRedirect("/")
+	if request.method == "POST":
+		form = ReviewForm(request.POST)
+		print(request.POST)
+		if (form.is_valid()):
+			# Handle Submit
+			return HttpResponseRedirect('/')
+		else:
+			return HttpResponseRedirect('/')
+	else:
+		form = ReviewForm(request.POST)
+		return render(request, "review.html", {'form': form, "user": request.user})

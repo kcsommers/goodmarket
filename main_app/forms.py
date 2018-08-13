@@ -77,5 +77,5 @@ class ReviewForm(forms.ModelForm):
     model = Review
     fields = ["comment", "reviewer", "seller"]
     widgets = {
-      "review": forms.TextInput(attrs={"class": "comment", "placeholder": "Leave a Review of this User"})
+      "comment": forms.Textarea(attrs={"class": "comment", "placeholder": "Leave a Review of this User"})
     }
