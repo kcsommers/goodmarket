@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Item, Profile, Cart, Charity
+from .models import Item, Profile, Cart, Charity, Review
 from django.contrib import messages 
 from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
 from django.core.mail import send_mail
@@ -242,7 +242,18 @@ def profile(request):
 		profile = Profile.objects.get(user=request.user)
 		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
 		soldItems = Item.objects.all().filter(user=request.user, sold=True)
-		return render(request, 'profile.html', {'user': request.user, 'profile': profile, 'selling_items': sellingItems, 'sold_items': soldItems})
+		try: 
+			reviews = Review.objects.all().filter(seller=request.user)
+		except:
+			reviews = []
+		print("REVIEWS HERE OH MY GOD:", reviews)
+		return render(request, 'profile.html', {
+			'user': request.user, 
+			'profile': profile, 
+			'selling_items': sellingItems, 
+			'sold_items': soldItems, 
+			'reviews': reviews
+		})
 	except:
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')

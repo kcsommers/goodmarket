@@ -13,6 +13,13 @@
 			</div>
 			<div style="background-image: url(/media/{{profile.image}})" class="profile-picture">
 			</div>
+			{% for review in reviews %}
+				<div>
+					<p>{{ review.reviewer }}</p>
+					<p>{{ review.seller }}</p>
+					<p>{{ review.comment }}</p>
+				</div>
+			{% endfor %}
 		</div>
 		<hr />
 		<div class="profile-row" id="profile-r2">
