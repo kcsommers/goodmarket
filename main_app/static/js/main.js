@@ -86,3 +86,11 @@ $(document).ready(function() {
 		$('.charity-percent-hidden').val(value);
 	});
 });
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}

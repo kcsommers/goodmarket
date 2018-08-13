@@ -579,9 +579,44 @@ textarea {
 	flex-direction: column;
   }
   
-  .Site-content {
+.Site-content {
 	flex: 1;
-  }
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+
+.review {
+	background-color: gray;
+	margin-bottom: 1em;
+	border-radius: 1em;
+	padding: 1em;
+	box-shadow: 2px 2px 2px black;
+}
+
+.reviewer-name {
+	font-size: 1.5em;
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
+}
+
+.reviewer-comment {
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
+}
+
+.reviews-title {
+	text-align: center;
+	border-bottom: 1px solid gray;
+	margin-bottom: 1em;
+	padding-bottom: .5em;
+}
 
 @media only screen and (max-width:540px) {
 	.content {
@@ -590,6 +625,89 @@ textarea {
 		grid-template-areas: 'col1'
 							 'col2'
 							 'col3';
+	}
+}
+
+@media (max-width: 600px) {
+
+	.main-nav,
+	.nav-wrapper,
+	.nav-menu a {
+		display: none;
+	}
+
+	.hamburger {
+		margin-left: .5em;
+	}
+
+	.intro-container {
+		width: 100%;
+		background-color: rgba(239, 239, 239, 0.9);
+		padding: 3em 3em 4em 3em;
+		text-align: center;
+		border-radius: 0px;
+	}
+
+	h1 {
+		font-size: 3em;
+	}
+
+	.landing-page {
+		min-height: calc(100vh - 150px);
+		padding: 0em;
+		position: relative;
+		background-image: url(/static/images/market.png);
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.sidenav {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 60px;
+	}
+	
+	.sidenav a {
+		padding: 8px 8px 8px 32px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
+		display: block;
+		transition: 0.3s;
+	}
+	
+	.sidenav a:hover {
+		color: #f1f1f1;
+	}
+	
+	.sidenav .closebtn {
+		position: absolute;
+		top: 0;
+		right: 25px;
+		font-size: 36px;
+		margin-left: 50px;
+	}
+
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
+}
+
+@media (min-width: 600px) {
+	.sidenav,
+	.sidenav a,
+	.sidenav closebtn,
+	.hamburger {
+		display: none;
 	}
 }
 
@@ -935,4 +1053,3 @@ textarea {
 	margin-bottom: 0.3em;
 }
 /*****************************************************/
-

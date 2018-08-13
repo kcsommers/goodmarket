@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="">
+    <h1>Leave a Review</h1>
+    <form action="/profile/review" method="POST">
+      {% csrf_token %}
+      {{ form.comment }}
+      <input type="hidden" value="{{ user.username }}", name="reviewer">
+      <button class="btn auth-btn" type="submit">Submit</button>
+    </form>
+  </div>
+
+{% endblock %}
