@@ -47,33 +47,31 @@
                 <span class="labelvalue">${{ subtotal }}</span>
               </li>
               <li>
-                <a class="checkout-button" href="#">Checkout</a>
+                <form action="/checkout/" method="POST">
+                  {% csrf_token %}
+                  <script
+                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="{{key}}"
+                      data-amount="{{ subtotal }}00"
+                      data-name="Demo Site"
+                      data-description="Cart Checkout"
+                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                      data-zip-code="true"
+                      data-locale="auto">
+                  </script>
+                  <input hidden value="{{subtotal}}" name="subtotal" />
+                  <input hidden value="{{charity_sum}}" name="charity_sum" />
+                  {% for item in items %}
+                  <input hidden value="{{item.id}}" name="item_id">
+                  <input hidden value="{{item.charity_id}}" name="charity_id" />
+                  <input hidden value="{{item.user_id}}" name="user_id" />
+                  {% endfor %}
+                </form>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
-      <form action="/checkout/" method="POST">
-        {% csrf_token %}
-        <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="{{key}}"
-            data-amount="{{ subtotal }}00"
-            data-name="Demo Site"
-            data-description="Cart Checkout"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-zip-code="true"
-            data-locale="auto">
-        </script>
-        <input hidden value="{{subtotal}}" name="subtotal" />
-        <input hidden value="{{charity_sum}}" name="charity_sum" />
-        {% for item in items %}
-        <input hidden value="{{item.id}}" name="item_id">
-        <input hidden value="{{item.charity_id}}" name="charity_id" />
-        <input hidden value="{{item.user_id}}" name="user_id" />
-        {% endfor %}
-      </form>
     </div>
   {% else %}
   <h1>Your Cart is Empty</h1>

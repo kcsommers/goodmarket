@@ -25,6 +25,21 @@ $(document).ready(function() {
 		$(this).addClass('filter-active');
 	});
 
+	$('.search-button').click(function(e) {
+		e.preventDefault();
+		$('.market-item').addClass('filtered');
+		var searchStr =  new RegExp($('.filter-input').val());
+		console.log(searchStr)
+		var items = $('.market-item');
+		items.each(function(i, item) {
+			var name = $(item).find('h5').text();
+			console.log(name)
+			if (searchStr.test(name)) {
+				$(item).removeClass('filtered');
+			}
+		});
+	});
+
 	$('.sell-page-arrow-right').click(function() {
 		if(!($('.sell-form-current').is('#sell-form-last'))) {
 			$('.sell-form-current').removeClass('sell-form-current')
