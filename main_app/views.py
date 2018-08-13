@@ -247,6 +247,16 @@ def profile(request):
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
 
+def get_profile(request, user_id):
+	try: 
+		profile = Profile.objects.get(user_id=user_id)
+		selling_items = Item.objects.all().filter(user_id=user_id, sold=False)
+		soldItems = Item.objects.all().filter(user_id=user_id, sold=False)
+		return render(request, "profile.html", {"user": user_id, "profile": profile, "selling_items": selling_items, "sold_items": soldItems})
+	except:
+		print("NO PROFILE")
+		return HttpResponseRedirect('/market/')
+
 # @login_required
 def post_profile(request):
 	form = ProfileUpdateForm(request.POST, request.FILES)

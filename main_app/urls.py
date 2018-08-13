@@ -17,6 +17,7 @@ urlpatterns = [
 	path('thecart/<int:item_id>/', views.thecart, name="thecart"),
 	path('post_item/', views.post_item, name="post_item"),
 	path('profile/', views.profile, name="profile"),
+	path('profile/<int:user_id>/', views.get_profile, name="get_profile"),
 	path('profile/update/', views.profile_update, name="profile_update"),
 	path('post_profile/', views.post_profile, name="post_profile"),
 	path('stripe_redirect/', views.stripe_redirect, name="stripe_redirect"),
