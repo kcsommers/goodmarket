@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart, Charity, Review
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm, ReviewForm
 from django.core.mail import send_mail
 import cloudinary.uploader
 import cloudinary.api
@@ -28,7 +28,6 @@ def index(request):
 def market(request):
 	items = Item.objects.all()
 	return render(request, 'market.html', {"items": items})
-
 
 def checkout(request):
 	subtotal = int(float(request.POST.get("subtotal")) * 100)
@@ -407,3 +406,9 @@ def cart_delete(request, item_id):
 	cart = Cart.objects.get(user=request.user)
 	cart.items.remove(item)
 	return HttpResponseRedirect("/cart/")
+
+def review(request):
+	return render(request, "review.html")
+
+def post_review(request):
+	return HttpResponseRedirect("/")

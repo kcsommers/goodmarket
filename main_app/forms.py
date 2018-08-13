@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Item, Profile, Cart
+from .models import Item, Profile, Cart, Review
 from django.contrib.auth.forms import UserCreationForm
 
 class LoginForm(forms.Form):
@@ -71,3 +71,11 @@ class ProfileUpdateForm(forms.ModelForm):
 			'location': forms.TextInput(attrs={'class': 'profile-location-input', 'placeholder': 'ex: Seattle, WA'}),
 			'bio': forms.Textarea(attrs={'class': 'profile-bio-input'})
 		}
+
+class ReviewForm(forms.ModelForm):
+  class Meta:
+    model = Review
+    fields = ["comment", "reviewer", "seller"]
+    widgets = {
+      "review": forms.TextInput(attrs={"class": "comment", "placeholder": "Leave a Review of this User"})
+    }
