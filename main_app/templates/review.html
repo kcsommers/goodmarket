@@ -7,8 +7,9 @@
       {% csrf_token %}
       {{ form.comment }}
       <input type="hidden" value="{{ user.username }}", name="reviewer">
+      <input type="hidden" value="{{ seller.username }}", name="seller">
       <button class="btn auth-btn" type="submit">Submit</button>
     </form>
-  </div>
+</div>
 
 {% endblock %}
