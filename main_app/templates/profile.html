@@ -58,10 +58,9 @@
 			</div>
 			<div class="grid-item">
 				{% for review in reviews %}
-					<div>
-						<p>{{ review.reviewer }}</p>
-						<p>{{ review.seller }}</p>
-						<p>{{ review.comment }}</p>
+					<div class="review">
+						<p class="reviewer-name">{{ review.reviewer }}</p>
+						<p class="reviewer-comment">{{ review.comment }}</p>
 					</div>
 				{% endfor %}
 			</div>

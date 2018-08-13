@@ -572,7 +572,30 @@ textarea {
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 2.5fr 1fr;
+	grid-template-columns: 2fr 1fr;
+}
+
+.review {
+	background-color: gray;
+	margin-bottom: 1em;
+	border-radius: 1em;
+	padding: 1em;
+	box-shadow: 2px 2px 2px black;
+}
+
+.reviewer-name {
+	font-size: 1.5em;
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
+}
+
+.reviewer-comment {
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
 }
 
 @media only screen and (max-width:540px) {
