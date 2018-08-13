@@ -1,4 +1,4 @@
-# project4
+# Goodmarket
 
 ## Description
 Stunnel is a website that bring people around the world together through buying and selling each others products. The exciting thing about this website, however, is that sellers and donate to their charity of choice if they sell something.
