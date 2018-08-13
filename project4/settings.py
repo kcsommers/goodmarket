@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': ('project4'),
+        'NAME': ('goodmarket'),
     }
 }
 

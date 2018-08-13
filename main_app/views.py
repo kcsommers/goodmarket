@@ -411,10 +411,14 @@ def review(request, seller_id):
 		print(request.POST)
 		if (form.is_valid()):
 			# Handle Submit
+			seller = User.objects.get(id=request.POST.get("seller_id"))
 			review = form.save(commit=False)
+			review.reviewer = request.POST.get("reviewer")
+			review.seller = seller
 			review.save()
 			return HttpResponseRedirect('/')
 		else:
+			print("FORM IS INVALID")
 			return HttpResponseRedirect('/')
 	else:
 		form = ReviewForm(request.POST)
