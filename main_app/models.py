@@ -40,3 +40,8 @@ class Item(models.Model):
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(Item)
+
+class Review(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    reviewer = models.CharField(max_length=1000)
+    comment = models.CharField(max_length=1000)
