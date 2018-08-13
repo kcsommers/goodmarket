@@ -630,14 +630,14 @@ textarea {
 
 @media (max-width: 600px) {
 
-	.main-nav,
-	.nav-wrapper,
-	.nav-menu a {
+	.top-main-nav,
+	.top-nav-wrapper,
+	.top-nav-menu a {
 		display: none;
 	}
 
 	.hamburger {
-		margin-left: .5em;
+		background-color: #67a0bc;
 	}
 
 	.intro-container {
@@ -645,6 +645,7 @@ textarea {
 		background-color: rgba(239, 239, 239, 0.9);
 		padding: 3em 3em 4em 3em;
 		text-align: center;
+		border: none;
 		border-radius: 0px;
 	}
 
@@ -693,6 +694,20 @@ textarea {
 		right: 25px;
 		font-size: 36px;
 		margin-left: 50px;
+	}
+
+	.nav-wrapper {
+		display: block;
+		padding-top: 1em;
+	}
+
+	.bottom-nav-left {
+		display: none;
+	}
+
+	.bottom-nav-right a {
+		text-align: center;
+		display: block;
 	}
 
 }
