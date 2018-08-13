@@ -11,6 +11,10 @@ html {
 	overflow-x: hidden;
 }
 
+body {
+	background-color: #efefef;
+}
+
 h1 {
 	font-family: Roboto Condensed, Helvetica, sans-serif;
 	font-size: 3.5em;
@@ -39,12 +43,14 @@ textarea {
 }
 
 .main-nav {
-	background-color: #e96e80;
+	background-color: #67a0bc;
+	position: relative;
+	z-index: 2000;
 }
 
 .nav-wrapper {
 	display: flex;
-	height: 150px;
+	height: 100px;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 3em;
@@ -56,8 +62,14 @@ textarea {
 	margin-right: 1em;
 }
 
+.logo a {
+	display: flex;
+	align-items: center;
+}
+
 .logo img {
-	max-width: 200px;
+	width: 50px;
+	margin: -7px 0.4em 0 0;
 }
 
 /**************************************************************************
@@ -66,12 +78,21 @@ textarea {
 
 .landing-page {
 	min-height: calc(100vh - 150px);
-	background-color: #efefef;
-	padding: 5em 8em;
+	padding: 5em 0em;
+	position: relative;
+	background-image: url(/static/images/market.png);
+	background-size: cover;
+	background-position: center center;
 }
 
 .intro-container {
 	width: 65%;
+	background-color: rgba(239, 239, 239, 0.9);
+	padding: 3em 3em 4em 3em;
+	margin: 0 auto;
+	border: 2px solid #fff;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .intro-container h4 {
@@ -202,12 +223,14 @@ textarea {
 	position: relative;
 }
 
-.sell-form-container h1 {
-	margin-bottom: 0.5em;
+.sell-form-container h2 {
+	margin: 0.5em 0;
+	text-align: center;
+	font-size: 2em;
 }
 
 .sell-form-content {
-	max-width: 50%;
+	width: 65%;
 }
 
 .sell-form-categories, .sell-form-percentage {
@@ -231,7 +254,8 @@ textarea {
 }
 
 .sell-form-categories button {
-	width: 200px;
+	width: 75%;
+	min-width: 200px;
 }
 
 .sell-form-percentage button {
@@ -244,9 +268,8 @@ textarea {
 	border-color: #fff;
 }
 
-
 .sell-page-arrow-left, .sell-page-arrow-right {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	display: flex;
 	align-items: center;
@@ -279,7 +302,7 @@ textarea {
 	min-width: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	padding: 5em 0;
 	opacity: 0;
 	transition: opacity 0.5s ease;
 }
@@ -311,7 +334,31 @@ textarea {
 	padding: 0.5em;
 	outline: none;
 	border: none;
-	border-left: 2px solid green;
+}
+
+.sell-form-container input[type=file] {
+	width: 100%;
+	text-align: center;
+	font-size: 1em;
+	padding: 1em 0 1em 38%;
+	outline: 1px dashed #333;
+}
+
+.sell-form-container input[type=submit] {
+	font-size: 1.2em;
+	padding: 0.3em 1em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	border: 1px solid #158f97;
+	color: #158f97;
+	border-radius: 10px;
+	display: block;
+	margin: 1em auto;
+}
+
+.perc-col1, .perc-col2, .perc-col3, .perc-col4 {
+	text-align: center;
 }
 
 /*****************************************************/
@@ -319,6 +366,8 @@ textarea {
 /*****************************************************
 				PROFILE PAGE
 *****************************************************/
+
+
 
 .profile-section h5{
 	font-size: 1.5em;
@@ -329,7 +378,7 @@ textarea {
 }
 
 .profile-row {
-	padding: 3em 0em 1em 0;
+	padding: 2em 0em 1em 0;
 }
 
 #profile-r1 {
@@ -347,7 +396,7 @@ textarea {
 	border-radius: 10px;
 }
 
-.profile-location h5 {
+.profile-location h5, .profile-row h4{
 	margin: 0.5em 0;
 }
 
@@ -456,7 +505,6 @@ textarea {
 	width: 100%;
 }
 
-
 .col {
 	vertical-align: top;
 }
@@ -531,9 +579,44 @@ textarea {
 	flex-direction: column;
   }
   
-  .Site-content {
+.Site-content {
 	flex: 1;
-  }
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+
+.review {
+	background-color: gray;
+	margin-bottom: 1em;
+	border-radius: 1em;
+	padding: 1em;
+	box-shadow: 2px 2px 2px black;
+}
+
+.reviewer-name {
+	font-size: 1.5em;
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
+}
+
+.reviewer-comment {
+	background-color: lightgray;
+	border-radius: 1em;
+	padding: 0 1em;
+	margin-bottom: .5em;
+}
+
+.reviews-title {
+	text-align: center;
+	border-bottom: 1px solid gray;
+	margin-bottom: 1em;
+	padding-bottom: .5em;
+}
 
 @media only screen and (max-width:540px) {
 	.content {
@@ -545,28 +628,87 @@ textarea {
 	}
 }
 
-/* Charity Page */
+@media (max-width: 600px) {
 
-.charities-title {
-	text-align: center;
-	margin-top: 1em;
+	.main-nav,
+	.nav-wrapper,
+	.nav-menu a {
+		display: none;
+	}
+
+	.hamburger {
+		margin-left: .5em;
+	}
+
+	.intro-container {
+		width: 100%;
+		background-color: rgba(239, 239, 239, 0.9);
+		padding: 3em 3em 4em 3em;
+		text-align: center;
+		border-radius: 0px;
+	}
+
+	h1 {
+		font-size: 3em;
+	}
+
+	.landing-page {
+		min-height: calc(100vh - 150px);
+		padding: 0em;
+		position: relative;
+		background-image: url(/static/images/market.png);
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.sidenav {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #111;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 60px;
+	}
+	
+	.sidenav a {
+		padding: 8px 8px 8px 32px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
+		display: block;
+		transition: 0.3s;
+	}
+	
+	.sidenav a:hover {
+		color: #f1f1f1;
+	}
+	
+	.sidenav .closebtn {
+		position: absolute;
+		top: 0;
+		right: 25px;
+		font-size: 36px;
+		margin-left: 50px;
+	}
+
 }
 
-.charity {
-	text-align: center;
-	width: 10em;
-	height: 7em;
-	background-color: red;
-	display: block;
-	margin: 0 auto;
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
 }
 
-.charity-name {
-	margin-top: 1em;
-}
-
-.donate-button {
-	margin-top: 3em;
+@media (min-width: 600px) {
+	.sidenav,
+	.sidenav a,
+	.sidenav closebtn,
+	.hamburger {
+		display: none;
+	}
 }
 
 /******************* WILL CSS ***********************/
@@ -748,6 +890,10 @@ textarea {
 	text-align: right;
 }
 
+.cart-container .subtotal .stripe-button-el span {
+	padding: 0 1em;
+}
+
 .cart-container .subtotal li {
 	padding: .5em;
 	text-align: right;
@@ -838,5 +984,72 @@ textarea {
 	margin: 1em .5em 0 0;
 }
 
-/*****************************************************/
+.charity-wrapper .info-cell {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
 
+.info-cell p {
+	margin-bottom: 2em;
+	letter-spacing: .050em;
+}
+
+.info-cell span {
+	font-family: "Montserrat", sans-serif;
+}
+
+.info-cell a {
+	display: inline-block;
+	background-color: #82ca9c;;
+	padding: 1em;
+	border-radius: 0.5em;
+	color: white;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.info-cell a:hover {
+	background-color: #439e64;
+}
+
+/************************************************************/
+
+.stripe-signup {
+	text-align: center;
+	padding: 4em 0;
+	font-size: 1.5em;
+}
+
+.stripe-signup a {
+	display: inline-block;
+	margin-top: 3em;
+	background-color: #37a4e4;
+	padding: 1em;
+	border-radius: 0.5em;
+	color: white;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.stripe-signup a:hover {
+	background-color: #0a6498;
+}
+
+.stripe-signup .stripe-prompt {
+	border-bottom: 1px solid black;
+	width: 52%;
+	margin: 0 auto;
+	padding-bottom: 0.4em;
+}
+
+.stripe-prompt p {
+	margin-bottom: 0.3em;
+}
+/*****************************************************/
