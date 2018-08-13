@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart, Charity, Review
 from django.contrib import messages 
-from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
+from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm, ReviewForm
 from django.core.mail import send_mail
 import cloudinary.uploader
 import cloudinary.api
@@ -28,7 +28,6 @@ def index(request):
 def market(request):
 	items = Item.objects.all()
 	return render(request, 'market.html', {"items": items})
-
 
 def checkout(request):
 	subtotal = int(float(request.POST.get("subtotal")) * 100)
@@ -246,7 +245,6 @@ def profile(request):
 			reviews = Review.objects.all().filter(seller=request.user)
 		except:
 			reviews = []
-		print("REVIEWS HERE OH MY GOD:", reviews)
 		return render(request, 'profile.html', {
 			'user': request.user, 
 			'profile': profile, 
@@ -257,6 +255,30 @@ def profile(request):
 	except:
 		print('NO PROFILE')
 		return HttpResponseRedirect('/profile/update/')
+
+def get_profile(request, user_id):
+	try: 
+		profile = Profile.objects.get(user_id=user_id)
+		selling_items = Item.objects.all().filter(user_id=user_id, sold=False)
+		soldItems = Item.objects.all().filter(user_id=user_id, sold=False)
+		seller = User.objects.get(id=user_id)
+		print("SELLER:", seller)
+		try: 
+			reviews = Review.objects.all().filter(seller=seller)
+			print("REVIEWS:", reviews)
+		except:
+			reviews = []
+			print("REVIEWS:", reviews)
+		return render(request, "profile.html", {
+			"user": user_id, 
+			"profile": profile, 
+			"selling_items": selling_items, 
+			"sold_items": soldItems,
+			"reviews": reviews
+		})
+	except:
+		print("NO PROFILE")
+		return HttpResponseRedirect('/market/')
 
 # @login_required
 def post_profile(request):
@@ -384,3 +406,16 @@ def cart_delete(request, item_id):
 	cart = Cart.objects.get(user=request.user)
 	cart.items.remove(item)
 	return HttpResponseRedirect("/cart/")
+
+def review(request):
+	if request.method == "POST":
+		form = ReviewForm(request.POST)
+		print(request.POST)
+		if (form.is_valid()):
+			# Handle Submit
+			return HttpResponseRedirect('/')
+		else:
+			return HttpResponseRedirect('/')
+	else:
+		form = ReviewForm(request.POST)
+		return render(request, "review.html", {'form': form, "user": request.user})
