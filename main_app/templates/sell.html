@@ -14,7 +14,7 @@
 		 	{% csrf_token %}
 		 	<div class="sell-form-page sell-form-current" id="sell-form-first">
 		 		<div class="sell-form-content">
-		 			<h1>Pick a Category</h1>
+		 			<h2>Pick a Category</h2>
 		 			<div class="sell-form-categories">
 		 				<div class="cat-left">
 		 					<button id="appliances">Appliances</button>
@@ -34,47 +34,41 @@
 		 	</div>
 		 	<div class="sell-form-page">
 		 		<div class="sell-form-content">
-		 			<h1>What are you selling?</h1>
+		 			<h2>What are you selling?</h2>
 			 		{{form.name}}
+
+			 		<h2>What's your price?</h2>
+			 		{{form.price}}
 			 	</div>
 		 	</div>
 		 	<div class="sell-form-page">
 		 		<div class="sell-form-content">
-		 			<h1>Describe your Item:</h1>
+		 			<h2>Upload a photo:</h2>
+		 			{{form.image}}
+
+		 			<h2>Describe your Item:</h2>
 			 		{{form.description}}
 			 	</div>
 		 	</div>
-		 	<div class="sell-form-page">
-		 		<div class="sell-form-content">
-		 			<h1>Upload a photo:</h1>
-		 			{{form.image}}
-		 		</div>
-		 	</div>
 	 	 	<div class="sell-form-page">
 	 	 		<div class="sell-form-content">
-	 	 			<h1>What's your price?</h1>
-	 		 		{{form.price}}
-	 		 	</div>
-	 	 	</div>
-	 	 	<div class="sell-form-page">
-	 	 		<div class="sell-form-content">
-	 	 			<h1>Select your Charity:</h1>
+	 	 			<h2>Select your Charity:</h2>
 	 	 			<div class="sell-form-charities">
 	 	 				{% for char in charities %}
-						<div class="char-img">
+						<div id="{{char.name}}" class="char-img">
 							<img src="{{char.image}}" alt="{{char.name}}" />
 						</div>
 	 	 				{% endfor %}
 	 	 			</div>
 	 	 		</div>
-				<input hidden type="text" name="charity" />
+				<input hidden type="text" name="charity" class="charity-hidden" />
 	 	 	</div>
 		 	<div class="sell-form-page" id="sell-form-last">
 		 		<div class="sell-form-content">
-		 			<h1>How much would you like to donate?</h1>
+		 			<h2>How much would you like to donate?</h2>
 		 			<div class="sell-form-percentage">
 		 				<div class="perc-col1">
-		 					<button id="10">5%</button>
+		 					<button id="5">5%</button>
 		 					<button id="10">10%</button>
 		 					<button id="15">15%</button>
 		 					<button id="20">20%</button>

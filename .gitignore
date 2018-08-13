@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+/main_app/media/item_images
+/main_app/media/profile_images

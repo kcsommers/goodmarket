@@ -53,6 +53,16 @@ $(document).ready(function() {
 		$('.category-hidden').val(value);
 	});
 
+	$('.char-img').click(function(e) {
+		e.preventDefault();
+		$('.char-selected').removeClass('char-selected');
+		$(this).addClass('char-selected');
+		let value = $(this).attr('id');
+		console.log(value)
+		$('.charity-hidden').val(value);
+		console.log($('.charity-hidden').val())
+	});
+
 	$('.sell-form-percentage button').click(function(e) {
 		e.preventDefault();
 		$('.sell-form-percentage button.active').removeClass('active');
