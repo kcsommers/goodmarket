@@ -43,7 +43,9 @@ textarea {
 }
 
 .main-nav {
-	/* background-color: #efefef; */
+	background-color: #67a0bc;
+	position: relative;
+	z-index: 2000;
 }
 
 .nav-wrapper {
@@ -60,8 +62,14 @@ textarea {
 	margin-right: 1em;
 }
 
+.logo a {
+	display: flex;
+	align-items: center;
+}
+
 .logo img {
-	max-width: 200px;
+	width: 50px;
+	margin: -7px 0.4em 0 0;
 }
 
 /**************************************************************************
@@ -261,7 +269,7 @@ textarea {
 }
 
 .sell-page-arrow-left, .sell-page-arrow-right {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	display: flex;
 	align-items: center;
@@ -294,7 +302,7 @@ textarea {
 	min-width: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	padding: 5em 0;
 	opacity: 0;
 	transition: opacity 0.5s ease;
 }
@@ -349,11 +357,17 @@ textarea {
 	margin: 1em auto;
 }
 
+.perc-col1, .perc-col2, .perc-col3, .perc-col4 {
+	text-align: center;
+}
+
 /*****************************************************/
 
 /*****************************************************
 				PROFILE PAGE
 *****************************************************/
+
+
 
 .profile-section h5{
 	font-size: 1.5em;
@@ -364,7 +378,7 @@ textarea {
 }
 
 .profile-row {
-	padding: 3em 0em 1em 0;
+	padding: 2em 0em 1em 0;
 }
 
 #profile-r1 {
@@ -382,7 +396,7 @@ textarea {
 	border-radius: 10px;
 }
 
-.profile-location h5 {
+.profile-location h5, .profile-row h4{
 	margin: 0.5em 0;
 }
 
@@ -490,7 +504,6 @@ textarea {
 	text-align: center;
 	width: 100%;
 }
-
 
 .col {
 	vertical-align: top;
@@ -875,6 +888,10 @@ textarea {
 .cart-container .subtotal span {
 	padding: 0 0 0 1em;
 	text-align: right;
+}
+
+.cart-container .subtotal .stripe-button-el span {
+	padding: 0 1em;
 }
 
 .cart-container .subtotal li {
