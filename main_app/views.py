@@ -246,7 +246,6 @@ def profile(request):
 			reviews = Review.objects.all().filter(seller=request.user)
 		except:
 			reviews = []
-		print("REVIEWS HERE OH MY GOD:", reviews)
 		return render(request, 'profile.html', {
 			'user': request.user, 
 			'profile': profile, 
@@ -263,7 +262,21 @@ def get_profile(request, user_id):
 		profile = Profile.objects.get(user_id=user_id)
 		selling_items = Item.objects.all().filter(user_id=user_id, sold=False)
 		soldItems = Item.objects.all().filter(user_id=user_id, sold=False)
-		return render(request, "profile.html", {"user": user_id, "profile": profile, "selling_items": selling_items, "sold_items": soldItems})
+		seller = User.objects.get(id=user_id)
+		print("SELLER:", seller)
+		try: 
+			reviews = Review.objects.all().filter(seller=seller)
+			print("REVIEWS:", reviews)
+		except:
+			reviews = []
+			print("REVIEWS:", reviews)
+		return render(request, "profile.html", {
+			"user": user_id, 
+			"profile": profile, 
+			"selling_items": selling_items, 
+			"sold_items": soldItems,
+			"reviews": reviews
+		})
 	except:
 		print("NO PROFILE")
 		return HttpResponseRedirect('/market/')
