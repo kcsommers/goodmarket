@@ -43,12 +43,12 @@ textarea {
 }
 
 .main-nav {
-	background-color: #e96e80;
+	background-color: #efefefe;
 }
 
 .nav-wrapper {
 	display: flex;
-	height: 150px;
+	height: 100px;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 3em;
@@ -70,11 +70,21 @@ textarea {
 
 .landing-page {
 	min-height: calc(100vh - 150px);
-	padding: 5em 8em;
+	padding: 5em 0em;
+	position: relative;
+	background-image: url(/static/images/market.png);
+	background-size: cover;
+	background-position: center center;
 }
 
 .intro-container {
 	width: 65%;
+	background-color: rgba(239, 239, 239, 0.9);
+	padding: 3em 3em 4em 3em;
+	margin: 0 auto;
+	border: 2px solid #fff;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .intro-container h4 {
