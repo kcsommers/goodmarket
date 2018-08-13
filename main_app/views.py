@@ -8,10 +8,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Item, Profile, Cart, Charity
 from django.contrib import messages 
 from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm
+from django.core.mail import send_mail
 import cloudinary.uploader
 import cloudinary.api
 import requests
 import stripe
+import random
 from django.db.models import Sum
 from decimal import Decimal
 stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", None)
@@ -27,54 +29,147 @@ def market(request):
 	items = Item.objects.all()
 	return render(request, 'market.html', {"items": items})
 
-def checkout(request):
-	seller = None
-	profile = None
-	charity = None
-	token = None
-	amount_to_seller = 0
-	total_amount = 0
-	application_fee = 0
 
-	profile = Profile.objects.get(user=request.user)
+def checkout(request):
+	subtotal = int(float(request.POST.get("subtotal")) * 100)
+	charity_sum = int(float(request.POST.get("charity_sum")) * 100)
+	transfer_group = request.user.username + str(random.random())
+
+	charge = stripe.Charge.create(
+		amount=subtotal,
+		currency="usd",
+		source=request.POST.get("stripeToken")
+	)
+
+	buyer_profile = Profile.objects.get(user=request.user)
 	itemIds = request.POST.getlist("item_id")
-	prices = request.POST.getlist("item_price")
+	# prices = request.POST.getlist("item_price")
 	charities = request.POST.getlist("charity_id")
-	charity_percentages = request.POST.getlist("charity_percent")
+	# charity_percentages = request.POST.getlist("charity_percent")
 	sellers = request.POST.getlist("user_id")
 
 	for i in range(len(sellers)):
+		# get each item, mark it sold
 		item = Item.objects.get(id=itemIds[i])
 		item.sold = True
 		item.save()
 
+		# get the cart, remove the item
 		cart = Cart.objects.get(user=request.user)
 		cart.items.remove(item)
 
+		# find the seller, get their stripe token
 		seller = User.objects.get(id=sellers[i])
 		profile = Profile.objects.get(user=seller)
 		token = profile.stripe_user_id
-		amount_to_seller = float(prices[i]) - float(prices[i]) * (float(charity_percentages[i]) / 100)
-		amount_to_seller = int(amount_to_seller * 100)
-		total_amount = int(float(prices[i]) * 100)
-		application_fee = total_amount - amount_to_seller
 
+		# subtract amount that will go to charity
+		amount_to_seller = float(item.price) - float(item.price) * (float(item.charity_percent) / 100)
+		amount_to_seller = int(amount_to_seller * 100)
+
+		# get charity, update total money raised
+		total_amount = int(float(item.price) * 100)
+		charity_fee = total_amount - amount_to_seller
 		charity = Charity.objects.get(id=charities[i])
-		charity.total_money_raised += application_fee
+		charity.total_money_raised += charity_fee
 		charity.save()
 
-	charge = stripe.Charge.create(
-		amount= total_amount,
-		application_fee=application_fee,
-		currency="usd",
-		source=request.POST.get("stripeToken"),
-		destination={
-			"account": token
-		}
-	)
+		# update seller donation totals
+		profile.charity += charity_fee
+		profile.save()
+
+		# transfer funds to appropraite seller accounts
+		transfer = stripe.Transfer.create(
+			amount=amount_to_seller,
+			currency="usd",
+			destination=token,
+			source_transaction=charge.id
+		)
+
+		# send email to seller
+		subject = 'Your item has sold!'
+		from_email = settings.EMAIL_HOST_USER
+		to_email = [seller.email]
+		message = 'Your item, ' + item.name + ', was purchased by ' + request.user.username + '. ' + str(item.charity_percent) + '% of your price will be donated to ' + item.charity.name + '. Thank you for sellings with us!'
+		send_mail(subject=subject, message=message, from_email=from_email, recipient_list=to_email, fail_silently=False)
+
+
+	return HttpResponseRedirect("/")
 
 	print('babababumbabum: ', charge)
-	return HttpResponseRedirect("/")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def checkout(request):
+# 	print('EMAIL', request.user.email)
+# 	seller = None
+# 	profile = None
+# 	charity = None
+# 	token = None
+# 	amount_to_seller = 0
+# 	total_amount = 0
+# 	application_fee = 0
+
+# 	buyer_profile = Profile.objects.get(user=request.user)
+# 	itemIds = request.POST.getlist("item_id")
+# 	prices = request.POST.getlist("item_price")
+# 	charities = request.POST.getlist("charity_id")
+# 	charity_percentages = request.POST.getlist("charity_percent")
+# 	sellers = request.POST.getlist("user_id")
+
+# 	for i in range(len(sellers)):
+# 		item = Item.objects.get(id=itemIds[i])
+# 		item.sold = True
+# 		item.save()
+
+# 		cart = Cart.objects.get(user=request.user)
+# 		cart.items.remove(item)
+
+# 		seller = User.objects.get(id=sellers[i])
+# 		profile = Profile.objects.get(user=seller)
+# 		token = profile.stripe_user_id
+# 		amount_to_seller = float(prices[i]) - float(prices[i]) * (float(charity_percentages[i]) / 100)
+# 		amount_to_seller = int(amount_to_seller * 100)
+# 		total_amount = int(float(prices[i]) * 100)
+# 		application_fee = total_amount - amount_to_seller
+
+# 		charity = Charity.objects.get(id=charities[i])
+# 		charity.total_money_raised += application_fee
+# 		charity.save()
+
+# 		subject = 'Your item has sold!'
+# 		from_email = settings.EMAIL_HOST_USER
+# 		to_email = [seller.email]
+# 		message = 'Your item, ' + item.name + ', was purchased by' + request.user.username + '.'
+# 		send_mail(subject=subject, message=message, from_email=from_email, recipient_list=to_email, fail_silently=False)
+# 		return HttpResponseRedirect("/")
+
+# 	charge = stripe.Charge.create(
+# 		amount= total_amount,
+# 		application_fee=application_fee,
+# 		currency="usd",
+# 		source=request.POST.get("stripeToken"),
+# 		receipt_email=request.user.email,
+# 		destination={
+# 			"account": token
+# 		}
+# 	)
+
+# 	print('babababumbabum: ', charge)
 
 def login_view(request):
 	if(request.method == 'POST'):
@@ -126,9 +221,13 @@ def show_item(request, item_id):
 @login_required
 def post_item(request):
 	form = SellForm(request.POST, request.FILES)
+	print('CHRHID: ', request.POST)
+	print('CHRHID: ', request.POST.get('charity'))
 	if(form.is_valid()):
+		charity = Charity.objects.get(name=request.POST.get('charity', None))
 		item = form.save(commit=False)
 		item.user = request.user
+		item.charity = charity
 		item.save()
 		return HttpResponseRedirect('/market/')
 	else:
@@ -165,6 +264,7 @@ def charity(request):
 
 @login_required
 def sell(request):
+	charities = Charity.objects.all()
 	try:
 		profile = Profile.objects.get(user=request.user)
 		if profile.stripe_user_id == None:
@@ -176,7 +276,8 @@ def sell(request):
 			'has_stripe_id': has_stripe_id, 
 			'user': request.user,
 			'key': public_key,
-			'client_id': stripe_client_id
+			'client_id': stripe_client_id,
+			'charities': charities
 			})
 	except:
 		has_stripe_id = False
@@ -185,7 +286,8 @@ def sell(request):
 			'has_stripe_id': has_stripe_id, 
 			'user': request.user,
 			'key': public_key,
-			'client_id': stripe_client_id
+			'client_id': stripe_client_id,
+			'charities': charities
 			})
 
 @login_required

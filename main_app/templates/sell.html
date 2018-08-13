@@ -13,65 +13,89 @@
 		<form action="/post_item/" method="POST" enctype="multipart/form-data">
 		 	{% csrf_token %}
 		 	<div class="sell-form-page sell-form-current" id="sell-form-first">
-		 		<div class="sell-form-content sell-form-category">
-		 			<h1>Pick a Category</h1>
-		 			<button id="appliances">Appliances</button>
-		 			<button id="arts">Arts</button>
-		 			<button id="athletics">Athletics</button>
-		 			<button id="auto">Auto</button>
-		 			<button id="bikes">Bikes</button>
-		 			<button id="clothing">Clothing</button>
-		 			<button id="hardware">Hardware</button>
-		 			<button id="tech">Tech</button>
+		 		<div class="sell-form-content">
+		 			<h2>Pick a Category</h2>
+		 			<div class="sell-form-categories">
+		 				<div class="cat-left">
+		 					<button id="appliances">Appliances</button>
+		 					<button id="arts">Arts</button>
+		 					<button id="athletics">Athletics</button>
+		 					<button id="auto">Auto</button>
+		 				</div>
+		 				<div class="cat-right">
+		 					<button id="bikes">Bikes</button>
+		 					<button id="clothing">Clothing</button>
+		 					<button id="hardware">Hardware</button>
+		 					<button id="tech">Tech</button>
+		 				</div>
+		 			</div>
 		 			{{form.category}}
 		 		</div>
 		 	</div>
 		 	<div class="sell-form-page">
 		 		<div class="sell-form-content">
-		 			<h1>What are you selling?</h1>
+		 			<h2>What are you selling?</h2>
 			 		{{form.name}}
+
+			 		<h2>What's your price?</h2>
+			 		{{form.price}}
 			 	</div>
 		 	</div>
 		 	<div class="sell-form-page">
 		 		<div class="sell-form-content">
-		 			<h1>Describe your Item</h1>
+		 			<h2>Upload a photo:</h2>
+		 			{{form.image}}
+
+		 			<h2>Describe your Item:</h2>
 			 		{{form.description}}
 			 	</div>
 		 	</div>
-		 	<div class="sell-form-page">
-		 		<div class="sell-form-content">
-		 			<h1>Upload a photo</h1>
-		 			{{form.image}}
-		 		</div>
-		 	</div>
 	 	 	<div class="sell-form-page">
 	 	 		<div class="sell-form-content">
-	 	 			<h1>What's your price?</h1>
-	 		 		{{form.price}}
-	 		 	</div>
+	 	 			<h2>Select your Charity:</h2>
+	 	 			<div class="sell-form-charities">
+	 	 				{% for char in charities %}
+						<div id="{{char.name}}" class="char-img">
+							<img src="{{char.image}}" alt="{{char.name}}" />
+						</div>
+	 	 				{% endfor %}
+	 	 			</div>
+	 	 		</div>
+				<input hidden type="text" name="charity" class="charity-hidden" />
 	 	 	</div>
 		 	<div class="sell-form-page" id="sell-form-last">
-		 		<div class="sell-form-content sell-form-charity-percent">
-		 			<h1>How much are you donating?</h1>
-		 			<button id="10">10%</button>
-		 			<button id="15">15%</button>
-		 			<button id="20">20%</button>
-		 			<button id="25">25%</button>
-		 			<button id="30">30%</button>
-		 			<button id="35">35%</button>
-		 			<button id="40">40%</button>
-		 			<button id="45">45%</button>
-		 			<button id="50">50%</button>
-		 			<button id="55">55%</button>
-		 			<button id="60">60%</button>
-		 			<button id="65">65%</button>
-		 			<button id="70">70%</button>
-		 			<button id="75">75%</button>
-		 			<button id="80">80%</button>
-		 			<button id="85">85%</button>
-		 			<button id="90">90%</button>
-		 			<button id="95">95%</button>
-		 			<button id="100">100%</button>
+		 		<div class="sell-form-content">
+		 			<h2>How much would you like to donate?</h2>
+		 			<div class="sell-form-percentage">
+		 				<div class="perc-col1">
+		 					<button id="5">5%</button>
+		 					<button id="10">10%</button>
+		 					<button id="15">15%</button>
+		 					<button id="20">20%</button>
+		 					<button id="25">25%</button>
+		 				</div>
+		 				<div class="perc-col2">
+		 					<button id="30">30%</button>
+		 					<button id="35">35%</button>
+		 					<button id="40">40%</button>
+		 					<button id="45">45%</button>
+		 					<button id="50">50%</button>
+		 				</div>
+		 				<div class="perc-col3">
+		 					<button id="55">55%</button>
+		 					<button id="60">60%</button>
+		 					<button id="65">65%</button>
+		 					<button id="70">70%</button>
+		 					<button id="75">75%</button>
+		 				</div>
+		 				<div class="perc-col4">
+		 					<button id="80">80%</button>
+		 					<button id="85">85%</button>
+		 					<button id="90">90%</button>
+		 					<button id="95">95%</button>
+		 					<button id="100">100%</button>
+		 				</div>
+		 			</div>
 			 		{{form.charity_percent}}
 			 		<input type="submit" value="Post Item" />
 			 	</div>

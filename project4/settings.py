@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -101,6 +104,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# EMAIL
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kacysommers@gmail.com'
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
+EMAIL_PORT = 587
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -123,11 +134,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/media')
 
-# getting stripe keys from .env
-from os.path import join, dirname
-from dotenv import load_dotenv
-load_dotenv()
 
+# getting stripe keys from .env
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
