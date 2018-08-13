@@ -22,5 +22,6 @@ urlpatterns = [
 	path('post_profile/', views.post_profile, name="post_profile"),
 	path('stripe_redirect/', views.stripe_redirect, name="stripe_redirect"),
 	path('cart/delete/<int:item_id>/', views.cart_delete, name="cart_delete"),
-	path('profile/review', views.review, name="review")
+	path('reviews/<int:seller_id>/', views.review, name="review"),
+	path('seller_info/', views.seller_info, name="seller_info")
 ]

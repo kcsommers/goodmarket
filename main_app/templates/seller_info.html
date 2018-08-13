@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="seller-info-section">
+	{% for seller in sellers %}
+	<a href="/reviews/{{seller.id}}/">
+		<div class="seller-container">
+			<h3>{{seller.username}}</h3>
+			<p>{{seller.email}}</p>
+			<button href="/reviews/{{seller.id}}/">Leave a review</button>
+		</div>
+	</a>
+	{% endfor %}
+</section>
+
+{% endblock %}
