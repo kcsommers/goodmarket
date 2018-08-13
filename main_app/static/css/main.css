@@ -566,9 +566,14 @@ textarea {
 	flex-direction: column;
   }
   
-  .Site-content {
+.Site-content {
 	flex: 1;
-  }
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 2.5fr 1fr;
+}
 
 @media only screen and (max-width:540px) {
 	.content {
