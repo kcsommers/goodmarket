@@ -101,7 +101,7 @@ def checkout(request):
 	subject = 'Thank you for using Goodmarket!'
 	from_email = settings.EMAIL_HOST_USER
 	to_email = [request.user.email]
-	html_message = '<h1>Thank you for using Goodmarket!</h1><h3>Your order is being processed, and you will receive an emailed receipt from Stripe shortly.</h3><br /><p>Follow the link below to find seller contact information, and leave reviews.</p><br /><a href="http://localhost:8000/reviews/' + sellersStr + '/">Get Seller Information</a><br /><br /><em>The Goodmarket Team</em>'
+	html_message = '<h1>Thank you for using Goodmarket!</h1><h3>Your order is being processed, and you will receive an emailed receipt from Stripe shortly.</h3><br /><p>Follow the link below to find seller contact information, and leave reviews.</p><br /><a href="http://localhost:8000/seller_info/' + sellersStr + '">Get Seller Information</a><br /><br /><em>The Goodmarket Team</em>'
 	text_message = 'Thank you for using Goodmarket! Your order is being processed, and you will receive an emailed receipt from Stripe shortly.'
 	send_mail(subject=subject, message=text_message, html_message=html_message, from_email=from_email, recipient_list=to_email, fail_silently=False)
 
@@ -405,15 +405,44 @@ def cart_delete(request, item_id):
 	cart.items.remove(item)
 	return HttpResponseRedirect("/cart/")
 
-def review(request):
+def review(request, seller_id):
 	if request.method == "POST":
 		form = ReviewForm(request.POST)
 		print(request.POST)
 		if (form.is_valid()):
 			# Handle Submit
+			seller = User.objects.get(id=request.POST.get("seller_id"))
+			review = form.save(commit=False)
+			review.reviewer = request.POST.get("reviewer")
+			review.seller = seller
+			review.save()
 			return HttpResponseRedirect('/')
 		else:
+			print("FORM IS INVALID")
 			return HttpResponseRedirect('/')
 	else:
 		form = ReviewForm(request.POST)
-		return render(request, "review.html", {'form': form, "user": request.user})
+		seller = User.objects.get(id=seller_id)
+		return render(request, "review.html", {'form': form, "user": request.user, "seller": seller})
+
+def seller_info(request):
+	seller_ids = request.GET.getlist('seller')
+	print('SELLER IDS: ', seller_ids)
+	sellers = []
+	profiles = []
+	for i in range(len(seller_ids)):
+		user = User.objects.get(id=int(seller_ids[i]))
+		profile = Profile.objects.get(user=user)
+		sellers.append(user)
+		profiles.append(profile)
+
+	return render(request, "seller_info.html", {"sellers": sellers, "profiles": profile})
+
+
+
+
+
+
+
+
+

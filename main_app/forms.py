@@ -75,7 +75,7 @@ class ProfileUpdateForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
   class Meta:
     model = Review
-    fields = ["comment", "reviewer", "seller"]
+    fields = ["comment"]
     widgets = {
       "comment": forms.Textarea(attrs={"class": "comment", "placeholder": "Leave a Review of this User"})
     }
