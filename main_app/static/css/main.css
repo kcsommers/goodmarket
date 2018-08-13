@@ -598,6 +598,13 @@ textarea {
 	margin-bottom: .5em;
 }
 
+.reviews-title {
+	text-align: center;
+	border-bottom: 1px solid gray;
+	margin-bottom: 1em;
+	padding-bottom: .5em;
+}
+
 @media only screen and (max-width:540px) {
 	.content {
 		grid-template-columns: 1fr;
@@ -606,6 +613,31 @@ textarea {
 							 'col2'
 							 'col3';
 	}
+}
+
+@media (max-width: 600px) {
+
+	.intro-container {
+		width: 100%;
+		background-color: rgba(239, 239, 239, 0.9);
+		padding: 3em 3em 4em 3em;
+		text-align: center;
+		border-radius: 0px;
+	}
+
+	h1 {
+		font-size: 3em;
+	}
+
+	.landing-page {
+		min-height: calc(100vh - 150px);
+		padding: 0em;
+		position: relative;
+		background-image: url(/static/images/market.png);
+		background-size: cover;
+		background-position: center center;
+	}
+
 }
 
 /******************* WILL CSS ***********************/
