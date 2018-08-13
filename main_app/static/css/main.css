@@ -580,30 +580,6 @@ textarea {
 	}
 }
 
-/* Charity Page */
-
-.charities-title {
-	text-align: center;
-	margin-top: 1em;
-}
-
-.charity {
-	text-align: center;
-	width: 10em;
-	height: 7em;
-	background-color: red;
-	display: block;
-	margin: 0 auto;
-}
-
-.charity-name {
-	margin-top: 1em;
-}
-
-.donate-button {
-	margin-top: 3em;
-}
-
 /******************* WILL CSS ***********************/
 
 .auth-wrapper {
@@ -871,6 +847,38 @@ textarea {
 .charity-wrapper .charity-cell p {
 	font-size: 1.2em;
 	margin: 1em .5em 0 0;
+}
+
+.charity-wrapper .info-cell {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.info-cell p {
+	margin-bottom: 2em;
+	letter-spacing: .050em;
+}
+
+.info-cell span {
+	font-family: "Montserrat", sans-serif;
+}
+
+.info-cell a {
+	display: inline-block;
+	background-color: #82ca9c;;
+	padding: 1em;
+	border-radius: 0.5em;
+	color: white;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.info-cell a:hover {
+	background-color: #439e64;
 }
 
 /************************************************************/

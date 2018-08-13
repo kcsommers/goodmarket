@@ -259,7 +259,8 @@ def post_profile(request):
 		return HttpResponseRedirect('/profile/update')
 
 def charity(request):
-	return render(request, 'charity.html')
+	charities = Charity.objects.all()
+	return render(request, 'charity.html', {'charities': charities})
 
 @login_required
 def sell(request):
