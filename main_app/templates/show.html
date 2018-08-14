@@ -19,11 +19,11 @@
                 <p class="checkout-box-info price">Price: ${{item.price}}</p>
                 {% if request.user.is_authenticated %}
                 <div class="site-button">
-                    <a href="/thecart/{{item.id}}/">Add to Cart</a>
+                    <a class="" href="/thecart/{{item.id}}/">Add to Cart</a>
                 </div>
                 {% else %}
                 <div class="add-to-cart-button">
-                    <button class="site-button" href="/thecart/{{item.id}}/" type="button" disabled>Add to Cart</button>
+                    <button class="disabled-site-button" href="/thecart/{{item.id}}/" type="button" disabled>Add to Cart</button>
                 </div>
                 {% endif %}
             </div>

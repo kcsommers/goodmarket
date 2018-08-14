@@ -551,7 +551,7 @@ textarea {
 	width: 80%;
 }
 
-.add-to-cart-button,
+/* .add-to-cart-button,
 .button {
 	display: block;
 	text-align: center;
@@ -573,7 +573,7 @@ textarea {
 	color: #fff;
 	border-color: #fff;
 	transition: 1s ease;
-}
+} */
 
 .button {
 	width: 40%;
@@ -1174,6 +1174,7 @@ textarea {
   background: #efefef;
   color:#67a0bc;
 }
+
 .site-button:before,.site-button:after{
   content:'';
   position:absolute;
@@ -1193,6 +1194,18 @@ textarea {
 .site-button:hover:before,.site-button:hover:after{
   width:100%;
   transition:800ms ease all;
+}
+
+.disabled-site-button {
+	background:#677277;
+	color:#efefef;
+	border:none;
+	position:relative;
+	font-size:1.2em;
+	padding: 1em 2em;
+	transition:400ms ease all;
+	outline:none;
+	border-radius: 0.2em
 }
 
 /*****************************************************/

@@ -70,7 +70,8 @@ def checkout(request):
 		total_amount = int(float(item.price) * 100)
 		charity_fee = total_amount - amount_to_seller
 		charity = Charity.objects.get(id=charities[i])
-		charity.total_money_raised += charity_fee
+		############# Remove Division If Non-Functional !!
+		charity.total_money_raised += (charity_fee / 100 )
 		charity.save()
 
 		# update seller donation totals
