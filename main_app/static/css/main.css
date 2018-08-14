@@ -90,7 +90,6 @@ textarea {
 	background-color: rgba(239, 239, 239, 0.9);
 	padding: 3em 3em 4em 3em;
 	margin: 0 auto;
-	border: 2px solid #fff;
 	border-radius: 5px;
 	text-align: center;
 }
@@ -323,6 +322,10 @@ textarea {
 .sell-form-charities {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.sell-form-charities img:hover {
+	opacity: .80;
 }
 
 .char-img {
@@ -603,7 +606,7 @@ textarea {
 }
 
 .review {
-	background-color: gray;
+	background-color: #d3d3d3;
 	margin-bottom: 1em;
 	border-radius: 1em;
 	padding: 1em;
@@ -612,23 +615,25 @@ textarea {
 
 .reviewer-name {
 	font-size: 1.5em;
-	background-color: lightgray;
-	border-radius: 1em;
-	padding: 0 1em;
+	background-color: rgba(211, 211, 211, 0.918);
+	/* border-radius: 1em; */
+	padding: 0 0.6em;
 	margin-bottom: .5em;
+	border-bottom: 1px solid black;
+	width: 60%;
 }
 
 .reviewer-comment {
 	background-color: lightgray;
-	border-radius: 1em;
+	/* border-radius: 1em; */
 	padding: 0 1em;
 	margin-bottom: .5em;
 }
 
 .reviews-title {
 	text-align: center;
-	border-bottom: 1px solid gray;
-	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	margin-bottom: 2em;
 	padding-bottom: .5em;
 }
 
@@ -654,7 +659,7 @@ textarea {
 		background-size: cover;
 		background-position: center center;
 		border-radius: 10px;
-		margin-bottom: 5em;
+		/* margin-bottom: 5em; */
 	}
 
 	.profile-row,
