@@ -738,6 +738,18 @@ textarea {
 		margin-top: 1em;
 	}
 
+	.login-form {
+		margin: 0 1em;
+	}
+
+	.signup-form {
+		margin: 0 1em;
+	}
+
+	.auth-btn {
+		margin-bottom: 2em;
+	}
+
 }
 
 @media screen and (max-height: 450px) {
