@@ -136,7 +136,7 @@ textarea {
 	border: none;
 	outline: none;
 	border: 1px solid #158f97;
-	color: #158f97;
+	color: #67a0bc;
 	border-radius: 10px;
 	margin: 0.1em;
 }
@@ -162,14 +162,19 @@ textarea {
 	padding: 0.5em;
 	min-width: 300px;
 	display: block;
-	margin-bottom: 1em;
+	margin: 0 0.5em;
+	height: 3.5em;
 }
 
-.filter-form input[type=submit] {
-	border: 1px solid #333;
-	outline: none;
-	font-size: 1.1em;
-	padding: 0.5em;
+@media only screen and (max-width:600px) {	
+	.filter-form input[type=text] {
+		margin: 0;
+		margin-bottom: 1em;
+	}
+}
+
+.filter-form button {
+	display: inline-block;
 }
 
 .market-items-container {
@@ -469,7 +474,7 @@ textarea {
 	display: grid;
 	grid-gap: 1em;
 	grid-template-areas: 'item-name'
-						 'content'
+						 					 'content'
 }
 
 .content {
@@ -480,12 +485,16 @@ textarea {
 	margin-bottom: 5em;
 }
 
+.container .content img {
+	text-align: center;
+}
+
 .checkout-box {
 	background-color: lightgrey;
-	margin-bottom: 5em;
+	/* margin-bottom: 5em; */
 	text-align: center;
-	padding-top: 5em;
-	padding-bottom: 5em;
+	padding-top: 2em;
+	padding-bottom: 1em;
 	box-shadow: 2px 2px 5px black;
 }
 
@@ -506,7 +515,7 @@ textarea {
 .item {
 	margin-bottom: 1em;
 	text-align: center;
-	width: 100%;
+	width: 50%;
 }
 
 .col {
@@ -515,6 +524,7 @@ textarea {
 
 .col1 {
 	grid-area: "col1";
+	text-align: center;
 }
 
 .col2 {
@@ -838,20 +848,7 @@ textarea {
 
 .cart-heading a {
 	float: right;
-	background-color: #82ca9c;
-	border-radius: 1em;
-	padding: 1em;
-	color: white;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
 	margin-top: 0.5em;
-}
-
-.cart-heading a:hover {
-	background-color: #439e64;
 }
 
 .group:after {
@@ -922,15 +919,15 @@ textarea {
 	padding: 1em;
 	border-radius: 0.5em;
 	background-color: #e0e0e0;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-ms-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
 }
 
 .cart-container .removal-cell a:hover {
-	background-color: #f30;
+	background-color: rgb(189, 59, 27);
 	color: white;
 }
 
@@ -995,6 +992,20 @@ textarea {
 
 .cart-container .checkout-button:hover {
 	background-color: #439e64;
+}
+
+.empty-cart {
+	padding: 6em;
+	text-align: center;
+}
+
+.empty-cart h1 {
+	margin-bottom: 1em;
+}
+
+.empty-cart img {
+	width: 1.1em;
+	margin-right: 0.5em;
 }
 
 /************************************************************/

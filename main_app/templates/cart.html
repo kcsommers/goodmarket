@@ -6,7 +6,7 @@
     <div class="cart-wrapper">
       <div class="cart-heading group">
         <h1>My Cart</h1>
-        <a href="/market">Back to Market</a>
+        <a class="site-button" href="/market">Back to Market</a>
       </div>
       <div class="cart-container">
         <!-- TODO: Color-shift on Odd/Even? -->
@@ -74,7 +74,10 @@
       </div>
     </div>
   {% else %}
-  <h1>Your Cart is Empty</h1>
+  <div class="empty-cart">
+    <h1>Your Cart is Empty!</h1>
+    <a class="site-button" href="/market/"><img src="/static/images/basket.png"></img>Go to Market</a>
+  </div>
   {% endif %}
 {% else %}
 
