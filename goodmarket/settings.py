@@ -104,13 +104,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# EMAIL
-
+# EMAIL (mailgun)
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'kacysommers@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+
+# (gmail)
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'kacysommers@gmail.com'
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
+# EMAIL_PORT = 587
 
 
 # Internationalization
