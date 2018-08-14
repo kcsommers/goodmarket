@@ -1,1 +1,1 @@
-web: gunicorn goodmarket.wsgi --log-file -
+web: gunicorn goodmarket.wsgi
