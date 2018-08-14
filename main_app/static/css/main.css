@@ -1052,4 +1052,98 @@ textarea {
 .stripe-prompt p {
 	margin-bottom: 0.3em;
 }
+
 /*****************************************************/
+
+.site-heading {
+	border-bottom: 1px solid #D0D0D0;
+	border-top: 1px solid #D0D0D0;
+	padding: 1em;
+}
+
+.site-wrapper .site-container {
+	width: 100%;
+	vertical-align: middle;
+	padding: 1.5em;
+	border-bottom: 1px solid #D0D0D0;
+}
+
+.site-wrapper.site-table {
+	display: table;
+	width: 100%;
+}
+
+.site-wrapper .site-cell {
+	display: table-cell;
+	vertical-align: middle;
+	width: 60%;
+}
+
+.site-wrapper .site-cell h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	letter-spacing: .025em;
+	display: inline-block; 
+}
+
+.site-wrapper .site-cell p {
+	font-size: 1em;
+	margin: 1em .5em 0 0;
+}
+
+.site-wrapper .site-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.site-cell p {
+	margin-bottom: 2em;
+	letter-spacing: .050em;
+}
+
+.site-button {
+  background:#67a0bc;
+  color:#efefef;
+  border:none;
+  position:relative;
+  font-size:1.2em;
+  padding: 1em 2em;
+  cursor:pointer;
+  transition:400ms ease all;
+	outline:none;
+	border-radius: 0.2em
+}
+.site-button:hover{
+  background: #efefef;
+  color:#67a0bc;
+}
+.site-button:before,.site-button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:0.2em;
+  width:0;
+  background: #67a0bc;
+  transition:400ms ease all;
+}
+.site-button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.site-button:hover:before,.site-button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+/*****************************************************/
+
+.review-form {
+	padding: 4em;
+}
+
+.review-form textarea {
+	margin-bottom: 0.5em;
+}

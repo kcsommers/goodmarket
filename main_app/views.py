@@ -436,13 +436,4 @@ def seller_info(request):
 		sellers.append(user)
 		profiles.append(profile)
 
-	return render(request, "seller_info.html", {"sellers": sellers, "profiles": profile})
-
-
-
-
-
-
-
-
-
+	return render(request, "seller_info.html", {"sellers": sellers, "profiles": profiles})
