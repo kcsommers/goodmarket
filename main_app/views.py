@@ -14,10 +14,16 @@ import stripe
 import random
 from django.db.models import Sum
 from decimal import Decimal
-stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", None)
-stripe.api_key = stripe_secret_key
-public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
-stripe_client_id = getattr(settings, "STRIPE_CLIENT_ID", None)
+import os
+stripe_secret_key = os.environ.get('STRIPE_SECRET_KEY')
+stripe_api_key = os.environ.get('STRIPE_API_KEY')
+public_key = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+stripe_client_id = os.environ.get('STRIPE_CLIENT_ID')
+
+# stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", None)
+# stripe.api_key = stripe_secret_key
+# public_key = getattr(settings, "STRIPE_PUBLISHABLE_KEY", None)
+# stripe_client_id = getattr(settings, "STRIPE_CLIENT_ID", None)
 
 # Create your views here.
 def index(request):
