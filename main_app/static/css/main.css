@@ -100,8 +100,12 @@ textarea {
 }
 
 .intro-container a {
-	border: 3px solid #fff;
-	padding: 1em;
+	display: inline-block
+}
+
+.intro-container img {
+	width: 1.1em;
+	margin-right: 0.5em;
 }
 
 /**************************************************************************
@@ -999,7 +1003,7 @@ textarea {
 	font-family: "Montserrat", sans-serif;
 }
 
-.info-cell a {
+/* .info-cell a {
 	display: inline-block;
 	background-color: #82ca9c;;
 	padding: 1em;
@@ -1014,7 +1018,7 @@ textarea {
 
 .info-cell a:hover {
 	background-color: #439e64;
-}
+} */
 
 /************************************************************/
 
