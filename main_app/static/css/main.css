@@ -1030,20 +1030,7 @@ textarea {
 
 .stripe-signup a {
 	display: inline-block;
-	margin-top: 3em;
-	background-color: #37a4e4;
-	padding: 1em;
-	border-radius: 0.5em;
-	color: white;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
-}
-
-.stripe-signup a:hover {
-	background-color: #0a6498;
+	margin-top: 2em;
 }
 
 .stripe-signup .stripe-prompt {
