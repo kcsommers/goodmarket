@@ -244,6 +244,8 @@ def profile(request):
 		profile = Profile.objects.get(user=request.user)
 		sellingItems = Item.objects.all().filter(user=request.user, sold=False)
 		soldItems = Item.objects.all().filter(user=request.user, sold=True)
+		x = Decimal(profile.charity / 100)
+		char_total = round(x, 2)
 		try: 
 			reviews = Review.objects.all().filter(seller=request.user)
 		except:
@@ -253,7 +255,8 @@ def profile(request):
 			'profile': profile, 
 			'selling_items': sellingItems, 
 			'sold_items': soldItems, 
-			'reviews': reviews
+			'reviews': reviews,
+			'char_total': char_total
 		})
 	except:
 		print('NO PROFILE')
