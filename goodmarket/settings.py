@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 from os.path import join, dirname
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,11 +140,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/media')
 
 
 # getting stripe keys from .env
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
-STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
-STRIPE_CLIENT_ID = os.getenv("STRIPE_CLIENT_ID")
+# dotenv_path = join(dirname(__file__), '.env')
+# load_dotenv(dotenv_path)
+# STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+# STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+# STRIPE_CLIENT_ID = os.getenv("STRIPE_CLIENT_ID")
 
 # cloudinary
 import cloudinary
