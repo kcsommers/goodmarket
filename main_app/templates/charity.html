@@ -6,7 +6,8 @@
     <h3>Here are some of the Charities and Organizations we support</h3>
   </div>
   <ul>
-    {% for charity in charities %}
+
+    {% for charity, total in zipped %}
     <li>
       <div class="charity-container">
         <div class="charity-table">
@@ -18,13 +19,36 @@
             </article>
           </div> 
           <div class="info-cell">
-            <p>Money Raised by Users: <span>${{ charity.total_money_raised }}</span></p>
+            <p>Money Raised by Users: <span>${{ total }}.00</span></p>
             <a class="site-button" href="{{ charity.link }}" target="_blank">Link to Website</a>
           </div>
         </div>
       </div>
     </li>
     {% endfor %}
+
+
+
+
+    <!-- {% for charity in charities %}
+    <li>
+      <div class="charity-container">
+        <div class="charity-table">
+          <div class="charity-cell">
+              <img src="{{ charity.image }}}" alt="{{ charity.name }}}">
+            <h3>{{ charity.name }}</h3>
+            <article>
+              <p>{{ charity.mission_statement }}</p>
+            </article>
+          </div> 
+          <div class="info-cell">
+            <p>Money Raised by Users: <span>${{ charity.total_money_raised }}.00</span></p>
+            <a class="site-button" href="{{ charity.link }}" target="_blank">Link to Website</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endfor %} -->
   </ul>
 </div>
    

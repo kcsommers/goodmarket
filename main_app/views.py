@@ -75,7 +75,7 @@ def checkout(request):
 		charity_fee = total_amount - amount_to_seller
 		charity = Charity.objects.get(id=charities[i])
 		############# Remove Division If Non-Functional !!
-		charity.total_money_raised += (charity_fee / 100 )
+		charity.total_money_raised += (charity_fee)
 		charity.save()
 
 		# update seller donation totals
@@ -296,7 +296,15 @@ def post_profile(request):
 
 def charity(request):
 	charities = Charity.objects.all()
-	return render(request, 'charity.html', {'charities': charities})
+	totals = []
+	for charity in charities:
+		totals.append(charity.total_money_raised / 100)
+	zipped = zip(charities, totals)
+	return render(request, 'charity.html', {'charities': charities, 'zipped': zipped})
+
+# def charity(request):
+# 	charities = Charity.objects.all()
+# 	return render(request, 'charity.html', {'charities': charities})
 
 @login_required
 def sell(request):
