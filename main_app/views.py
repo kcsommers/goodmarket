@@ -9,8 +9,6 @@ from .models import Item, Profile, Cart, Charity, Review
 from django.contrib import messages 
 from .forms import LoginForm, SellForm, ProfileUpdateForm, SignUpForm, ReviewForm
 from django.core.mail import send_mail
-import cloudinary.uploader
-import cloudinary.api
 import requests
 import stripe
 import random
