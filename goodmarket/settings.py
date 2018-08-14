@@ -137,6 +137,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/media')
 
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 # getting stripe keys from .env
 # dotenv_path = join(dirname(__file__), '.env')
