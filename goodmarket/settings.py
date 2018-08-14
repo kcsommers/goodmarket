@@ -146,11 +146,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/media')
 # STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
 # STRIPE_CLIENT_ID = os.getenv("STRIPE_CLIENT_ID")
 
-# cloudinary
-import cloudinary
-cloudinary.config(
-    cloud_name = os.getenv("CLOUDINARY_URL"),
-    api_key = os.getenv("CLOUDINARY_API_KEY"),
-    api_secret = os.getenv("CLOUDINARY_API_SECRET")
-)
- 
