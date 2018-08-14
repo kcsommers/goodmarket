@@ -298,7 +298,7 @@ def charity(request):
 	charities = Charity.objects.all()
 	totals = []
 	for charity in charities:
-		totals.append(charity.total_money_raised / 100)
+		totals.append(round(float(charity.total_money_raised / 100), 2))
 	zipped = zip(charities, totals)
 	return render(request, 'charity.html', {'charities': charities, 'zipped': zipped})
 
