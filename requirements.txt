@@ -1,0 +1,5 @@
+stripe
+python-dotenv
+cloudinary
+Pillow
+Gunicorn

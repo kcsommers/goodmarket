@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="market-page container">
+	<main class="market-main">
+		<div class="page-title">
+			<h3>Market</h3>
+		</div>
+		<div class="filters">
+			<div class="category-filters">
+				<p>Filters</p>
+				<button class="show-all filter-active">All items</button>
+				<button data-id="furniture">Furniture</button>
+				<button data-id="clothing">Clothing</button>
+				<button data-id="appliances">Appliances</button>
+				<button data-id="hardware">Hardware</button>
+				<button data-id="tech">Tech</button>
+				<button data-id="athletics">Athletics</button>
+				<button data-id="arts">Arts</button>
+				<button data-id="bikes">Bikes</button>
+				<button data-id="auto">Auto</button>
+			</div>
+			<div class="filter-form">
+				<input class="filter-input" type="text" placeholder="Search by name..." name="search" />
+				<button class="search-button" type="button">Search</button>
+			</div>
+		</div>
+		<section class="market-items-container">
+			{% for item in items %}
+				{% if item.sold == False %}
+				<div class="market-item {{item.category}}">
+					<a href="/item/{{item.id}}">
+						<div style="background-image: url(/media/{{item.image}})" class="market-item-image"></div>
+						<div class="market-item-info">
+							<h5>{{item.name}}</h5>
+							<p>Seller: <a href="#">{{item.user}}</a></p>
+							<p>Price: ${{item.price}}.00</p>
+							<p>To Charity: {{ item.charity_percent }}%</p>
+						</div>
+					</a>
+				</div>
+				{% endif %}
+			{% endfor %}
+		</section>
+	</main>
+</section>
+
+{% endblock %}

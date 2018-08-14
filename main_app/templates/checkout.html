@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>HI</h1>
+
+<form action="/checkout" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_zeL9x7BURaxbE8qRkIASXmhA"
+    data-amount="999"
+    data-name="Demo Site"
+    data-description="Example charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-zip-code="true"
+    data-locale="auto">
+  </script>
+</form>
+
+{% endblock %}

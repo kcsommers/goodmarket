@@ -5,17 +5,69 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Project 4</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Cabin|Roboto+Condensed" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-
-	<main>
-		<div class="container">
-			{% block content %}
-			{% endblock %}
+<body class="Site">
+	<nav class="main-nav">
+		<div class="nav-wrapper">
+			 <div class="nav-left">
+			 	<div class="logo">
+			 		<a href="/"><img src="/static/images/basket.png" /><h2>Good Market</h2></a>
+			 	</div>
+			 </div>
+			 <div class="nav-right">
+			 	<div class="nav-menu">
+			 		<a href="/charities/">Charities</a>
+			 		<a href="/market/">Market</a>
+					 {% if user.is_authenticated %}
+					<a href="/sell/">Sell</a>
+					<a href="/cart/">Cart</a>
+					<a href="/profile/">Profile</a>
+					<a href="/logout/">Logout</a>
+					{% else %}
+					<a href="/login/">Login</a>
+					<a href="/signup/">Signup</a>
+			 		{% endif %}
+			 	</div>
+			 </div>
 		</div>
+	</nav>
+
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
+	<span style="font-size:30px;cursor:pointer" onclick="openNav()" class="hamburger">&#9776;</span>
+
+	<main class="Site-content">
+		{% block content %}
+		{% endblock %}
 	</main>
-	
-<script src="{% static 'app.js' %}"></script>
+
+	<footer class="footer">
+		<div class="footer-wrapper">
+			<nav class="main-nav">
+				<div class="nav-wrapper">
+					 <div class="nav-left">
+						 &copy 2018 | Authors: W.Connelly K.Sommers J.Spade
+					 </div>
+					 <div class="nav-right">
+						 <div class="nav-menu">
+							 <a href="/charities/">Charities</a>
+							 <a href="/market/">Market</a>
+						 </div>
+					 </div>
+				</div>
+			</nav>
+		</div>
+	</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

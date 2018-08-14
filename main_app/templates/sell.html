@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if has_stripe_id == True %}
+<section class="sell-page">
+	<div class="sell-page-arrow-left">
+		<i class="fa fa-angle-left"></i>
+	</div>
+	<div class="sell-page-arrow-right">
+		<i class="fa fa-angle-right"></i>
+	</div>
+	<div class="sell-form-container">
+		<form action="/post_item/" method="POST" enctype="multipart/form-data">
+		 	{% csrf_token %}
+		 	<div class="sell-form-page sell-form-current" id="sell-form-first">
+		 		<div class="sell-form-content">
+		 			<h2>Pick a Category</h2>
+		 			<div class="sell-form-categories">
+		 				<div class="cat-left">
+		 					<button id="appliances">Appliances</button>
+		 					<button id="arts">Arts</button>
+		 					<button id="athletics">Athletics</button>
+		 					<button id="auto">Auto</button>
+		 				</div>
+		 				<div class="cat-right">
+		 					<button id="bikes">Bikes</button>
+		 					<button id="clothing">Clothing</button>
+		 					<button id="hardware">Hardware</button>
+		 					<button id="tech">Tech</button>
+		 				</div>
+		 			</div>
+		 			{{form.category}}
+		 		</div>
+		 	</div>
+		 	<div class="sell-form-page">
+		 		<div class="sell-form-content">
+		 			<h2>What are you selling?</h2>
+			 		{{form.name}}
+
+			 		<h2>What's your price?</h2>
+			 		{{form.price}}
+			 	</div>
+		 	</div>
+		 	<div class="sell-form-page">
+		 		<div class="sell-form-content">
+		 			<h2>Upload a photo:</h2>
+		 			{{form.image}}
+
+		 			<h2>Describe your Item:</h2>
+			 		{{form.description}}
+			 	</div>
+		 	</div>
+	 	 	<div class="sell-form-page">
+	 	 		<div class="sell-form-content">
+	 	 			<h2>Select your Charity:</h2>
+	 	 			<div class="sell-form-charities">
+	 	 				{% for char in charities %}
+						<div id="{{char.name}}" class="char-img">
+							<img src="{{char.image}}" alt="{{char.name}}" />
+						</div>
+	 	 				{% endfor %}
+	 	 			</div>
+	 	 		</div>
+				<input hidden type="text" name="charity" class="charity-hidden" />
+	 	 	</div>
+		 	<div class="sell-form-page" id="sell-form-last">
+		 		<div class="sell-form-content">
+		 			<h2>How much would you like to donate?</h2>
+		 			<div class="sell-form-percentage">
+		 				<div class="perc-col1">
+		 					<button id="5">5%</button>
+		 					<button id="10">10%</button>
+		 					<button id="15">15%</button>
+		 					<button id="20">20%</button>
+		 					<button id="25">25%</button>
+		 				</div>
+		 				<div class="perc-col2">
+		 					<button id="30">30%</button>
+		 					<button id="35">35%</button>
+		 					<button id="40">40%</button>
+		 					<button id="45">45%</button>
+		 					<button id="50">50%</button>
+		 				</div>
+		 				<div class="perc-col3">
+		 					<button id="55">55%</button>
+		 					<button id="60">60%</button>
+		 					<button id="65">65%</button>
+		 					<button id="70">70%</button>
+		 					<button id="75">75%</button>
+		 				</div>
+		 				<div class="perc-col4">
+		 					<button id="80">80%</button>
+		 					<button id="85">85%</button>
+		 					<button id="90">90%</button>
+		 					<button id="95">95%</button>
+		 					<button id="100">100%</button>
+		 				</div>
+		 			</div>
+			 		{{form.charity_percent}}
+			 		<input type="submit" value="Post Item" />
+			 	</div>
+		 	</div>
+		 </form>
+	</div>
+</section>
+
+{% else %}
+
+<div class="stripe-signup">
+	<div class="stripe-prompt">
+		<p>Before you submit an item for sale,</p>
+		<p>You must first connect your account to Stripe</p>
+	</div>
+	<a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}">Connect with Stripe</a>
+</div>
+
+{% endif %}
+
+{% endblock %}

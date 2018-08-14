@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="profile-update-section container">
+	<div class="profile-update-container">
+		<h3>Edit Profile</h3>
+		<div class="profile-update-form">
+			<form action="/post_profile/" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div>
+					<h5>Where are you located?</h5>
+					{{form.location}}
+				</div>
+				<div>
+					<h5>Tell us about yourself:</h5>
+					{{form.bio}}
+				</div>
+				<div>
+					<h5>Upload a photo:</h5>
+					{{form.image}}
+				</div>
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

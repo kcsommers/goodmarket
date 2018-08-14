@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="profile-section container">
+	<div class="profile-container">
+		<div class="profile-row" id="profile-r1">
+			<div class="profile-details">
+				<h3>{{profile.user}}</h3>
+				<div class="profile-location">
+					<h5>{{profile.location}}</h5>
+					<a href="/profile/update">Edit Profile</a>
+				</div>
+			</div>
+			<div style="background-image: url(/media/{{profile.image}})" class="profile-picture">
+			</div>
+		</div>
+		<hr />
+		<div class="profile-row" id="profile-r2">
+			<div class="charity-amount">
+				<h5>Total Donations: <span>${{profile.charity}}</span></h5>
+			</div>
+			<div class="profile-bio">
+				<p>{{profile.bio}}</p>
+			</div>
+		</div>
+		<div class="grid-container">
+			<div class="grid-item">
+				<div class="profile-row" id="profile-r3">
+					<h4>Organizations you've supported</h4>
+					<div class="profile-charities">
+						{% for item in sold_items %}	
+							<div style="background-size: cover; background-image: url({{item.charity.image}});">
+								<p>{{item.charity}}</p>
+							</div>
+						{% endfor %}		
+					</div>
+				</div>
+				<hr style="width: 100%" />
+				<div class="profile-row" id="profile-r4">
+					<h4>Items for Sale</h4>
+					<div class="profile-selling">
+						{% for item in selling_items %}	
+							<div style="background-image: url(/media/{{item.image}})">
+								<p>{{item.name}}</p>
+							</div>
+						{% endfor %}		
+					</div>
+				</div>
+				<div class="profile-row" id="profile-r5">
+					<h4>Items Sold</h4>
+					<div class="profile-sold">
+						{% for item in sold_items %}	
+							<div style="background-image: url(/media/{{item.image}})">
+								<p>{{item.name}}</p>
+							</div>
+						{% endfor %}		
+					</div>
+				</div>
+			</div>
+			<div class="grid-item">
+				<h4 class="reviews-title">Reviews</h4>
+				{% for review in reviews %}
+					<div class="review">
+						<p class="reviewer-name">{{ review.reviewer }}</p>
+						<p class="reviewer-comment">{{ review.comment }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
