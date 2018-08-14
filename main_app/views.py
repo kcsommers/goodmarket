@@ -105,7 +105,7 @@ def checkout(request):
 	subject = 'Thank you for using Goodmarket!'
 	from_email = settings.EMAIL_HOST_USER
 	to_email = [request.user.email]
-	html_message = '<h1>Thank you for using Goodmarket!</h1><h3>Your order is being processed, and you will receive an emailed receipt from Stripe shortly.</h3><br /><p>Follow the link below to find seller contact information, and leave reviews.</p><br /><a href="http://localhost:8000/seller_info/' + sellersStr + '">Get Seller Information</a><br /><br /><em>The Goodmarket Team</em>'
+	html_message = '<h1>Thank you for using Goodmarket!</h1><h3>Your order is being processed, and you will receive an emailed receipt from Stripe shortly.</h3><br /><p>Follow the link below to find seller contact information, and leave reviews.</p><br /><a href="http://good-market.herokuapp.com/seller_info/' + sellersStr + '">Get Seller Information</a><br /><br /><em>The Goodmarket Team</em>'
 	text_message = 'Thank you for using Goodmarket! Your order is being processed, and you will receive an emailed receipt from Stripe shortly.'
 	send_mail(subject=subject, message=text_message, html_message=html_message, from_email=from_email, recipient_list=to_email, fail_silently=False)
 
