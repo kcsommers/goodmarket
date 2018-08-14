@@ -16,7 +16,7 @@ from django.db.models import Sum
 from decimal import Decimal
 import os
 stripe_secret_key = os.environ.get('STRIPE_SECRET_KEY')
-stripe_api_key = stripe_secret_key
+stripe.api_key = stripe_secret_key
 public_key = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 stripe_client_id = os.environ.get('STRIPE_CLIENT_ID')
 
