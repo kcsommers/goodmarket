@@ -6,7 +6,7 @@
     <div class="cart-wrapper">
       <div class="cart-heading group">
         <h1>My Cart</h1>
-        <a href="/market">Back to Market</a>
+        <a class="site-button" href="/market">Back to Market</a>
       </div>
       <div class="cart-container">
         <!-- TODO: Color-shift on Odd/Even? -->
@@ -74,16 +74,19 @@
       </div>
     </div>
   {% else %}
-  <h1>Your Cart is Empty</h1>
+  <div class="empty-cart">
+    <h1>Your Cart is Empty!</h1>
+    <a class="site-button" href="/market/"><img src="/static/images/basket.png"></img>Go to Market</a>
+  </div>
   {% endif %}
 {% else %}
 
 <div class="stripe-signup">
 	<div class="stripe-prompt">
 		<p>Before you're able to purchase items,</p>
-		<p>You must first connect your account to Stripe</p>
+		<p>You must first register your new account</p>
 	</div>
-	<a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}">Connect with Stripe</a>
+	<a class="site-button" href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=http://localhost:8000/stripe_redirect&client_id={{client_id}}&state={{user.id}}">Register Account</a>
 </div>
 
 {% endif %}
