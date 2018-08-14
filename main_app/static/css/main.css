@@ -634,8 +634,24 @@ textarea {
 
 @media (max-width: 600px) {
 
-	.main-nav,
-	.nav-wrapper,
+	.profile-picture {
+		position: relative;
+		height: 250px;
+		width: 250px;
+		right: 0em;
+		left: 0em;
+		top: 3em;
+		background-size: cover;
+		background-position: center center;
+		border-radius: 10px;
+		margin-bottom: 5em;
+	}
+
+	.profile-row,
+	.hr-below-picture {
+		margin-left: 1.5em;
+	}
+
 	.nav-menu a {
 		display: none;
 	}
@@ -644,12 +660,19 @@ textarea {
 		margin-left: .5em;
 	}
 
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
 	.intro-container {
 		width: 100%;
 		background-color: rgba(239, 239, 239, 0.9);
 		padding: 3em 3em 4em 3em;
 		text-align: center;
 		border-radius: 0px;
+		margin-bottom: 0px;
+		border: none;
 	}
 
 	h1 {
@@ -697,6 +720,38 @@ textarea {
 		right: 25px;
 		font-size: 36px;
 		margin-left: 50px;
+	}
+
+	.filter-form {
+		display: block;
+		align-items: left;
+		justify-content: left;
+		text-align: left;
+	}
+
+	.category-filters {
+		display: block;
+	}
+
+	.filters {
+		display: block;
+		padding: 1em 0;
+	}
+
+	.filter-form {
+		margin-top: 1em;
+	}
+
+	.login-form {
+		margin: 0 1em;
+	}
+
+	.signup-form {
+		margin: 0 1em;
+	}
+
+	.auth-btn {
+		margin-bottom: 2em;
 	}
 
 }

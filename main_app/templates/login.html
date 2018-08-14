@@ -3,7 +3,7 @@
 
 <div class="auth-wrapper">
 	<h1>Login</h1>
-	<form action="/login/" method="POST">
+	<form action="/login/" method="POST" class="login-form">
 		{% csrf_token %}
 		<ul>
 			<li>{{ form.username }}</li>

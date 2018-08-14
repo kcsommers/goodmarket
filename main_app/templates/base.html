@@ -11,15 +11,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="Site">
-	<nav class="main-nav">
-		<div class="nav-wrapper">
+	<nav class="main-nav top-main-nav">
+		<div class="nav-wrapper top-nav-wrapper">
 			 <div class="nav-left">
 			 	<div class="logo">
 			 		<a href="/"><img src="/static/images/basket.png" /><h2>Good Market</h2></a>
 			 	</div>
 			 </div>
 			 <div class="nav-right">
-			 	<div class="nav-menu">
+			 	<div class="nav-menu top-nav-menu">
 			 		<a href="/charities/">Charities</a>
 			 		<a href="/market/">Market</a>
 					 {% if user.is_authenticated %}
@@ -38,10 +38,17 @@
 
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">About</a>
-		<a href="#">Services</a>
-		<a href="#">Clients</a>
-		<a href="#">Contact</a>
+		<a href="/charities/">Charities</a>
+		<a href="/market/">Market</a>
+			{% if user.is_authenticated %}
+		<a href="/sell/">Sell</a>
+		<a href="/cart/">Cart</a>
+		<a href="/profile/">Profile</a>
+		<a href="/logout/">Logout</a>
+		{% else %}
+		<a href="/login/">Login</a>
+		<a href="/signup/">Signup</a>
+		{% endif %}
 	</div>
 	<span style="font-size:30px;cursor:pointer" onclick="openNav()" class="hamburger">&#9776;</span>
 
@@ -54,11 +61,11 @@
 		<div class="footer-wrapper">
 			<nav class="main-nav">
 				<div class="nav-wrapper">
-					 <div class="nav-left">
+					 <div class="nav-left bottom-nav-left">
 						 &copy 2018 | Authors: W.Connelly K.Sommers J.Spade
 					 </div>
 					 <div class="nav-right">
-						 <div class="nav-menu">
+						 <div class="nav-menu bottom-nav-right">
 							 <a href="/charities/">Charities</a>
 							 <a href="/market/">Market</a>
 						 </div>
