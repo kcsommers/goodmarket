@@ -38,10 +38,17 @@
 
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">About</a>
-		<a href="#">Services</a>
-		<a href="#">Clients</a>
-		<a href="#">Contact</a>
+		<a href="/charities/">Charities</a>
+		<a href="/market/">Market</a>
+			{% if user.is_authenticated %}
+		<a href="/sell/">Sell</a>
+		<a href="/cart/">Cart</a>
+		<a href="/profile/">Profile</a>
+		<a href="/logout/">Logout</a>
+		{% else %}
+		<a href="/login/">Login</a>
+		<a href="/signup/">Signup</a>
+		{% endif %}
 	</div>
 	<span style="font-size:30px;cursor:pointer" onclick="openNav()" class="hamburger">&#9776;</span>
 

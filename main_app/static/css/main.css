@@ -632,8 +632,8 @@ textarea {
 
 	.profile-picture {
 		position: relative;
-		height: 200px;
-		width: 200px;
+		height: 250px;
+		width: 250px;
 		right: 0em;
 		left: 0em;
 		top: 3em;
@@ -648,8 +648,6 @@ textarea {
 		margin-left: 1.5em;
 	}
 
-	.main-nav,
-	.nav-wrapper,
 	.nav-menu a {
 		display: none;
 	}
@@ -669,6 +667,8 @@ textarea {
 		padding: 3em 3em 4em 3em;
 		text-align: center;
 		border-radius: 0px;
+		margin-bottom: 0px;
+		border: none;
 	}
 
 	h1 {
@@ -716,6 +716,26 @@ textarea {
 		right: 25px;
 		font-size: 36px;
 		margin-left: 50px;
+	}
+
+	.filter-form {
+		display: block;
+		align-items: left;
+		justify-content: left;
+		text-align: left;
+	}
+
+	.category-filters {
+		display: block;
+	}
+
+	.filters {
+		display: block;
+		padding: 1em 0;
+	}
+
+	.filter-form {
+		margin-top: 1em;
 	}
 
 }
