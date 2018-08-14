@@ -105,3 +105,5 @@ venv.bak/
 
 /main_app/media/item_images
 /main_app/media/profile_images
+
+.DS_Store

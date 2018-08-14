@@ -14,17 +14,16 @@
             </div>
             <div class="checkout-box col col3">
                 <a href="/profile/{{ item.user_id }}"><p class="checkout-box-info">Seller: {{ item.user }}</p></a>
-                <!-- <p class="checkout-box-info">Seller: {{item.user}}</p> -->
                 <p class="checkout-box-info">Charity: {{item.charity}}</p>
-                <p class="checkout-box-info">Amount to Charity: {{item.charity_percent}}%</p>
-                <p class="checkout-box-info price">Price: ${{item.price}}.99</p>
+                <p class="checkout-box-info">Donation Amount: {{item.charity_percent}}%</p>
+                <p class="checkout-box-info price">Price: ${{item.price}}</p>
                 {% if request.user.is_authenticated %}
-                <div class="add-to-cart-button">
-                    <a href="/thecart/{{item.id}}/">Add to Cart</a>
+                <div class="site-button">
+                    <a class="" href="/thecart/{{item.id}}/">Add to Cart</a>
                 </div>
                 {% else %}
                 <div class="add-to-cart-button">
-                    <button href="/thecart/{{item.id}}/" type="button" disabled>Add to Cart</button>
+                    <button class="disabled-site-button" href="/thecart/{{item.id}}/" type="button" disabled>Add to Cart</button>
                 </div>
                 {% endif %}
             </div>
