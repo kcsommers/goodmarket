@@ -630,14 +630,35 @@ textarea {
 
 @media (max-width: 600px) {
 
-	.top-main-nav,
-	.top-nav-wrapper,
-	.top-nav-menu a {
+	.profile-picture {
+		position: relative;
+		height: 250px;
+		width: 250px;
+		right: 0em;
+		left: 0em;
+		top: 3em;
+		background-size: cover;
+		background-position: center center;
+		border-radius: 10px;
+		margin-bottom: 5em;
+	}
+
+	.profile-row,
+	.hr-below-picture {
+		margin-left: 1.5em;
+	}
+
+	.nav-menu a {
 		display: none;
 	}
 
 	.hamburger {
-		background-color: #67a0bc;
+		margin-left: .5em;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr;
 	}
 
 	.intro-container {
@@ -645,8 +666,9 @@ textarea {
 		background-color: rgba(239, 239, 239, 0.9);
 		padding: 3em 3em 4em 3em;
 		text-align: center;
-		border: none;
 		border-radius: 0px;
+		margin-bottom: 0px;
+		border: none;
 	}
 
 	h1 {
@@ -696,18 +718,24 @@ textarea {
 		margin-left: 50px;
 	}
 
-	.nav-wrapper {
+	.filter-form {
 		display: block;
-		padding-top: 1em;
+		align-items: left;
+		justify-content: left;
+		text-align: left;
 	}
 
-	.bottom-nav-left {
-		display: none;
+	.category-filters {
+		display: block;
 	}
 
-	.bottom-nav-right a {
-		text-align: center;
+	.filters {
 		display: block;
+		padding: 1em 0;
+	}
+
+	.filter-form {
+		margin-top: 1em;
 	}
 
 }
