@@ -630,6 +630,24 @@ textarea {
 
 @media (max-width: 600px) {
 
+	.profile-picture {
+		position: relative;
+		height: 200px;
+		width: 200px;
+		right: 0em;
+		left: 0em;
+		top: 3em;
+		background-size: cover;
+		background-position: center center;
+		border-radius: 10px;
+		margin-bottom: 5em;
+	}
+
+	.profile-row,
+	.hr-below-picture {
+		margin-left: 1.5em;
+	}
+
 	.main-nav,
 	.nav-wrapper,
 	.nav-menu a {
@@ -638,6 +656,11 @@ textarea {
 
 	.hamburger {
 		margin-left: .5em;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr;
 	}
 
 	.intro-container {
