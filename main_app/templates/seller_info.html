@@ -1,16 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section id="seller-info-section">
-	{% for seller in sellers %}
-	<a href="/reviews/{{seller.id}}/">
-		<div class="seller-container">
-			<h3>{{seller.username}}</h3>
-			<p>{{seller.email}}</p>
-			<button href="/reviews/{{seller.id}}/">Leave a review</button>
-		</div>
-	</a>
-	{% endfor %}
-</section>
+<div class="site-wrapper">
+	<div class="site-heading group">
+		<h3>Let everyone know about your recent purchases!</h3>
+	</div>
+	<ul>
+		{% for seller in sellers %}
+		<li>
+			<div class="site-container">
+				<div class="site-table">
+					<div class="site-cell">
+						<h3>{{ seller.username}}</h3>
+						<article>
+							<p>{{ seller.email}}</p>
+						</article>
+					</div> 
+					<div class="site-cell">
+						
+						<a class="site-button" href="/reviews/{{seller.id}}/">Leave a review</a>
+					</div>
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
 
 {% endblock %}

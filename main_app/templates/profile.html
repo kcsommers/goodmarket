@@ -5,7 +5,7 @@
 	<div class="profile-container">
 		<div class="profile-row" id="profile-r1">
 			<div class="profile-details">
-				<h3>{{profile.user}}</h3>
+				<h3 class="profile-user-title">{{profile.user}}</h3>
 				<div class="profile-location">
 					<h5>{{profile.location}}</h5>
 					<a href="/profile/update">Edit Profile</a>
@@ -14,7 +14,7 @@
 			<div style="background-image: url(/media/{{profile.image}})" class="profile-picture">
 			</div>
 		</div>
-		<hr />
+		<hr class="hr-below-picture"/>
 		<div class="profile-row" id="profile-r2">
 			<div class="charity-amount">
 				<h5>Total Donations: <span>${{profile.charity}}</span></h5>

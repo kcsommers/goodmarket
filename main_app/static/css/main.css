@@ -90,7 +90,6 @@ textarea {
 	background-color: rgba(239, 239, 239, 0.9);
 	padding: 3em 3em 4em 3em;
 	margin: 0 auto;
-	border: 2px solid #fff;
 	border-radius: 5px;
 	text-align: center;
 }
@@ -100,8 +99,12 @@ textarea {
 }
 
 .intro-container a {
-	border: 3px solid #fff;
-	padding: 1em;
+	display: inline-block
+}
+
+.intro-container img {
+	width: 1.1em;
+	margin-right: 0.5em;
 }
 
 /**************************************************************************
@@ -132,7 +135,7 @@ textarea {
 	border: none;
 	outline: none;
 	border: 1px solid #158f97;
-	color: #158f97;
+	color: #67a0bc;
 	border-radius: 10px;
 	margin: 0.1em;
 }
@@ -158,14 +161,19 @@ textarea {
 	padding: 0.5em;
 	min-width: 300px;
 	display: block;
-	margin-bottom: 1em;
+	margin: 0 0.5em;
+	height: 3.5em;
 }
 
-.filter-form input[type=submit] {
-	border: 1px solid #333;
-	outline: none;
-	font-size: 1.1em;
-	padding: 0.5em;
+@media only screen and (max-width:600px) {	
+	.filter-form input[type=text] {
+		margin: 0;
+		margin-bottom: 1em;
+	}
+}
+
+.filter-form button {
+	display: inline-block;
 }
 
 .market-items-container {
@@ -314,6 +322,10 @@ textarea {
 .sell-form-charities {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.sell-form-charities img:hover {
+	opacity: .80;
 }
 
 .char-img {
@@ -465,7 +477,7 @@ textarea {
 	display: grid;
 	grid-gap: 1em;
 	grid-template-areas: 'item-name'
-						 'content'
+						 					 'content'
 }
 
 .content {
@@ -476,12 +488,16 @@ textarea {
 	margin-bottom: 5em;
 }
 
+.container .content img {
+	text-align: center;
+}
+
 .checkout-box {
 	background-color: lightgrey;
-	margin-bottom: 5em;
+	/* margin-bottom: 5em; */
 	text-align: center;
-	padding-top: 5em;
-	padding-bottom: 5em;
+	padding-top: 2em;
+	padding-bottom: 1em;
 	box-shadow: 2px 2px 5px black;
 }
 
@@ -502,7 +518,7 @@ textarea {
 .item {
 	margin-bottom: 1em;
 	text-align: center;
-	width: 100%;
+	width: 50%;
 }
 
 .col {
@@ -511,6 +527,7 @@ textarea {
 
 .col1 {
 	grid-area: "col1";
+	text-align: center;
 }
 
 .col2 {
@@ -537,7 +554,7 @@ textarea {
 	width: 80%;
 }
 
-.add-to-cart-button,
+/* .add-to-cart-button,
 .button {
 	display: block;
 	text-align: center;
@@ -559,7 +576,7 @@ textarea {
 	color: #fff;
 	border-color: #fff;
 	transition: 1s ease;
-}
+} */
 
 .button {
 	width: 40%;
@@ -589,7 +606,7 @@ textarea {
 }
 
 .review {
-	background-color: gray;
+	background-color: #d3d3d3;
 	margin-bottom: 1em;
 	border-radius: 1em;
 	padding: 1em;
@@ -598,23 +615,25 @@ textarea {
 
 .reviewer-name {
 	font-size: 1.5em;
-	background-color: lightgray;
-	border-radius: 1em;
-	padding: 0 1em;
+	background-color: rgba(211, 211, 211, 0.918);
+	/* border-radius: 1em; */
+	padding: 0 0.6em;
 	margin-bottom: .5em;
+	border-bottom: 1px solid black;
+	width: 60%;
 }
 
 .reviewer-comment {
 	background-color: lightgray;
-	border-radius: 1em;
+	/* border-radius: 1em; */
 	padding: 0 1em;
 	margin-bottom: .5em;
 }
 
 .reviews-title {
 	text-align: center;
-	border-bottom: 1px solid gray;
-	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	margin-bottom: 2em;
 	padding-bottom: .5em;
 }
 
@@ -630,8 +649,24 @@ textarea {
 
 @media (max-width: 600px) {
 
-	.main-nav,
-	.nav-wrapper,
+	.profile-picture {
+		position: relative;
+		height: 250px;
+		width: 250px;
+		right: 0em;
+		left: 0em;
+		top: 3em;
+		background-size: cover;
+		background-position: center center;
+		border-radius: 10px;
+		/* margin-bottom: 5em; */
+	}
+
+	.profile-row,
+	.hr-below-picture {
+		margin-left: 1.5em;
+	}
+
 	.nav-menu a {
 		display: none;
 	}
@@ -640,12 +675,19 @@ textarea {
 		margin-left: .5em;
 	}
 
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
 	.intro-container {
 		width: 100%;
 		background-color: rgba(239, 239, 239, 0.9);
 		padding: 3em 3em 4em 3em;
 		text-align: center;
 		border-radius: 0px;
+		margin-bottom: 0px;
+		border: none;
 	}
 
 	h1 {
@@ -693,6 +735,38 @@ textarea {
 		right: 25px;
 		font-size: 36px;
 		margin-left: 50px;
+	}
+
+	.filter-form {
+		display: block;
+		align-items: left;
+		justify-content: left;
+		text-align: left;
+	}
+
+	.category-filters {
+		display: block;
+	}
+
+	.filters {
+		display: block;
+		padding: 1em 0;
+	}
+
+	.filter-form {
+		margin-top: 1em;
+	}
+
+	.login-form {
+		margin: 0 1em;
+	}
+
+	.signup-form {
+		margin: 0 1em;
+	}
+
+	.auth-btn {
+		margin-bottom: 2em;
 	}
 
 }
@@ -779,20 +853,7 @@ textarea {
 
 .cart-heading a {
 	float: right;
-	background-color: #82ca9c;
-	border-radius: 1em;
-	padding: 1em;
-	color: white;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
 	margin-top: 0.5em;
-}
-
-.cart-heading a:hover {
-	background-color: #439e64;
 }
 
 .group:after {
@@ -863,15 +924,15 @@ textarea {
 	padding: 1em;
 	border-radius: 0.5em;
 	background-color: #e0e0e0;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-ms-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
 }
 
 .cart-container .removal-cell a:hover {
-	background-color: #f30;
+	background-color: rgb(189, 59, 27);
 	color: white;
 }
 
@@ -938,6 +999,20 @@ textarea {
 	background-color: #439e64;
 }
 
+.empty-cart {
+	padding: 6em;
+	text-align: center;
+}
+
+.empty-cart h1 {
+	margin-bottom: 1em;
+}
+
+.empty-cart img {
+	width: 1.1em;
+	margin-right: 0.5em;
+}
+
 /************************************************************/
 
 .charity-heading {
@@ -999,7 +1074,7 @@ textarea {
 	font-family: "Montserrat", sans-serif;
 }
 
-.info-cell a {
+/* .info-cell a {
 	display: inline-block;
 	background-color: #82ca9c;;
 	padding: 1em;
@@ -1014,7 +1089,7 @@ textarea {
 
 .info-cell a:hover {
 	background-color: #439e64;
-}
+} */
 
 /************************************************************/
 
@@ -1026,20 +1101,7 @@ textarea {
 
 .stripe-signup a {
 	display: inline-block;
-	margin-top: 3em;
-	background-color: #37a4e4;
-	padding: 1em;
-	border-radius: 0.5em;
-	color: white;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-ms-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
-}
-
-.stripe-signup a:hover {
-	background-color: #0a6498;
+	margin-top: 2em;
 }
 
 .stripe-signup .stripe-prompt {
@@ -1052,4 +1114,111 @@ textarea {
 .stripe-prompt p {
 	margin-bottom: 0.3em;
 }
+
 /*****************************************************/
+
+.site-heading {
+	border-bottom: 1px solid #D0D0D0;
+	border-top: 1px solid #D0D0D0;
+	padding: 1em;
+}
+
+.site-wrapper .site-container {
+	width: 100%;
+	vertical-align: middle;
+	padding: 1.5em;
+	border-bottom: 1px solid #D0D0D0;
+}
+
+.site-wrapper.site-table {
+	display: table;
+	width: 100%;
+}
+
+.site-wrapper .site-cell {
+	display: table-cell;
+	vertical-align: middle;
+	width: 60%;
+}
+
+.site-wrapper .site-cell h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	letter-spacing: .025em;
+	display: inline-block; 
+}
+
+.site-wrapper .site-cell p {
+	font-size: 1em;
+	margin: 1em .5em 0 0;
+}
+
+.site-wrapper .site-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.site-cell p {
+	margin-bottom: 2em;
+	letter-spacing: .050em;
+}
+
+.site-button {
+  background:#67a0bc;
+  color:#efefef;
+  border:none;
+  position:relative;
+  font-size:1.2em;
+  padding: 1em 2em;
+  cursor:pointer;
+  transition:400ms ease all;
+	outline:none;
+	border-radius: 0.2em
+}
+.site-button:hover{
+  background: #efefef;
+  color:#67a0bc;
+}
+
+.site-button:before,.site-button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:0.2em;
+  width:0;
+  background: #67a0bc;
+  transition:400ms ease all;
+}
+.site-button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.site-button:hover:before,.site-button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.disabled-site-button {
+	background:#677277;
+	color:#efefef;
+	border:none;
+	position:relative;
+	font-size:1.2em;
+	padding: 1em 2em;
+	transition:400ms ease all;
+	outline:none;
+	border-radius: 0.2em
+}
+
+/*****************************************************/
+
+.review-form {
+	padding: 4em;
+}
+
+.review-form textarea {
+	margin-bottom: 0.5em;
+}
